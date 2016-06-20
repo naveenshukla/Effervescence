@@ -27,6 +27,7 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
   //  private List<Events> EventList = new ArrayList<>();
     private RecyclerView recyclerView;
    // private EventsAdapter eventsAdapter;
+    MyDBHandler dbHandler;
     private String[] mPlanetTitles;
     private List<Events> EventList = new ArrayList<>();
     private EventsAdapter eventsAdapter;
@@ -37,7 +38,7 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        dbHandler = new MyDBHandler(this,null, null,1);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -95,15 +96,31 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
     }
 
     private void prepareEventData() {
-            Events events = new Events(1,"Parallel World : A New Rock Music Experience","Complete Actors Place","Live","Band"
-                    ,"Thursday",8,23,"12%12%2014","AM");
+            Events events = new Events(1,"Parallel World : A New Rock Music Experience","Complete Best Place","rock n roll","Band"
+                    ,"Thursday","8","23","12%12%2014","AM");
+            dbHandler.addEvents(events);
+            events = new Events(2,"Sirf Music Experience","complete faaltu place","Rock","Live Band"
+                    ,"Thursday","8","23","12%12%2014","AM");
+            dbHandler.addEvents(events);
+            events = new Events(3,"Teesra to faaltu hai","Complete kharab place","Rock","Live Band"
+                    ,"Thursday","8","23","12%12%2014","AM");
+            dbHandler.addEvents(events);
+
+
+            String[] title = dbHandler.columntitle();
+            String[] place = dbHandler.columnplace();
+            String[] category1 = dbHandler.columncategory1();
+            String[] category2 = dbHandler.columncategory2();
+            String[] day = dbHandler.columnday();
+            String[] date = dbHandler.columndate();
+            String[] hour = dbHandler.columnhour();
+            String[] minute = dbHandler.columnminute();
+            String[] ampm  = dbHandler.columnampm();
+        for(int i=0; i<3; i++) {
+            events = new Events(i+1, title[i], place[i], category1[i], category2[i]
+                    , day[i], hour[i], minute[i], date[i], ampm[i]);
             EventList.add(events);
-            events = new Events(2,"Parallel World : A New Rock Music Experience","Complete Actors Place","Rock","Live Band"
-                    ,"Thursday",8,23,"12%12%2014","AM");
-            EventList.add(events);
-            events = new Events(3,"Parallel World : A New Rock Music Experience","Complete Actors Place","Rock","Live Band"
-                    ,"Thursday",8,23,"12%12%2014","AM");
-            EventList.add(events);
+        }
             eventsAdapter.notifyDataSetChanged();
     }
 

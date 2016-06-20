@@ -19,7 +19,6 @@
         <activity
             android:name=".Tab3"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".List1" />
     </application>
 
 </manifest>

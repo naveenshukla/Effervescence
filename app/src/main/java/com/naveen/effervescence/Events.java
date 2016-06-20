@@ -10,11 +10,12 @@ import java.util.List;
 public class Events {
     private String title,place,category1,category2,day;
     private String date,ampm;
-    private Integer hour,minute,_id;
+    private String hour,minute;
+            private Integer _id;
     public Events(){
     }
-    public Events(Integer _id,String title, String place, String category1, String Secondcat, String day, Integer hour,
-                  Integer minute,String date, String ampm){
+    public Events(Integer _id,String title, String place, String category1, String Secondcat, String day, String hour,
+                  String minute,String date, String ampm){
         this.title = title;
         this.place = place;
         this._id = _id;
@@ -47,7 +48,7 @@ public class Events {
     public void setDate(String date){
         this.date = date;
     }
-    public void setTime(Integer hour, Integer minute){
+    public void setTime(String hour, String minute){
         this.hour = hour;
         this.minute = minute;
     }
@@ -68,5 +69,17 @@ public class Events {
     }
     public String getTime(){
         return  day + "@ " + hour +" : " + minute + ampm;
+    }
+    public String getAmpm(){
+        return ampm;
+    }
+
+    public String getMinute() {
+        return minute;
+    }
+
+    public String getHour() {
+
+        return hour;
     }
 }
