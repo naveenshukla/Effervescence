@@ -82,4 +82,8 @@ public class Events {
 
         return hour;
     }
+
+    public Integer get_id() {
+        return _id;
+    }
 }

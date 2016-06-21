@@ -34,7 +34,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-         String query = "CREATE TABLE " +  TABLE_EVENTS + " ( " +  COLUMN_ID  + " INTEGER PRIMARY KEY AUTOINCREMENT, " 
+         String query = "CREATE TABLE " +  TABLE_EVENTS + " ( " +  COLUMN_ID  + " INTEGER PRIMARY KEY, "
          + COLUMN_TITLE + " TEXT, " + COLUMN_PLACE + " TEXT, " +  
                 COLUMN_CATEGORY1 + " TEXT, " + COLUMN_CATEGORY2 + " TEXT, " +  COLUMN_DAY  + "  TEXT,  " +  COLUMN_DATE   + " TEXT,  " +
                 COLUMN_AMPM   + " TEXT,  " + COLUMN_HOUR   + " INTEGER,  " +  COLUMN_MINUTE   + " INTEGER); "; 
@@ -51,6 +51,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     public void addEvents(Events events){
         ContentValues values = new ContentValues();
+        values.put(COLUMN_ID,events.get_id());
         values.put(COLUMN_TITLE, events.getTitle());
         values.put(COLUMN_PLACE, events.getPlace());
         values.put(COLUMN_CATEGORY1, events.getCategory1());
@@ -71,7 +72,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         int count = 0;
         SQLiteDatabase db= getWritableDatabase();
 
-        String query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
+        String query = "SELECT * FROM " + TABLE_EVENTS + " WHERE " + COLUMN_ID + " = " + 4;
 
         Cursor c =db.rawQuery(query,null);
 

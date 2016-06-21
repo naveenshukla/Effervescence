@@ -47,19 +47,19 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
 
         TabHost.TabSpec spec = host.newTabSpec("Tab One");
         spec.setContent(R.id.tab1);
-        spec.setIndicator("Tab One");
+        spec.setIndicator("Day One (21 Oct)");
         host.addTab(spec);
 
         //Tab 2
         spec = host.newTabSpec("Tab Two");
         spec.setContent(R.id.tab2);
-        spec.setIndicator("Tab Two");
+        spec.setIndicator("Day Two (22 Oct)");
         host.addTab(spec);
 
         //Tab 3
         spec = host.newTabSpec("Tab Three");
         spec.setContent(R.id.tab3);
-        spec.setIndicator("Tab Three");
+        spec.setIndicator("Day Three (23 Oct)");
         host.addTab(spec);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -75,7 +75,7 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
         recyclerView1.setLayoutManager(mLayoutManager);
         recyclerView1.setItemAnimator(new DefaultItemAnimator());
         recyclerView1.setAdapter(eventsAdapter);
-        prepareEventData();
+        //prepareEventData();
 
         eventsAdapter = new EventsAdapter(EventList);
         RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(getApplicationContext());
@@ -83,7 +83,7 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
         recyclerView2.setLayoutManager(mLayoutManager1);
         recyclerView2.setItemAnimator(new DefaultItemAnimator());
         recyclerView2.setAdapter(eventsAdapter);
-        prepareEventData();
+        //prepareEventData();
 
         eventsAdapter = new EventsAdapter(EventList);
         RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(getApplicationContext());
@@ -96,17 +96,17 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
     }
 
     private void prepareEventData() {
-            Events events = new Events(1,"Parallel World : A New Rock Music Experience","Complete Best Place","rock n roll","Band"
+            Events events = new Events(1,"Parallel World : A New  Music Experience","Complete Best Place","rock n roll","Band"
                     ,"Thursday","8","23","12%12%2014","AM");
             dbHandler.addEvents(events);
-            events = new Events(2,"Sirf Music Experience","complete faaltu place","Rock","Live Band"
+            events = new Events(2," Experience","complete faaltu place","Rock","Live Band"
                     ,"Thursday","8","23","12%12%2014","AM");
             dbHandler.addEvents(events);
             events = new Events(3,"Teesra to faaltu hai","Complete kharab place","Rock","Live Band"
                     ,"Thursday","8","23","12%12%2014","AM");
             dbHandler.addEvents(events);
-
-
+            events = new Events(4, "This one is for you","At cc3","Dance","drama","Friday","9","34","12%13%14","PM");
+            dbHandler.addEvents(events);
             String[] title = dbHandler.columntitle();
             String[] place = dbHandler.columnplace();
             String[] category1 = dbHandler.columncategory1();
@@ -116,7 +116,7 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
             String[] hour = dbHandler.columnhour();
             String[] minute = dbHandler.columnminute();
             String[] ampm  = dbHandler.columnampm();
-        for(int i=0; i<3; i++) {
+        for(int i=0; i<1; i++) {
             events = new Events(i+1, title[i], place[i], category1[i], category2[i]
                     , day[i], hour[i], minute[i], date[i], ampm[i]);
             EventList.add(events);
