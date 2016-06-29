@@ -18,7 +18,7 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 
 public class Splash_activity extends Activity {
     WebView mWebView;
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 1000;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);

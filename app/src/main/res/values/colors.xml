@@ -6,4 +6,5 @@
     <color name="year">#999999</color>
     <color name="title">#ef5858</color>
     <color name="holoreddark">#ffcc0000</color>
+    <color name="white">#ffffff</color>
 </resources>

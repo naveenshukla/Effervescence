@@ -9,20 +9,32 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
+            android:titleTextAppearance="@color/white"
+            android:titleTextColor="@color/white"
             android:layout_height="?attr/actionBarSize"
-            android:background="#FFFF000D"
-            android:alpha="1"
-            android:elevation="0dp"
-            android:contextClickable="false"
-            style="@style/MyappTheme" />
-
+            android:background="#b1f20808"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed"
+            android:background="#b1f20808"
+            app:tabGravity="fill"/>
     </android.support.design.widget.AppBarLayout>
+   <!-- <include layout="@layout/activity_tab3" />-->
 
-    <include layout="@layout/activity_tab3" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
 
 </android.support.design.widget.CoordinatorLayout>

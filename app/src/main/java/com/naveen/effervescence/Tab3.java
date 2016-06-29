@@ -1,9 +1,16 @@
 package com.naveen.effervescence;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,111 +24,112 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.Toast;
+
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
+public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
   //  private List<Events> EventList = new ArrayList<>();
     private RecyclerView recyclerView;
    // private EventsAdapter eventsAdapter;
-    MyDBHandler dbHandler;
+    Animation animation1,animation2;
+    public  String[] title,place,category1,category2,day,date,hour,minute,ampm;
     private String[] mPlanetTitles;
     private List<Events> EventList = new ArrayList<>();
-    private EventsAdapter eventsAdapter;
+    private PendingIntent pendingIntent;
     private DrawerLayout mDrawerLayout;
     private RecyclerView recyclerView1,recyclerView2,recyclerView3;
+    private ImageView setReminder;
     private ListView mDrawerList;
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    MyDBHandler dbHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FirebaseMessaging.getInstance().subscribeToTopic("news");
         dbHandler = new MyDBHandler(this,null, null,1);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final TabHost host = (TabHost)findViewById(R.id.tabHost);
-        host.setup();
-
-        TabHost.TabSpec spec = host.newTabSpec("Tab One");
-        spec.setContent(R.id.tab1);
-        spec.setIndicator("Day One (21 Oct)");
-        host.addTab(spec);
-
-        //Tab 2
-        spec = host.newTabSpec("Tab Two");
-        spec.setContent(R.id.tab2);
-        spec.setIndicator("Day Two (22 Oct)");
-        host.addTab(spec);
-
-        //Tab 3
-        spec = host.newTabSpec("Tab Three");
-        spec.setContent(R.id.tab3);
-        spec.setIndicator("Day Three (23 Oct)");
-        host.addTab(spec);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle.setDrawerIndicatorEnabled(false);
         drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        toggle.setHomeAsUpIndicator(R.drawable.ic_sort_white_24dp);
+        toggle.setToolbarNavigationClickListener(new View.OnClickListener(){
 
+            @Override
+            public void onClick(View v) {
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                } else {
+                    drawer.openDrawer(GravityCompat.START);
+                }
+            }
+        });
+        toggle.syncState();
+        toggle.setHomeAsUpIndicator(R.drawable.ic_sort_white_24dp);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        eventsAdapter = new EventsAdapter(EventList);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView1 = (RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView1.setLayoutManager(mLayoutManager);
-        recyclerView1.setItemAnimator(new DefaultItemAnimator());
-        recyclerView1.setAdapter(eventsAdapter);
-        //prepareEventData();
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
 
-        eventsAdapter = new EventsAdapter(EventList);
-        RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(getApplicationContext());
-        recyclerView2 = (RecyclerView) findViewById(R.id.recycler_view1);
-        recyclerView2.setLayoutManager(mLayoutManager1);
-        recyclerView2.setItemAnimator(new DefaultItemAnimator());
-        recyclerView2.setAdapter(eventsAdapter);
-        //prepareEventData();
-
-        eventsAdapter = new EventsAdapter(EventList);
-        RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(getApplicationContext());
-        recyclerView3 = (RecyclerView) findViewById(R.id.recycler_view2);
-        recyclerView3.setLayoutManager(mLayoutManager2);
-        recyclerView3.setItemAnimator(new DefaultItemAnimator());
-        recyclerView3.setAdapter(eventsAdapter);
-        prepareEventData();
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
     }
 
-    private void prepareEventData() {
-            Events events = new Events(1,"Parallel World : A New  Music Experience","Complete Best Place","rock n roll","Band"
-                    ,"Thursday","8","23","12%12%2014","AM");
-            dbHandler.addEvents(events);
-            events = new Events(2," Experience","complete faaltu place","Rock","Live Band"
-                    ,"Thursday","8","23","12%12%2014","AM");
-            dbHandler.addEvents(events);
-            events = new Events(3,"Teesra to faaltu hai","Complete kharab place","Rock","Live Band"
-                    ,"Thursday","8","23","12%12%2014","AM");
-            dbHandler.addEvents(events);
-            events = new Events(4, "This one is for you","At cc3","Dance","drama","Friday","9","34","12%13%14","PM");
-            dbHandler.addEvents(events);
-            String[] title = dbHandler.columntitle();
-            String[] place = dbHandler.columnplace();
-            String[] category1 = dbHandler.columncategory1();
-            String[] category2 = dbHandler.columncategory2();
-            String[] day = dbHandler.columnday();
-            String[] date = dbHandler.columndate();
-            String[] hour = dbHandler.columnhour();
-            String[] minute = dbHandler.columnminute();
-            String[] ampm  = dbHandler.columnampm();
-        for(int i=0; i<1; i++) {
-            events = new Events(i+1, title[i], place[i], category1[i], category2[i]
-                    , day[i], hour[i], minute[i], date[i], ampm[i]);
-            EventList.add(events);
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new OneFragment(), "ONE");
+        adapter.addFragment(new TwoFragment(), "TWO");
+        adapter.addFragment(new ThreeFragment(), "THREE");
+        viewPager.setAdapter(adapter);
+    }
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
         }
-            eventsAdapter.notifyDataSetChanged();
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
@@ -162,4 +170,17 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void startAlarm(Calendar calendar){
+
+
+        Intent myIntent = new Intent(Tab3.this, Receiver.class);
+        pendingIntent = PendingIntent.getBroadcast(Tab3.this, 0, myIntent, 0);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
+        Toast.makeText(getBaseContext(),"Reminder Has been set",Toast.LENGTH_SHORT).show();
+    }
+
+
 }

@@ -14,6 +14,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION=1;
     private static final String DATABASE_NAME="events.db";
     public static final String TABLE_EVENTS="events";
+    public String query;
     /*Events table have following columns : title, place, category1, category2, day, date, ampm, hour, minute, _id*/
     public static final String COLUMN_ID="_id";
     public static final String COLUMN_TITLE = "title";
@@ -25,12 +26,13 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_AMPM ="ampm";
     public static final String COLUMN_HOUR ="hour";
     public static final String COLUMN_MINUTE ="minute";
-    
     public MyDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
        
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     
     }
+
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -66,13 +68,15 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    String[] columntitle(){
+    String[] columntitle(int id){
 
         String[] dbString= new String[100];
         int count = 0;
         SQLiteDatabase db= getWritableDatabase();
-
-        String query = "SELECT * FROM " + TABLE_EVENTS + " WHERE " + COLUMN_ID + " = " + 4;
+        if(id==-1)
+            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
+        else
+            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE " + COLUMN_ID + " = " + id;
 
         Cursor c =db.rawQuery(query,null);
 
@@ -98,13 +102,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
         return dbString;
     }
-    String[] columnplace(){
+    String[] columnplace(int id){
 
         String[] dbString= new String[100];
         int count = 0;
         SQLiteDatabase db= getWritableDatabase();
 
-        String query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
+        if(id==-1)
+            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
+        else
+            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE " + COLUMN_ID + " = " + id;
 
         Cursor c =db.rawQuery(query,null);
 
@@ -130,13 +137,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
         return dbString;
     }
-    String[] columncategory1(){
+    String[] columncategory1(int id){
 
         String[] dbString= new String[100];
         int count = 0;
         SQLiteDatabase db= getWritableDatabase();
 
-        String query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
+        if(id==-1)
+            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
+        else
+            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE " + COLUMN_ID + " = " + id;
 
         Cursor c =db.rawQuery(query,null);
 
@@ -162,13 +172,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
         return dbString;
     }
-    String[] columncategory2(){
+    String[] columncategory2(int id){
 
         String[] dbString= new String[100];
         int count = 0;
         SQLiteDatabase db= getWritableDatabase();
 
-        String query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
+        if(id==-1)
+            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
+        else
+            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE " + COLUMN_ID + " = " + id;
 
         Cursor c =db.rawQuery(query,null);
 
@@ -194,13 +207,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
         return dbString;
     }
-    String[] columnday(){
+    String[] columnday(int id){
 
         String[] dbString= new String[100];
         int count = 0;
         SQLiteDatabase db= getWritableDatabase();
 
-        String query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
+        if(id==-1)
+            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
+        else
+            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE " + COLUMN_ID + " = " + id;
 
         Cursor c =db.rawQuery(query,null);
 
@@ -226,13 +242,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
         return dbString;
     }
-    String[] columndate(){
+    String[] columndate(int id){
 
         String[] dbString= new String[100];
         int count = 0;
         SQLiteDatabase db= getWritableDatabase();
 
-        String query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
+        if(id==-1)
+            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
+        else
+            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE " + COLUMN_ID + " = " + id;
 
         Cursor c =db.rawQuery(query,null);
 
@@ -258,13 +277,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
         return dbString;
     }
-    String[] columnampm(){
+    String[] columnampm(int id){
 
         String[] dbString= new String[100];
         int count = 0;
         SQLiteDatabase db= getWritableDatabase();
 
-        String query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
+        if(id==-1)
+            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
+        else
+            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE  " + COLUMN_ID + " = " + id;
 
         Cursor c =db.rawQuery(query,null);
 
@@ -290,13 +312,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
         return dbString;
     }
-    String[] columnhour(){
+    String[] columnhour(int id){
 
         String[] dbString= new String[100];
         int count = 0;
         SQLiteDatabase db= getWritableDatabase();
 
-        String query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
+        if(id==-1)
+            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
+        else
+            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE " + COLUMN_ID + " = " + id;
 
         Cursor c =db.rawQuery(query,null);
 
@@ -322,13 +347,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
         return dbString;
     }
-    String[] columnminute(){
+    String[] columnminute(int id){
 
         String[] dbString= new String[100];
         int count = 0;
         SQLiteDatabase db= getWritableDatabase();
 
-        String query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
+        if(id==-1)
+            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
+        else
+            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE " + COLUMN_ID + " = " + id;
 
         Cursor c =db.rawQuery(query,null);
 
