@@ -22,4 +22,7 @@
     <string name="three">Three</string>
     <string name="one">One</string>
     <string name="two">Two</string>
+    <string name="search_hint">Search</string>
+    <string name="facebook_app_id">827851804016700</string>
+    <string name="effe"><b>EFFERVESCENCE</b></string>
 </resources>

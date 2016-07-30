@@ -1,8 +1,8 @@
 package com.naveen.effervescence;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.app.TabActivity;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -15,24 +15,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.Toast;
 
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
@@ -40,20 +34,9 @@ import java.util.Calendar;
 import java.util.List;
 
 public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
-  //  private List<Events> EventList = new ArrayList<>();
-    private RecyclerView recyclerView;
-   // private EventsAdapter eventsAdapter;
-    Animation animation1,animation2;
-    public  String[] title,place,category1,category2,day,date,hour,minute,ampm;
-    private String[] mPlanetTitles;
-    private List<Events> EventList = new ArrayList<>();
     private PendingIntent pendingIntent;
-    private DrawerLayout mDrawerLayout;
-    private RecyclerView recyclerView1,recyclerView2,recyclerView3;
-    private ImageView setReminder;
-    private ListView mDrawerList;
-    private Toolbar toolbar;
     private TabLayout tabLayout;
+
     private ViewPager viewPager;
     MyDBHandler dbHandler;
     @Override
@@ -64,7 +47,6 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
         dbHandler = new MyDBHandler(this,null, null,1);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -133,8 +115,7 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.actions, menu);
+        getMenuInflater().inflate(R.menu.actions, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -181,6 +162,4 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
         alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
         Toast.makeText(getBaseContext(),"Reminder Has been set",Toast.LENGTH_SHORT).show();
     }
-
-
 }
