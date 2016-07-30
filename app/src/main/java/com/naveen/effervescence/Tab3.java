@@ -42,10 +42,8 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
     MyDBHandler dbHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("hello", "I came to this");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("hello","nothing is loading after this");
         FirebaseMessaging.getInstance().subscribeToTopic("news");
         dbHandler = new MyDBHandler(this,null, null,1);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

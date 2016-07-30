@@ -42,17 +42,10 @@ public class Splash_activity extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_activity);
-        //ScrollView s = (ScrollView)findViewById(R.id.scrollview);
-        final LinearLayout l = (LinearLayout)findViewById(R.id.scrollView);
-        //ImageView img = (ImageView)findViewById(R.id.splashbg);
-        //img.setBackgroundResource(R.drawable.spin_animation);
-        //AnimationDrawable frameAnimation = (AnimationDrawable)img.getBackground();
-        //frameAnimation.setEnterFadeDuration(1000);
-        //frameAnimation.setExitFadeDuration(1000);
+         final LinearLayout l = (LinearLayout)findViewById(R.id.scrollView);
         TextView t = (TextView)findViewById(R.id.title);
         t.setTypeface(null, Typeface.BOLD);
-        //frameAnimation.start();
-        Button button = (Button)findViewById(R.id.gotoevents);
+         Button button = (Button)findViewById(R.id.gotoevents);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -35,25 +35,15 @@ import java.util.List;
 
 
 public class OneFragment extends Fragment implements  RecyclerViewClickListener{
-    private RecyclerView recyclerView;
-    // private EventsAdapter eventsAdapter;
-    // private EventsAdapter eventsAdapter;
     MyDBHandler dbHandler;
-    Animation animation1,animation2;
     public  String[] title,place,category1,category2,day,date,hour,minute,ampm;
-    private String[] mPlanetTitles;
     private PendingIntent pendingIntent;
-    private DrawerLayout mDrawerLayout;
-    private RecyclerView recyclerView1,recyclerView2,recyclerView3;
-    private ImageView setReminder;
-    private ListView mDrawerList;
 
     private static final String TAG = "RecyclerViewFragment";
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
 
 
     private void startAlarm(Calendar calendar) {
-        Log.d("hello","start Alarm");
         Intent myIntent = new Intent(getActivity().getApplicationContext(), Receiver.class);
         pendingIntent = PendingIntent.getBroadcast(getContext(), 0, myIntent, 0);
 
@@ -64,14 +54,12 @@ public class OneFragment extends Fragment implements  RecyclerViewClickListener{
 
     @Override
     public void recyclerViewListClicked(View v, int position) {
-        Log.d("hello","clicked");
         String[] p = date[position].split("%");
         int day = Integer.parseInt(p[0]);
         int month = Integer.parseInt(p[1]);
         int year = Integer.parseInt(p[2]);
 
         int hourofday = Integer.parseInt(hour[position]);
-        Log.d("hello",String.valueOf(day) + " " + String.valueOf(month) + " " + String.valueOf(year) + " " + String.valueOf(hourofday));
 
         int minofday = Integer.parseInt(minute[position]);
         String ampmofday = ampm[position];
@@ -114,16 +102,13 @@ public class OneFragment extends Fragment implements  RecyclerViewClickListener{
                 while(s.iterator().hasNext()){
                     DataSnapshot c = s.iterator().next();
                     String k = c.getKey();
-                    Log.d("hello",k);
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
-        Log.d("hello", String.valueOf(myRef));
         initDataset();
     }
 
@@ -174,6 +159,7 @@ public class OneFragment extends Fragment implements  RecyclerViewClickListener{
         dbHandler.addEvents(events);
         events = new Events(2, "Parallel World : A   Music Experience", "Complete Best Place For Sachin", "Rock ", "Band"
                 , "Thursday", "8", "23", "1%12%2014", "AM");
+
         dbHandler.addEvents(events);
         title = dbHandler.columntitle(-1);
         place = dbHandler.columnplace(-1);
@@ -184,7 +170,7 @@ public class OneFragment extends Fragment implements  RecyclerViewClickListener{
         hour = dbHandler.columnhour(-1);
         minute = dbHandler.columnminute(-1);
         ampm = dbHandler.columnampm(-1);
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             events = new Events(i + 1, title[i], place[i], category1[i], category2[i]
                     , day[i], hour[i], minute[i], date[i], ampm[i]);
             EventList.add(events);
