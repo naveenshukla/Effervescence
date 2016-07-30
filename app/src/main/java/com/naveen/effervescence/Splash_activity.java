@@ -52,7 +52,7 @@ public class Splash_activity extends Activity {
         TextView t = (TextView)findViewById(R.id.title);
         t.setTypeface(null, Typeface.BOLD);
         //frameAnimation.start();
-        Button button = (Button)findViewById(R.id.login);
+        Button button = (Button)findViewById(R.id.gotoevents);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
