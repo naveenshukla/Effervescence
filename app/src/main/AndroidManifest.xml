@@ -14,16 +14,12 @@
         android:theme="@style/MyMaterialTheme">
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <activity
-            android:name=".SuperSplash"
+            android:name=".Splash_activity"
             android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".Splash_activity"
-            android:theme="@android:style/Theme.NoTitleBar">
         </activity>
         <activity android:name=".Tab3">
             <meta-data
