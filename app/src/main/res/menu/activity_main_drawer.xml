@@ -1,35 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+        <item android:title="View Events By">
+            <menu>
+                <item
+                    android:id="@+id/category"
+                    android:icon="@drawable/ic_list_black_18dp"
+                    android:title="Category" />
+                <item
+                    android:id="@+id/days"
+                    android:icon="@drawable/ic_today_black_18dp"
+                    android:title="Days" />
+            </menu>
+        </item>
+        <item android:title="Special">
+            <menu>
+                <item
+                    android:id="@+id/proshows"
+                    android:icon="@drawable/ic_stars_black_18dp"
+                    android:title="Proshows" />
+                <item
+                    android:id="@+id/bioscope"
+                    android:icon="@drawable/ic_theaters_black_18dp"
+                    android:title="Bioscope" />
+            </menu>
+        </item>
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="About">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/sponsers"
+                android:icon="@drawable/ic_attach_money_black_18dp"
+                android:title="Sponsers" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/organizers"
+                android:icon="@drawable/ic_developer_mode_black_18dp"
+                android:title="Organizers" />
         </menu>
     </item>
 

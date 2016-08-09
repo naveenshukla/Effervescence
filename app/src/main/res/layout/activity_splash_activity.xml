@@ -1385,19 +1385,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:id="@+id/tour"
-        android:text="I WANT TO TAKE THE TOUR"
+        android:text="@string/tour"
         android:textColor="#ffffff"
         android:layout_marginTop="100dp"
         android:padding="15dp"
-        android:background="#ff6699"/>
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corners"/>
     <Button
         android:layout_width="225dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:id="@+id/gotoevents"
-        android:text="TAKE ME DIRECTLY TO HOME"
+        android:text="@string/buttonHome"
         android:textColor="#ffffff"
         android:layout_marginTop="150dp"
         android:padding="15dp"
-        android:background="@color/accent_material_light"/>
+        android:background="@drawable/rounded_corners"/>
 </FrameLayout>
