@@ -129,7 +129,7 @@ public class OneFragment extends Fragment implements  RecyclerViewClickListener{
                     .getSerializable(KEY_LAYOUT_MANAGER);
         }
         setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
-        mAdapter = new CustomAdapter(EventList,this);
+        mAdapter = new CustomAdapter(EventList,this,getActivity(),getContext());
         mRecyclerView.setAdapter(mAdapter);
 
         return rootView;

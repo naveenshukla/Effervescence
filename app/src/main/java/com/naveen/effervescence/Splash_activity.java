@@ -45,10 +45,18 @@ public class Splash_activity extends Activity {
          final LinearLayout l = (LinearLayout)findViewById(R.id.scrollView);
         TextView t = (TextView)findViewById(R.id.title);
         t.setTypeface(null, Typeface.BOLD);
-         Button button = (Button)findViewById(R.id.gotoevents);
-        button.setOnClickListener(new View.OnClickListener() {
+        final Button tour = (Button)findViewById(R.id.tour);
+        tour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tour.setBackgroundResource(R.drawable.invert_rounded);
+            }
+        });
+        final Button gotoevents = (Button)findViewById(R.id.gotoevents);
+        gotoevents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoevents.setBackgroundResource(R.drawable.invert_rounded);
                 Intent intent = new Intent(Splash_activity.this,Tab3.class);
                 startActivity(intent);
             }

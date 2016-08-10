@@ -1,5 +1,8 @@
 package com.naveen.effervescence;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -18,7 +22,9 @@ import java.util.List;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     private List<Events> eventsList;
     public ImageView setReminder;
+    public Activity activity;
     MyDBHandler dbHandler;
+    public Context context;
     static Animation animation1,animation2;
     static RecyclerViewClickListener itemListener;
     Integer index;
@@ -31,9 +37,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     /**
      * Provide a reference to the type of views that you are using (custom ViewHolder)
      */
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView day,title,time,place,category1,category2;
         public ImageView setReminder;
+        public LinearLayout eventCards;
         public ViewHolder(View v) {
             super(v);
             // Define click listener for the ViewHolder's View.
@@ -50,6 +57,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             category1 = (TextView)v.findViewById(R.id.category1);
             category2 = (TextView)v.findViewById(R.id.category2);
             setReminder  = (ImageView)v.findViewById(R.id.setReminder);
+            eventCards = (LinearLayout)v.findViewById(R.id.eventcards);
+            eventCards.setOnClickListener(this);
             setReminder.setOnClickListener(this);
         }
         public TextView getTitle() {
@@ -76,44 +85,51 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         @Override
         public void onClick(final View v) {
-            Log.d("hello","onclick customadapter");
-            itemListener.recyclerViewListClicked(v, this.getLayoutPosition());
-            animation1 = new AlphaAnimation(0.0f, 1.0f);
-            animation1.setDuration(100);
-            animation1.setStartOffset(0);
+            if (v == eventCards) {
+                Intent intent = new Intent(activity ,Main2Activity.class);
+                context.startActivity(intent);
 
-            //animation1 AnimationListener
-            animation1.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-                    v.startAnimation(animation2);
-                }
+            } else {
+                itemListener.recyclerViewListClicked(v, this.getLayoutPosition());
+                animation1 = new AlphaAnimation(0.0f, 1.0f);
+                animation1.setDuration(100);
+                animation1.setStartOffset(0);
 
-                @Override
-                public void onAnimationEnd(Animation animation) {
+                //animation1 AnimationListener
+                animation1.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        v.startAnimation(animation2);
+                    }
 
-                }
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
 
-                @Override
-                public void onAnimationRepeat(Animation animation) {
+                    }
 
-                }
-            });
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
 
-            animation2 = new AlphaAnimation(1.0f, 0.0f);
-            animation2.setDuration(0);
-            animation2.setStartOffset(0);
+                    }
+                });
 
-            //animation2 AnimationListener
+                animation2 = new AlphaAnimation(1.0f, 0.0f);
+                animation2.setDuration(0);
+                animation2.setStartOffset(0);
 
-            v.startAnimation(animation1);
+                //animation2 AnimationListener
+
+                v.startAnimation(animation1);
+            }
         }
     }
 
 
-    public CustomAdapter(List<Events> eventsList, RecyclerViewClickListener itemListener) {
+    public CustomAdapter(List<Events> eventsList, RecyclerViewClickListener itemListener, Activity activity,Context context) {
         this.eventsList = eventsList;
         this.itemListener = itemListener;
+        this.activity = activity;
+        this.context = context;
     }
 
     // Create new views (invoked by the layout manager)

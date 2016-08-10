@@ -83,6 +83,7 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
         adapter.addFragment(new OneFragment(), "ONE");
         adapter.addFragment(new TwoFragment(), "TWO");
         adapter.addFragment(new ThreeFragment(), "THREE");
+        adapter.addFragment(new FourFragment(),"FOUR");
         viewPager.setAdapter(adapter);
     }
 
@@ -139,30 +140,19 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
         } else if (id == R.id.day) {
 
         } else if (id == R.id.proshows) {
-
-        } else if (id == R.id.proshows) {
-
+            Intent intent = new Intent(Tab3.this, Proshows.class);
+            startActivity(intent);
+            Log.d("hello","proshow is called");
         } else if (id == R.id.bioscope) {
 
         } else if (id == R.id.sponsers) {
 
-        }else if (id == R.id.organizers) {
+        }else if (id == R.id.developers) {
 
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public void startAlarm(Calendar calendar){
-
-
-        Intent myIntent = new Intent(Tab3.this, Receiver.class);
-        pendingIntent = PendingIntent.getBroadcast(Tab3.this, 0, myIntent, 0);
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
-        Toast.makeText(getBaseContext(),"Reminder Has been set",Toast.LENGTH_SHORT).show();
     }
 }
