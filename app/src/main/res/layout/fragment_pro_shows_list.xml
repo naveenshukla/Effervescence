@@ -1,0 +1,67 @@
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:htext="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="52dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.naveen.effervescence.ProShowsFragments.ProShowsList">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="25%"
+        app:layout_heightPercent="20%"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/corner_border3"/>
+    <ImageView
+        android:id="@+id/lower_corner_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="25%"
+        app:layout_heightPercent="20%"
+        android:layout_alignParentBottom="true"
+        app:layout_marginBottomPercent="20%"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/corner_border4"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        app:layout_widthPercent="100%"
+        app:layout_heightPercent="80%"
+        app:layout_marginTopPercent="0%"
+        app:layout_marginLeftPercent="0%"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
+    </android.support.v4.view.ViewPager>
+
+    <com.cleveroad.splittransformation.SquareViewPagerIndicator
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_heightPercent="8%"
+        app:trans_debugItemsCount="4"
+        app:trans_squareSize="10dp"
+        app:trans_squareColor="@color/md_orange_100"
+        app:trans_squareIndicatorColor="@color/md_red_500"
+        android:layout_below="@+id/view_pager"
+        android:layout_above="@id/indicator"
+        android:layout_alignParentLeft="true" />
+
+    <com.hanks.htextview.HTextView
+        android:id="@+id/event_title_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/md_red_900"
+        android:text="EDM Night"
+        android:textAlignment="center"
+        android:textColor="@color/md_white_1000"
+        android:textSize="35sp"
+        android:layout_alignParentBottom="true"
+        app:layout_heightPercent="10%"
+        htext:animateType="anvil"
+        htext:fontAsset="fonts/PoiretOne-Regular.ttf" />
+
+
+</android.support.percent.PercentRelativeLayout>

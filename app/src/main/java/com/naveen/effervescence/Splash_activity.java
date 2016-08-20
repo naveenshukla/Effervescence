@@ -42,6 +42,9 @@ public class Splash_activity extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_activity);
+
+        startActivity(new Intent(this, SplashActivity.class));
+
          final LinearLayout l = (LinearLayout)findViewById(R.id.scrollView);
         TextView t = (TextView)findViewById(R.id.title);
         t.setTypeface(null, Typeface.BOLD);

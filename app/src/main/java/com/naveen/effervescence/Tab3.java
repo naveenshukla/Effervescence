@@ -140,7 +140,7 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
         } else if (id == R.id.day) {
 
         } else if (id == R.id.proshows) {
-            Intent intent = new Intent(Tab3.this, Proshows.class);
+            Intent intent = new Intent(Tab3.this, ProShows.class);
             startActivity(intent);
             Log.d("hello","proshow is called");
         } else if (id == R.id.bioscope) {

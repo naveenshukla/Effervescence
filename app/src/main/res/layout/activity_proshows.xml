@@ -9,100 +9,115 @@
     tools:openDrawer="start">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".Proshows">
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="54dp">
+
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true">
+                android:orientation="vertical">
+
                 <FrameLayout
+                    android:id="@+id/addAnim"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:id="@+id/addAnim"
                     android:background="#00ffcc">
+
                     <ImageView
                         android:layout_width="150dp"
-                        android:layout_marginLeft="10dp"
                         android:layout_height="match_parent"
-                        android:src="@drawable/edmnight"/>
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/edmnight" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="EDM Night"
-                        android:textSize="40dp"
-                        android:textColor="#ffffff"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="60dp"
-                        android:layout_gravity="center"/>
+                        android:text="EDM Night"
+                        android:textColor="#ffffff"
+                        android:textSize="40dp" />
                 </FrameLayout>
+
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:background="#ff6600">
+
                     <ImageView
                         android:layout_width="150dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_gravity="right"
                         android:layout_height="match_parent"
-                        android:src="@drawable/alamode"/>
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/alamode" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ala Mode"
-                        android:textSize="40dp"
+                        android:layout_gravity="center"
                         android:layout_marginRight="60dp"
+                        android:text="Ala Mode"
                         android:textColor="#ffffff"
-                        android:layout_gravity="center"/>
+                        android:textSize="40dp" />
                 </FrameLayout>
+
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:background="#ff4d4d">
+
                     <ImageView
                         android:layout_width="150dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_gravity="left"
                         android:layout_height="match_parent"
-                        android:src="@drawable/celebritynight"/>
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/celebritynight" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Celeb Night"
-                        android:textSize="40dp"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="60dp"
+                        android:text="Celeb Night"
                         android:textColor="#ffffff"
-                        android:layout_gravity="center"/>
+                        android:textSize="40dp" />
                 </FrameLayout>
+
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:background="#cc66ff">
+
                     <ImageView
                         android:layout_width="150dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_gravity="right"
                         android:layout_height="match_parent"
-                        android:src="@drawable/incendiary"/>
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/incendiary" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Incendiary"
+                        android:layout_gravity="center"
                         android:layout_marginRight="60dp"
-                        android:textSize="40dp"
+                        android:text="Incendiary"
                         android:textColor="#ffffff"
-                        android:layout_gravity="center"/>
+                        android:textSize="40dp" />
                 </FrameLayout>
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>
+
     <include
         layout="@layout/app_bar"
         android:layout_width="match_parent"

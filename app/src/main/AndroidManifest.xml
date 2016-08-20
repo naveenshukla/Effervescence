@@ -17,8 +17,8 @@
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name=".Splash_activity"
-            android:theme="@android:style/Theme.NoTitleBar">
+            android:name=".SplashActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,9 +55,10 @@
         <receiver android:name=".Receiver" />
 
         <activity android:name=".Main2Activity" />
-        <activity android:name=".Proshows" android:label="Proshows">
-
-        </activity>
+        <activity
+            android:name=".Proshows"
+            android:label="Proshows" />
+        <activity android:name=".ProShows"></activity>
     </application>
 
 </manifest>

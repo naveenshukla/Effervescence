@@ -27,4 +27,9 @@
     <string name="effe"><b>EFFERVESCENCE</b></string>
     <string name="tour">TAKE THE TOUR</string>
     <string name="buttonHome">TAKE ME TO HOME</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragments">fragments</string>
+    <string name="proshows">Pro Shows</string>
 </resources>
