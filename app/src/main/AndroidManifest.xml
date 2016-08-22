@@ -58,7 +58,8 @@
         <activity
             android:name=".Proshows"
             android:label="Proshows" />
-        <activity android:name=".ProShows"></activity>
+        <activity android:name=".ProShows" />
+        <activity android:name=".Organizers"></activity>
     </application>
 
 </manifest>

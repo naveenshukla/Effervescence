@@ -9,6 +9,9 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
+import com.rodolfonavalon.shaperipplelibrary.ShapeRipple;
+import com.rodolfonavalon.shaperipplelibrary.model.Circle;
+
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -27,15 +30,21 @@ public class SplashActivity extends AppCompatActivity {
         final ImageView splash = (ImageView) findViewById(R.id.effewheel);
         splash.startAnimation(rotate);
 
+        final ShapeRipple ripple = (ShapeRipple) findViewById(R.id.ripple);
+        ripple.setRippleShape(new Circle());
+        ripple.setEnableRandomPosition(true);
+        ripple.setEnableRandomColor(true);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 rotate.cancel();
+                ripple.stopRipple();
                 final Intent mainIntent = new Intent(SplashActivity.this, Tab3.class);
                 SplashActivity.this.startActivity(mainIntent);
                 SplashActivity.this.finish();
             }
-        }, 4000);
+        }, 3000);
 
 
 
