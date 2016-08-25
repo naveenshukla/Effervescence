@@ -32,6 +32,7 @@ public class SplashActivity extends AppCompatActivity {
 
         final ShapeRipple ripple = (ShapeRipple) findViewById(R.id.ripple);
         ripple.setRippleShape(new Circle());
+        //ripple.setRippleColor(getResources().getColor(R.color.md_deep_orange_600));
         ripple.setEnableRandomPosition(true);
         ripple.setEnableRandomColor(true);
 

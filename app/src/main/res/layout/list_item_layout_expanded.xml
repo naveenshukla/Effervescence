@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_image"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_widthPercent="40%"
+        app:layout_heightPercent="90%"
+        app:layout_marginTopPercent="4%"
+        app:layout_marginLeftPercent="2%"
+        android:src="@drawable/sample_profile"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="60%"
+        app:layout_heightPercent="15%"
+        android:text="Pranjal Paliwal"
+        android:textSize="25sp"
+        android:textAllCaps="true"
+        android:textColor="@color/md_red_900"
+        app:layout_marginTopPercent="20%"
+        android:id="@+id/name_of_person"
+        android:layout_alignParentRight="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="50%"
+        app:layout_heightPercent="15%"
+        android:layout_alignParentRight="true"
+        app:layout_marginTopPercent="40%"
+        android:text="App Developer"
+        android:id="@+id/designation"
+        android:textSize="20sp"
+        android:textColor="@color/md_blue_700"
+        />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="12%"
+        app:layout_heightPercent="22%"
+        android:src="@drawable/facebook"
+        android:layout_marginRight="30dp"
+        android:id="@+id/facebookImage"
+        app:layout_marginBottomPercent="8%"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="12%"
+        app:layout_heightPercent="22%"
+        android:src="@drawable/github"
+        android:layout_alignParentBottom="true"
+        app:layout_marginBottomPercent="8%"
+        android:layout_toLeftOf="@+id/facebookImage"
+        android:id="@+id/githubImage" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="12%"
+        app:layout_heightPercent="22%"
+        android:src="@drawable/phone"
+        app:layout_marginBottomPercent="8%"
+        android:id="@+id/phoneImage"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/githubImage" />
+
+
+</android.support.percent.PercentRelativeLayout>

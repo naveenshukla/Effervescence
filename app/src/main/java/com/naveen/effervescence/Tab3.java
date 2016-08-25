@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -135,14 +136,24 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+
         if (id == R.id.category) {
 
         } else if (id == R.id.day) {
 
         } else if (id == R.id.proshows) {
-            Intent intent = new Intent(Tab3.this, ProShows.class);
-            startActivity(intent);
-            Log.d("hello","proshow is called");
+
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Tab3.this, ProShows.class);
+                    startActivity(intent);
+                }
+            }, 250);
+
         } else if (id == R.id.bioscope) {
 
         } else if (id == R.id.sponsers) {
@@ -151,7 +162,6 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
