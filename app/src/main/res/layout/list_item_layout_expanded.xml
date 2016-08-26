@@ -82,5 +82,12 @@
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/githubImage" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/testButton"
+        android:text="Test"
+        />
+
 
 </android.support.percent.PercentRelativeLayout>

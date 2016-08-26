@@ -163,7 +163,7 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(Tab3.this, Organizers.class);
+                    Intent intent = new Intent(Tab3.this, Developers.class);
                     startActivity(intent);
                 }
             }, 250);

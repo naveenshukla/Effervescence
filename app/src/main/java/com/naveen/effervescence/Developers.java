@@ -3,7 +3,6 @@ package com.naveen.effervescence;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -21,26 +20,27 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.naveen.effervescence.Model.Person;
+import com.naveen.effervescence.Utils.DevelopersList;
 import com.naveen.effervescence.Utils.OrganizersList;
 import com.yalantis.flipviewpager.adapter.BaseFlipAdapter;
 import com.yalantis.flipviewpager.utils.FlipSettings;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-public class Organizers extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class Developers extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_organizers);
+        setContentView(R.layout.activity_developers);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        setTitle(R.string.Organizers);
+        setTitle(R.string.Developers);
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout3);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout4);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         toggle.setDrawerIndicatorEnabled(false);
@@ -50,7 +50,7 @@ public class Organizers extends AppCompatActivity implements NavigationView.OnNa
 
             @Override
             public void onClick(View v) {
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout3);
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout4);
                 if (drawer.isDrawerOpen(GravityCompat.START)) {
                     drawer.closeDrawer(GravityCompat.START);
                 } else {
@@ -61,61 +61,25 @@ public class Organizers extends AppCompatActivity implements NavigationView.OnNa
 
         toggle.syncState();
         toggle.setHomeAsUpIndicator(R.drawable.ic_sort_white_24dp);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view3);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view4);
         navigationView.setNavigationItemSelectedListener(this);
 
-        final ListView listView = (ListView) findViewById(R.id.organizers_list);
+        final ListView listView = (android.widget.ListView) findViewById(R.id.developers_listview);
         FlipSettings settings = new FlipSettings.Builder().defaultPage(1).build();
-        listView.setAdapter(new OrganizerListAdapter(this, OrganizersList.organizers,settings));
+        listView.setAdapter(new DeveloperListAdapter(this, DevelopersList.developers,settings));
 
     }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.category) {
-
-        } else if (id == R.id.day) {
-            drawer.closeDrawer(GravityCompat.START);
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent = new Intent(Organizers.this, Tab3.class);
-                    startActivity(intent);
-                }
-            }, 250);
-
-        }  else if (id == R.id.proshows) {
-
-            drawer.closeDrawer(GravityCompat.START);
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent = new Intent(Organizers.this, ProShows.class);
-                    startActivity(intent);
-                }
-            }, 250);
-
-        } else if (id == R.id.bioscope) {
-
-        } else if (id == R.id.sponsers) {
-
-        }else if (id == R.id.developers) {
-
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+        return false;
     }
 
-    class OrganizerListAdapter extends BaseFlipAdapter{
+    class DeveloperListAdapter extends BaseFlipAdapter {
 
         private final int PAGES = 3;
 
-        public OrganizerListAdapter(Context context, List items, FlipSettings settings) {
+        public DeveloperListAdapter(Context context, List items, FlipSettings settings) {
             super(context, items, settings);
         }
 
@@ -141,6 +105,11 @@ public class Organizers extends AppCompatActivity implements NavigationView.OnNa
             } else {
                 holder = (PersonHolder) convertView.getTag();
             }
+
+            ArrayList<View> al = new ArrayList<>();
+            al.add(holder.facebookImageView);
+            al.add(holder.testButton);
+            convertView.addTouchables(al);
 
             if(position == 1){
                 holder.leftAvatar.setImageResource(((Person) person1).getAvatar());
@@ -203,7 +172,7 @@ public class Organizers extends AppCompatActivity implements NavigationView.OnNa
         personHolder.testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("FacebookImageView","imageViewPressed");
+                Log.d("Test Button Pressed","testButtonPressed");
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(person.getFacebookProfileLink()));
                 startActivity(intent);
