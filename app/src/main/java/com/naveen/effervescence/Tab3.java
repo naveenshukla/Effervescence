@@ -159,7 +159,14 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
         } else if (id == R.id.sponsers) {
 
         }else if (id == R.id.developers) {
-
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Tab3.this, Organizers.class);
+                    startActivity(intent);
+                }
+            }, 250);
         }
 
         drawer.closeDrawer(GravityCompat.START);

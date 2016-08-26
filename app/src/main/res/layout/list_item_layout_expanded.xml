@@ -2,7 +2,7 @@
 <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@android:color/transparent"
+    android:background="@android:color/darker_gray"
     android:layout_width="match_parent"
     android:layout_height="200dp">
 
@@ -23,13 +23,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_widthPercent="60%"
         app:layout_heightPercent="15%"
         android:text="Pranjal Paliwal"
-        android:textSize="25sp"
-        android:textAllCaps="true"
-        android:textColor="@color/md_red_900"
+        android:textSize="24sp"
+        android:textColor="@color/md_white_1000"
         app:layout_marginTopPercent="20%"
+        app:layout_marginRightPercent="3%"
         android:id="@+id/name_of_person"
         android:layout_alignParentRight="true"
         />
@@ -37,14 +36,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_widthPercent="50%"
         app:layout_heightPercent="15%"
         android:layout_alignParentRight="true"
         app:layout_marginTopPercent="40%"
+        app:layout_marginRightPercent="3%"
         android:text="App Developer"
         android:id="@+id/designation"
         android:textSize="20sp"
-        android:textColor="@color/md_blue_700"
+        android:textColor="@color/md_blue_100"
         />
 
 
