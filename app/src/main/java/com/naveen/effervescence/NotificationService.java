@@ -6,8 +6,8 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.provider.Settings;
-import android.support.annotation.Nullable;
+
+import com.naveen.effervescence.Activities.Tab3;
 
 /**
  * Created by Naveen on 21-06-2016.

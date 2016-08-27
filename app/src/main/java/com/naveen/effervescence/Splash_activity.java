@@ -1,37 +1,21 @@
 package com.naveen.effervescence;
 
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.AnimationDrawable;
-import android.media.Image;
-import android.os.CountDownTimer;
-import android.os.Environment;
 import android.os.Handler;
-import android.provider.ContactsContract;
-import android.support.v4.text.TextDirectionHeuristicCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.TranslateAnimation;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.facebook.shimmer.ShimmerFrameLayout;
-import com.google.android.gms.common.api.Scope;
-
-import org.w3c.dom.Text;
+import com.naveen.effervescence.Activities.SplashActivity;
+import com.naveen.effervescence.Activities.Tab3;
 
 public class Splash_activity extends Activity {
     WebView mWebView;

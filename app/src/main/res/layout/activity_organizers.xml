@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/md_black_1000"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.naveen.effervescence.Organizers">
+    tools:context=".Activities.Organizers">
 
     <include
         layout="@layout/app_bar"

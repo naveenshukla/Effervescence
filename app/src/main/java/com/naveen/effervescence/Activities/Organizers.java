@@ -1,4 +1,4 @@
-package com.naveen.effervescence;
+package com.naveen.effervescence.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,12 +21,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.naveen.effervescence.Model.Person;
+import com.naveen.effervescence.R;
 import com.naveen.effervescence.Utils.OrganizersList;
 import com.yalantis.flipviewpager.adapter.BaseFlipAdapter;
 import com.yalantis.flipviewpager.utils.FlipSettings;
 
 import java.util.List;
-import java.util.Objects;
 
 public class Organizers extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -105,8 +105,6 @@ public class Organizers extends AppCompatActivity implements NavigationView.OnNa
 
 
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

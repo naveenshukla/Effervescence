@@ -1,7 +1,5 @@
-package com.naveen.effervescence;
+package com.naveen.effervescence.Activities;
 
-import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Handler;
@@ -16,23 +14,20 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TabHost;
-import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.naveen.effervescence.FourFragment;
+import com.naveen.effervescence.MyDBHandler;
+import com.naveen.effervescence.OneFragment;
+import com.naveen.effervescence.R;
+import com.naveen.effervescence.ThreeFragment;
+import com.naveen.effervescence.TwoFragment;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{

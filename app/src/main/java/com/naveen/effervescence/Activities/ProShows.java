@@ -1,4 +1,4 @@
-package com.naveen.effervescence;
+package com.naveen.effervescence.Activities;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -12,8 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.naveen.effervescence.ProShowsFragments.FragmentOne;
 import com.naveen.effervescence.ProShowsFragments.ProShowsList;
+import com.naveen.effervescence.R;
 
 public class ProShows extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -85,7 +85,7 @@ public class ProShows extends AppCompatActivity implements NavigationView.OnNavi
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(ProShows.this, Organizers.class);
+                    Intent intent = new Intent(ProShows.this, Developers.class);
                     startActivity(intent);
                 }
             }, 250);

@@ -1,4 +1,4 @@
-package com.naveen.effervescence;
+package com.naveen.effervescence.Activities;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -9,6 +9,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
+import com.naveen.effervescence.R;
 import com.rodolfonavalon.shaperipplelibrary.ShapeRipple;
 import com.rodolfonavalon.shaperipplelibrary.model.Circle;
 

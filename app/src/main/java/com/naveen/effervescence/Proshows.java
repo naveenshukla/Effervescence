@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.naveen.effervescence.Activities.Tab3;
+
 public class Proshows extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     @Override

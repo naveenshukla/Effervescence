@@ -1,8 +1,9 @@
-package com.naveen.effervescence;
+package com.naveen.effervescence.Activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -20,6 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.naveen.effervescence.Model.Person;
+import com.naveen.effervescence.R;
 import com.naveen.effervescence.Utils.DevelopersList;
 import com.naveen.effervescence.Utils.OrganizersList;
 import com.yalantis.flipviewpager.adapter.BaseFlipAdapter;
@@ -72,7 +74,41 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        return false;
+        int id = item.getItemId();
+
+        if (id == R.id.category) {
+
+        } else if (id == R.id.day) {
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Developers.this, Tab3.class);
+                    startActivity(intent);
+                }
+            }, 250);
+
+        }  else if (id == R.id.proshows) {
+
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Developers.this, ProShows.class);
+                    startActivity(intent);
+                }
+            }, 250);
+
+        } else if (id == R.id.bioscope) {
+
+        } else if (id == R.id.sponsers) {
+
+        }else if (id == R.id.developers) {
+
+
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     class DeveloperListAdapter extends BaseFlipAdapter {
