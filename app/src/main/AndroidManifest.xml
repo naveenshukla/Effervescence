@@ -61,7 +61,8 @@
             android:label="Proshows" />
         <activity android:name=".Activities.ProShows" />
         <activity android:name=".Activities.Organizers" />
-        <activity android:name=".Activities.Developers"></activity>
+        <activity android:name=".Activities.Developers" />
+        <activity android:name=".Activities.Categories"></activity>
     </application>
 
 </manifest>

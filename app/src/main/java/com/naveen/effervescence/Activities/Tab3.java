@@ -135,6 +135,14 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
 
 
         if (id == R.id.category) {
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Tab3.this, Categories.class);
+                    startActivity(intent);
+                }
+            }, 250);
 
         } else if (id == R.id.day) {
 
