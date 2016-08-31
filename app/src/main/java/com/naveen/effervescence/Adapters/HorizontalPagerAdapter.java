@@ -25,10 +25,13 @@ public class HorizontalPagerAdapter extends PagerAdapter{
     private LayoutInflater mLayoutInflater;
     private final ArrayList[] EVENTS_BY_CATEGORIES = new ArrayList[]{
             EventList.onlineEventList,
-            EventList.quizEventList,
-            EventList.onlineEventList,
-            EventList.onlineEventList,
-            EventList.quizEventList
+            EventList.dramaEventList,
+            EventList.danceEventList,
+            EventList.literaryEventList,
+            EventList.informalEventList,
+            EventList.photographyEventList,
+            EventList.musicEventList,
+            EventList.fineartsEventList
     };
 
     public HorizontalPagerAdapter(final Context context) {
@@ -53,10 +56,13 @@ public class HorizontalPagerAdapter extends PagerAdapter{
         TextView textView = (TextView) view.findViewById(R.id.event_category_textview);
         switch (position){
             case 0: textView.setText("Online"); break;
-            case 1: textView.setText("Quiz"); break;
-            case 2: textView.setText("Online"); break;
-            case 3: textView.setText("Online"); break;
-            case 4: textView.setText("Quiz"); break;
+            case 1: textView.setText("Drama"); break;
+            case 2: textView.setText("Dance"); break;
+            case 3: textView.setText("Literary"); break;
+            case 4: textView.setText("Informal"); break;
+            case 5: textView.setText("Photography"); break;
+            case 6: textView.setText("Music"); break;
+            case 7: textView.setText("Fine Arts");
         }
         container.addView(view);
         return view;

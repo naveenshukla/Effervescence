@@ -15,68 +15,157 @@ public class EventList {
         onlineEventList.add(new EventInfo("Perplexus",
                 "Online Treasure Hunt. Sample Description",
                 "Online",
-                R.drawable.effewheelfull));
+                R.mipmap.perplexus));
         onlineEventList.add(new EventInfo("Stegolica",
                 "Online Crypto Hunt. Sample Description",
                 "Online",
-                R.drawable.singer));
+                R.mipmap.stegolica));
+        onlineEventList.add(new EventInfo("Stegolica",
+                "Online Crypto Hunt. Sample Description",
+                "Online",
+                R.mipmap.stegolica));
         onlineEventList.add(new EventInfo("Perplexus",
                 "Online Treasure Hunt. Sample Description",
                 "Online",
-                R.drawable.effewheelfull));
-        onlineEventList.add(new EventInfo("Stegolica",
-                "Online Crypto Hunt. Sample Description",
-                "Online",
-                R.drawable.singer));
-        onlineEventList.add(new EventInfo("Perplexus",
-                "Online Treasure Hunt. Sample Description",
-                "Online",
-                R.drawable.effewheelfull));
-        onlineEventList.add(new EventInfo("Stegolica",
-                "Online Crypto Hunt. Sample Description",
-                "Online",
-                R.drawable.singer));
+                R.mipmap.perplexus));
+
     }
 
-
-    public static ArrayList<EventInfo> quizEventList= new ArrayList<>();
+    public static ArrayList<EventInfo> danceEventList= new ArrayList<>();
     static {
-        quizEventList.add(new EventInfo("Anime Quiz",
-                "Sample Description. Sample Description",
-                "Quiz",
-                R.drawable.effewheelfull));
-        quizEventList.add(new EventInfo("Nostalgia Trip",
-                "The 90’s kids are never going to forget two things - One, the turn of the century" +
-                        "they witnessed and Two, all the childhood cartoons and serials they never missed" +
-                        "and fought to watch!! Who can forget the wits of Dexter and the charm of Johnny" +
-                        "Bravo or the robotic Karishma and the magical pencil of Shaka Laka Boom Boom!!" +
-                        "So come experience the memories of 90’s once again in the Nostalgia Trip.",
-                "Quiz",
+        danceEventList.add(new EventInfo("Perplexus",
+                "Online Treasure Hunt. Sample Description",
+                "Online",
+                R.mipmap.dancecharades));
+        danceEventList.add(new EventInfo("Stegolica",
+                "Online Crypto Hunt. Sample Description",
+                "Online",
+                R.mipmap.footloose));
+        danceEventList.add(new EventInfo("Perplexus",
+                "Online Treasure Hunt. Sample Description",
+                "Online",
+                R.mipmap.dancecharades));
+        danceEventList.add(new EventInfo("Stegolica",
+                "Online Crypto Hunt. Sample Description",
+                "Online",
+                R.mipmap.footloose));
+    }
+
+    public static ArrayList<EventInfo> musicEventList= new ArrayList<>();
+    static {
+        musicEventList.add(new EventInfo("Perplexus",
+                "Online Treasure Hunt. Sample Description",
+                "Online",
+                R.mipmap.antakshiri));
+        musicEventList.add(new EventInfo("Stegolica",
+                "Online Crypto Hunt. Sample Description",
+                "Online",
                 R.drawable.singer));
-        quizEventList.add(new EventInfo("Anime Quiz",
-                "Sample Description. Sample Description",
-                "Quiz",
-                R.drawable.effewheelfull));
-        quizEventList.add(new EventInfo("Nostalgia Trip",
-                "The 90’s kids are never going to forget two things - One, the turn of the century" +
-                        "they witnessed and Two, all the childhood cartoons and serials they never missed" +
-                        "and fought to watch!! Who can forget the wits of Dexter and the charm of Johnny" +
-                        "Bravo or the robotic Karishma and the magical pencil of Shaka Laka Boom Boom!!" +
-                        "So come experience the memories of 90’s once again in the Nostalgia Trip.",
-                "Quiz",
-                R.drawable.singer));
-        quizEventList.add(new EventInfo("Anime Quiz",
-                "Sample Description. Sample Description",
-                "Quiz",
-                R.drawable.effewheelfull));
-        quizEventList.add(new EventInfo("Nostalgia Trip",
-                "The 90’s kids are never going to forget two things - One, the turn of the century" +
-                        "they witnessed and Two, all the childhood cartoons and serials they never missed" +
-                        "and fought to watch!! Who can forget the wits of Dexter and the charm of Johnny" +
-                        "Bravo or the robotic Karishma and the magical pencil of Shaka Laka Boom Boom!!" +
-                        "So come experience the memories of 90’s once again in the Nostalgia Trip.",
-                "Quiz",
+        musicEventList.add(new EventInfo("Perplexus",
+                "Online Treasure Hunt. Sample Description",
+                "Online",
+                R.mipmap.antakshiri));
+        musicEventList.add(new EventInfo("Stegolica",
+                "Online Crypto Hunt. Sample Description",
+                "Online",
                 R.drawable.singer));
     }
+
+    public static ArrayList<EventInfo> dramaEventList= new ArrayList<>();
+    static {
+        dramaEventList.add(new EventInfo("Perplexus",
+                "Online Treasure Hunt. Sample Description",
+                "Online",
+                R.mipmap.dumbcharades));
+        dramaEventList.add(new EventInfo("Stegolica",
+                "Online Crypto Hunt. Sample Description",
+                "Online",
+                R.mipmap.bindaasbol));
+        dramaEventList.add(new EventInfo("Perplexus",
+                "Online Treasure Hunt. Sample Description",
+                "Online",
+                R.mipmap.dumbcharades));
+        dramaEventList.add(new EventInfo("Stegolica",
+                "Online Crypto Hunt. Sample Description",
+                "Online",
+                R.mipmap.bindaasbol));
+    }
+
+    public static ArrayList<EventInfo> fineartsEventList= new ArrayList<>();
+    static {
+        fineartsEventList.add(new EventInfo("Perplexus",
+                "Online Treasure Hunt. Sample Description",
+                "Online",
+                R.drawable.effewheelfull));
+        fineartsEventList.add(new EventInfo("Stegolica",
+                "Online Crypto Hunt. Sample Description",
+                "Online",
+                R.mipmap.tasveer));
+        fineartsEventList.add(new EventInfo("Perplexus",
+                "Online Treasure Hunt. Sample Description",
+                "Online",
+                R.mipmap.balloon));
+        fineartsEventList.add(new EventInfo("Stegolica",
+                "Online Crypto Hunt. Sample Description",
+                "Online",
+                R.drawable.singer));
+
+    }
+
+    public static ArrayList<EventInfo> photographyEventList= new ArrayList<>();
+    static {
+        photographyEventList.add(new EventInfo("Perplexus",
+                "Online Treasure Hunt. Sample Description",
+                "Online",
+                R.mipmap.tasveer));
+        photographyEventList.add(new EventInfo("Stegolica",
+                "Online Crypto Hunt. Sample Description",
+                "Online",
+                R.mipmap.balloon));
+        photographyEventList.add(new EventInfo("Perplexus",
+                "Online Treasure Hunt. Sample Description",
+                "Online",
+                R.mipmap.basketball));
+        photographyEventList.add(new EventInfo("Stegolica",
+                "Online Crypto Hunt. Sample Description",
+                "Online",
+                R.mipmap.balloon));
+
+    }
+
+    public static ArrayList<EventInfo> literaryEventList= new ArrayList<>();
+    static {
+        literaryEventList.add(new EventInfo("Perplexus",
+                "Online Treasure Hunt. Sample Description",
+                "Online",
+                R.drawable.effewheelfull));
+        literaryEventList.add(new EventInfo("Stegolica",
+                "Online Crypto Hunt. Sample Description",
+                "Online",
+                R.drawable.singer));
+
+    }
+
+
+    public static ArrayList<EventInfo> informalEventList= new ArrayList<>();
+    static {
+        informalEventList.add(new EventInfo("Anime Quiz",
+                "Sample Description. Sample Description",
+                "Quiz",
+                R.mipmap.bookcricket));
+        informalEventList.add(new EventInfo("Anime Quiz",
+                "Sample Description. Sample Description",
+                "Quiz",
+                R.mipmap.antakshiri));
+        informalEventList.add(new EventInfo("Anime Quiz",
+                "Sample Description. Sample Description",
+                "Quiz",
+                R.mipmap.bollywoodtambola));
+        informalEventList.add(new EventInfo("Anime Quiz",
+                "Sample Description. Sample Description",
+                "Quiz",
+                R.mipmap.bquiz));
+    }
+
 
  }
