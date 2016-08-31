@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.naveen.effervescence">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,15 +18,15 @@
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name=".Splash_activity"
-            android:theme="@android:style/Theme.NoTitleBar">
+            android:name=".Activities.SplashActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Tab3">
+        <activity android:name=".Activities.Tab3">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@layout/searcheable" />
@@ -55,9 +56,13 @@
         <receiver android:name=".Receiver" />
 
         <activity android:name=".Main2Activity" />
-        <activity android:name=".Proshows" android:label="Proshows">
-
-        </activity>
+        <activity
+            android:name=".Proshows"
+            android:label="Proshows" />
+        <activity android:name=".Activities.ProShows" />
+        <activity android:name=".Activities.Organizers" />
+        <activity android:name=".Activities.Developers" />
+        <activity android:name=".Activities.Categories"></activity>
     </application>
 
 </manifest>

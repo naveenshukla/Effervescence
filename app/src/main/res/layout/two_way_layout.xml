@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:infinite="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:htext="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center">
+
+    <com.gigamole.infinitecycleviewpager.VerticalInfiniteCycleViewPager
+        android:id="@+id/vicvp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="100%"
+        app:layout_heightPercent="70%"
+        infinite:icvp_center_page_scale_offset="0dp"
+        infinite:icvp_max_page_scale="0.8"
+        infinite:icvp_medium_scaled="true"
+        infinite:icvp_min_page_scale="0.6"
+        infinite:icvp_min_page_scale_offset="0dp"
+        android:layout_marginTop="80dp"
+        infinite:icvp_scroll_duration="600"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">
+    </com.gigamole.infinitecycleviewpager.VerticalInfiniteCycleViewPager>
+
+    <TextView
+        android:id="@+id/event_category_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="100%"
+        android:text="Sample"
+        android:gravity="center"
+        android:textColor="@color/md_red_500"
+        android:background="#f9f9f9"
+        android:textSize="30sp"
+        android:textAllCaps="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/vicvp"/>
+
+</android.support.percent.PercentRelativeLayout>

@@ -1,9 +1,8 @@
-package com.naveen.effervescence;
+package com.naveen.effervescence.Activities;
 
-import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -15,23 +14,20 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TabHost;
-import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.naveen.effervescence.FourFragment;
+import com.naveen.effervescence.MyDBHandler;
+import com.naveen.effervescence.OneFragment;
+import com.naveen.effervescence.R;
+import com.naveen.effervescence.ThreeFragment;
+import com.naveen.effervescence.TwoFragment;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
@@ -135,23 +131,47 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+
         if (id == R.id.category) {
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Tab3.this, Categories.class);
+                    startActivity(intent);
+                }
+            }, 250);
 
         } else if (id == R.id.day) {
 
         } else if (id == R.id.proshows) {
-            Intent intent = new Intent(Tab3.this, Proshows.class);
-            startActivity(intent);
-            Log.d("hello","proshow is called");
+
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Tab3.this, ProShows.class);
+                    startActivity(intent);
+                }
+            }, 250);
+
         } else if (id == R.id.bioscope) {
 
         } else if (id == R.id.sponsers) {
 
         }else if (id == R.id.developers) {
-
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Tab3.this, Developers.class);
+                    startActivity(intent);
+                }
+            }, 250);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
