@@ -149,12 +149,14 @@ public class FourFragment extends Fragment implements  RecyclerViewClickListener
 
     private void initDataset() {
         Events events = new Events(1, "Parallel World : A New  Music Experience", "Complete Best Place", "Rock n roll", "Band"
-                , "Thursday", "0", "10", "23%06%2016", "AM");
-        dbHandler.addEvents(events);
+                , "Thursday", "0", "10", "23%06%2016", "AM",R.mipmap.antakshiri);
+        //dbHandler.addEvents(events);
+        EventList.add(events);
         events = new Events(2, "Parallel World : A   Music Experience", "Complete Best Place For Sachin", "Rock ", "Band"
-                , "Thursday", "8", "23", "1%12%2014", "AM");
+                , "Thursday", "8", "23", "1%12%2014", "AM",R.mipmap.bquiz);
 
-        dbHandler.addEvents(events);
+        EventList.add(events);
+        /*dbHandler.addEvents(events);
         title = dbHandler.columntitle(-1);
         place = dbHandler.columnplace(-1);
         category1 = dbHandler.columncategory1(-1);
@@ -168,6 +170,6 @@ public class FourFragment extends Fragment implements  RecyclerViewClickListener
             events = new Events(i + 1, title[i], place[i], category1[i], category2[i]
                     , day[i], hour[i], minute[i], date[i], ampm[i]);
             EventList.add(events);
-        }
+        }*/
     }
 }

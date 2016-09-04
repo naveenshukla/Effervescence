@@ -10,12 +10,14 @@ import java.util.List;
 public class Events {
     private String title,place,category1,category2,day;
     private String date,ampm;
+    private int imgDrawable;
     private String hour,minute;
             private Integer _id;
+    private boolean isExpanded = false;
     public Events(){
     }
     public Events(Integer _id,String title, String place, String category1, String Secondcat, String day, String hour,
-                  String minute,String date, String ampm){
+                  String minute,String date, String ampm,int imgDrawable){
         this.title = title;
         this.place = place;
         this._id = _id;
@@ -26,6 +28,7 @@ public class Events {
         this.minute = minute;
         this.ampm = ampm;
         this.category2 = Secondcat;
+        this.imgDrawable = imgDrawable;
     }
     public String getTitle(){
         return title;
@@ -85,5 +88,21 @@ public class Events {
 
     public Integer get_id() {
         return _id;
+    }
+
+    public boolean isExpanded() {
+        return isExpanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        isExpanded = expanded;
+    }
+
+    public int getImgDrawable() {
+        return imgDrawable;
+    }
+
+    public void setImgDrawable(int imgDrawable) {
+        this.imgDrawable = imgDrawable;
     }
 }

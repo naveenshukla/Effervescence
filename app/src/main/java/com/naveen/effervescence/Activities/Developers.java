@@ -142,11 +142,6 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
                 holder = (PersonHolder) convertView.getTag();
             }
 
-            ArrayList<View> al = new ArrayList<>();
-            al.add(holder.facebookImageView);
-            al.add(holder.testButton);
-            convertView.addTouchables(al);
-
             if(position == 1){
                 holder.leftAvatar.setImageResource(((Person) person1).getAvatar());
                 if(person2!=null){
@@ -155,13 +150,13 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
             }
 
             if(position == 0){
-                fillHolder(holder,(Person) person1);
+                fillHolder(convertView,holder,(Person) person1);
                 holder.infoPage.setTag(holder);
                 return holder.infoPage;
             }
 
             if(position == 2){
-                fillHolder(holder,(Person) person2);
+                fillHolder(convertView,holder,(Person) person2);
                 holder.infoPage.setTag(holder);
                 return holder.infoPage;
             }
@@ -174,7 +169,7 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
         }
     }
 
-    public void fillHolder(PersonHolder personHolder, final Person person){
+    public void fillHolder(View convertView,PersonHolder personHolder, final Person person){
         if(person == null)
             return;
         personHolder.designationTextView.setText(person.getDesignation());
@@ -205,16 +200,20 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
                 startActivity(intent);
             }
         });
-        personHolder.testButton.setOnClickListener(new View.OnClickListener() {
+        convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Test Button Pressed","testButtonPressed");
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(person.getFacebookProfileLink()));
-                startActivity(intent);
+                switch(view.getId()){
+                    case R.id.testButton :
+                        Log.d("Test Button Pressed","testButtonPressed");
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(person.getFacebookProfileLink()));
+                        startActivity(intent);
+                        break;
+                    default: Log.d("Bhai","Kuchh na hua");
+                }
             }
         });
-
 
     }
 
