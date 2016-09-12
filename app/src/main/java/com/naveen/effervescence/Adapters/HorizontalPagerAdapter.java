@@ -8,13 +8,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.gigamole.infinitecycleviewpager.VerticalInfiniteCycleViewPager;
-import com.hanks.htextview.HTextView;
 import com.naveen.effervescence.R;
-import com.naveen.effervescence.Utils.EventInfo;
 import com.naveen.effervescence.Utils.EventList;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by betterclever on 30/8/16.

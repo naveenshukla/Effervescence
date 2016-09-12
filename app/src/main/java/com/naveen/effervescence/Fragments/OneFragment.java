@@ -1,4 +1,4 @@
-package com.naveen.effervescence;
+package com.naveen.effervescence.Fragments;
 
 /**
  * Created by Naveen on 23-06-2016.
@@ -22,15 +22,22 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.naveen.effervescence.Adapters.CustomAdapter;
+import com.naveen.effervescence.Adapters.EventAdapter;
+import com.naveen.effervescence.Events;
+import com.naveen.effervescence.MyDBHandler;
+import com.naveen.effervescence.R;
+import com.naveen.effervescence.Receiver;
+import com.naveen.effervescence.RecyclerViewClickListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 
-public class FourFragment extends Fragment implements  RecyclerViewClickListener{
+public class OneFragment extends Fragment implements RecyclerViewClickListener {
     MyDBHandler dbHandler;
     public  String[] title,place,category1,category2,day,date,hour,minute,ampm;
+    public int[] eventImage;
     private PendingIntent pendingIntent;
 
     private static final String TAG = "RecyclerViewFragment";
@@ -80,7 +87,7 @@ public class FourFragment extends Fragment implements  RecyclerViewClickListener
     private List<Events> EventList = new ArrayList<>();
 
     protected RecyclerView mRecyclerView;
-    protected CustomAdapter mAdapter;
+    protected EventAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
 
     @Override
@@ -123,7 +130,7 @@ public class FourFragment extends Fragment implements  RecyclerViewClickListener
                     .getSerializable(KEY_LAYOUT_MANAGER);
         }
         setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
-        mAdapter = new CustomAdapter(EventList,this,getActivity(),getContext());
+        mAdapter = new EventAdapter(EventList,this,getActivity(),getContext());
         mRecyclerView.setAdapter(mAdapter);
 
         return rootView;
@@ -148,13 +155,12 @@ public class FourFragment extends Fragment implements  RecyclerViewClickListener
     }
 
     private void initDataset() {
-        Events events = new Events(1, "Parallel World : A New  Music Experience", "Complete Best Place", "Rock n roll", "Band"
+        Events events = new Events(1, "Parallel World", "Complete Best Place", "Rock n roll", "Band"
                 , "Thursday", "0", "10", "23%06%2016", "AM",R.mipmap.antakshiri);
-        //dbHandler.addEvents(events);
+//        dbHandler.addEvents(events);
         EventList.add(events);
-        events = new Events(2, "Parallel World : A   Music Experience", "Complete Best Place For Sachin", "Rock ", "Band"
-                , "Thursday", "8", "23", "1%12%2014", "AM",R.mipmap.bquiz);
-
+        events = new Events(2, "Parallel World", "Complete Best Place", "Rock ", "Band"
+                , "Thursday", "8", "23", "1%12%2014", "AM",R.mipmap.bookcricket);
         EventList.add(events);
         /*dbHandler.addEvents(events);
         title = dbHandler.columntitle(-1);
@@ -166,10 +172,12 @@ public class FourFragment extends Fragment implements  RecyclerViewClickListener
         hour = dbHandler.columnhour(-1);
         minute = dbHandler.columnminute(-1);
         ampm = dbHandler.columnampm(-1);
+        eventImage = R.mipmap.bookcricket;
         for (int i = 0; i < 3; i++) {
             events = new Events(i + 1, title[i], place[i], category1[i], category2[i]
                     , day[i], hour[i], minute[i], date[i], ampm[i]);
             EventList.add(events);
         }*/
+
     }
 }

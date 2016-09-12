@@ -20,12 +20,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.naveen.effervescence.FourFragment;
+import com.naveen.effervescence.Fragments.FourFragment;
 import com.naveen.effervescence.MyDBHandler;
-import com.naveen.effervescence.OneFragment;
+import com.naveen.effervescence.Fragments.OneFragment;
 import com.naveen.effervescence.R;
-import com.naveen.effervescence.ThreeFragment;
-import com.naveen.effervescence.TwoFragment;
+import com.naveen.effervescence.Fragments.ThreeFragment;
+import com.naveen.effervescence.Fragments.TwoFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,10 +40,13 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         FirebaseMessaging.getInstance().subscribeToTopic("news");
         dbHandler = new MyDBHandler(this,null, null,1);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -166,7 +169,7 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(Tab3.this, Developers.class);
+                    Intent intent = new Intent(Tab3.this, EventDetailActivity.class);
                     startActivity(intent);
                 }
             }, 250);

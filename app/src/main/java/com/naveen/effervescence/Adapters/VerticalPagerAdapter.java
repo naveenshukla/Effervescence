@@ -1,18 +1,15 @@
 package com.naveen.effervescence.Adapters;
 
 import android.content.Context;
-import android.media.Image;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.naveen.effervescence.R;
-import com.naveen.effervescence.Utils.EventInfo;
+import com.naveen.effervescence.Model.EventInfo;
 
 import java.util.ArrayList;
 
