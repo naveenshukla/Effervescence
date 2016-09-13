@@ -28,6 +28,7 @@ import com.naveen.effervescence.MyDBHandler;
 import com.naveen.effervescence.R;
 import com.naveen.effervescence.Receiver;
 import com.naveen.effervescence.RecyclerViewClickListener;
+import com.naveen.effervescence.Utils.EventList;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -35,7 +36,7 @@ import java.util.List;
 
 
 public class OneFragment extends Fragment implements RecyclerViewClickListener {
-    MyDBHandler dbHandler;
+
     public  String[] title,place,category1,category2,day,date,hour,minute,ampm;
     public int[] eventImage;
     private PendingIntent pendingIntent;
@@ -84,7 +85,7 @@ public class OneFragment extends Fragment implements RecyclerViewClickListener {
 
     protected LayoutManagerType mCurrentLayoutManagerType;
 
-    private List<Events> EventList = new ArrayList<>();
+    private List<Events> eventList = new ArrayList<>();
 
     protected RecyclerView mRecyclerView;
     protected EventAdapter mAdapter;
@@ -93,7 +94,7 @@ public class OneFragment extends Fragment implements RecyclerViewClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dbHandler = new MyDBHandler(getContext(),null,null,1);
+        /*dbHandler = new MyDBHandler(getContext(),null,null,1);
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
         myRef.child("events").addValueEventListener(new ValueEventListener() {
@@ -110,7 +111,7 @@ public class OneFragment extends Fragment implements RecyclerViewClickListener {
 
             }
         });
-        initDataset();
+        initDataset();*/
     }
 
     @Override
@@ -130,7 +131,7 @@ public class OneFragment extends Fragment implements RecyclerViewClickListener {
                     .getSerializable(KEY_LAYOUT_MANAGER);
         }
         setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
-        mAdapter = new EventAdapter(EventList,this,getActivity(),getContext());
+        mAdapter = new EventAdapter(EventList.danceEventList,this,getActivity(),getContext());
         mRecyclerView.setAdapter(mAdapter);
 
         return rootView;
@@ -158,10 +159,10 @@ public class OneFragment extends Fragment implements RecyclerViewClickListener {
         Events events = new Events(1, "Parallel World", "Complete Best Place", "Rock n roll", "Band"
                 , "Thursday", "0", "10", "23%06%2016", "AM",R.mipmap.antakshiri);
 //        dbHandler.addEvents(events);
-        EventList.add(events);
+        eventList.add(events);
         events = new Events(2, "Parallel World", "Complete Best Place", "Rock ", "Band"
                 , "Thursday", "8", "23", "1%12%2014", "AM",R.mipmap.bookcricket);
-        EventList.add(events);
+        eventList.add(events);
         /*dbHandler.addEvents(events);
         title = dbHandler.columntitle(-1);
         place = dbHandler.columnplace(-1);

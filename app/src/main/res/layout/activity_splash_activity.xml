@@ -9,6 +9,7 @@
         android:layout_height="match_parent"
         android:id="@+id/splashbg"
         android:background="@drawable/splashbg"/>
+
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="2000dp"
         android:id="@+id/scrollView"
@@ -61,7 +62,6 @@
                 android:layout_marginRight="5dp"
                 android:background="@drawable/bordersplash"
                 android:padding="5dp"
-                android:id="@+id/fonttest"
                 android:textSize="15dp"
                 android:textColor="#ffffff"
                 android:text="MUSIC"
@@ -736,7 +736,6 @@
                 android:layout_marginRight="5dp"
                 android:background="@drawable/bordersplash"
                 android:padding="5dp"
-                android:id="@+id/fonttest"
                 android:textSize="15dp"
                 android:textColor="#ffffff"
                 android:text="MUSIC"

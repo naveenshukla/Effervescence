@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -22,22 +24,24 @@ public class EventDetailActivity extends Activity {
         setContentView(R.layout.activity_event_detail);
 
         ImageView backdrop = (ImageView) findViewById(R.id.backdrop);
-        backdrop.setImageResource(R.mipmap.blinddate);
+        int titlebg = getIntent().getIntExtra("event_image",R.mipmap.blinddate);
+        backdrop.setImageResource(titlebg);
+        //backdrop.setImageResource(R.mipmap.blinddate);
 
         Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
-        tb.setTitle("Sample Event");
+        tb.setTitle(getIntent().getCharSequenceExtra("event_name"));
 
-        Bitmap myBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.blinddate);
+        Bitmap myBitmap = BitmapFactory.decodeResource(getResources(), titlebg);
         if (myBitmap != null && !myBitmap.isRecycled()) {
             Palette palette = Palette.from(myBitmap).generate();
             int def = 0x000000;
-            int vibrantDark = palette.getDarkVibrantColor(def);
+            int vibrant = palette.getMutedColor(def);
+            Log.d("vibrant", String.format("#%06X", 0xFFFFFF & vibrant));
+            Log.d("vibrant dark",String.format("#%06X", 0xFFFFFF & palette.getDarkVibrantColor(def)));
             CollapsingToolbarLayout cp = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-            cp.setContentScrimColor(vibrantDark);
-            cp.setStatusBarScrimColor(palette.getDarkVibrantColor(def));
+            cp.setContentScrimColor(vibrant);
+            cp.setStatusBarScrimColor(palette.getDarkMutedColor(def));
         }
-
-
 
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.add_org_here);
         linearLayout.removeAllViews();
@@ -47,5 +51,32 @@ public class EventDetailActivity extends Activity {
         linearLayout.addView(v1);
         linearLayout.addView(v2);
         linearLayout.addView(v3);
+
+        LinearLayout rules = (LinearLayout) findViewById(R.id.add_rules_here);
+        rules.removeAllViews();
+        View rv1 = View.inflate(this,R.layout.rule_layout,null);
+        View rv2 = View.inflate(this,R.layout.rule_layout,null);
+        View rv3 = View.inflate(this,R.layout.rule_layout,null);
+        rules.addView(rv1);
+        rules.addView(rv2);
+        rules.addView(rv3);
+
+        final LinearLayout rulesc = rules;
+
+        LinearLayout rulesLL = (LinearLayout) findViewById(R.id.rules_ll);
+        rulesLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(rulesc.getVisibility()== View.GONE){
+                    Log.d("Hi","GONE");
+                    rulesc.setVisibility(View.VISIBLE);
+                }
+                else {
+                    Log.d("Hi","visible");
+                    rulesc.setVisibility(View.GONE);
+                }
+            }
+        });
+
     }
 }

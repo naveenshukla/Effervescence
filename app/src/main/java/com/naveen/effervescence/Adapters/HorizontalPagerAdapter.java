@@ -1,6 +1,7 @@
 package com.naveen.effervescence.Adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;

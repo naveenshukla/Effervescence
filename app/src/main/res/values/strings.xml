@@ -37,4 +37,6 @@
     <string name="Categories">Categories</string>
 
     <string name="sample_description">Carnivals are a haven for blitz, glamour, fashion and style. You\'ve got to have them all if you want to rock the ramp and prove your haute couture quotient in À La Mode. Come with every bit of pizzazz you possess! Impress the crowd and the judges, and become the style icon of Effervescence 2016!</string>
+    <string name="datetime_sharedpref_file">datetimepref</string>
+    <string name="sample_rules">This is a sample rule. This is a sample rule</string>
 </resources>

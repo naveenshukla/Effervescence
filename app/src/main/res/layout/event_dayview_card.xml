@@ -3,10 +3,10 @@
     android:layout_height="wrap_content"
     xmlns:android.support.design="http://schemas.android.com/apk/res-auto"
     xmlns:android.support.v7.cardview="http://schemas.android.com/apk/res-auto"
-    android.support.v7.cardview:cardElevation="15dp"
-    android.support.v7.cardview:cardCornerRadius="10dp"
-    android.support.v7.cardview:cardUseCompatPadding="false"
-    android:layout_margin="8dp">
+    android.support.v7.cardview:cardElevation="4dp"
+    android.support.v7.cardview:cardCornerRadius="4dp"
+    android.support.v7.cardview:cardUseCompatPadding="true"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,33 +21,44 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:id="@+id/event_image"
+            android:transitionName="ima"
             android:scaleType="fitXY"
             android:src="@mipmap/antakshiri"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sample Event"
-            android:padding="5dp"
-            android:textSize="25sp"
-            android:textColor="@color/md_grey_600"
-            android:id="@+id/event_title_tv"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true" />
+            android:layout_below="@+id/event_image"
+            android:id="@+id/dropdown_ll"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground">
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_expand_more_black_24dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:paddingRight="10dp"
-            android:id="@+id/dropdown" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sample Event"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:textSize="25sp"
+                android:layout_weight="0.9"
+                android:textColor="@color/md_black_1000"
+                android:id="@+id/event_title_tv" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_expand_more_black_24dp"
+                android:paddingTop="4dp"
+                android:paddingRight="10dp"
+                android:layout_weight="0.1"
+                android:id="@+id/dropdown" />
+
+        </LinearLayout>
 
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="95dp"
+        android:layout_height="130dp"
         android:layout_gravity="bottom"
         android:id="@+id/expanded_layout"
         android:layout_below="@id/main_layout"
@@ -56,42 +67,47 @@
 
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:padding="5dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="10dp"
             android:id="@+id/location"
-            android:src="@drawable/ic_location_drop_black_24dp"
-            android:layout_above="@+id/time"
-            android:layout_alignParentLeft="true" />
+            android:src="@drawable/location_material_icon"
+            android:layout_below="@+id/category_tv"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Student Activity Center"
             android:textColor="@color/md_grey_600"
-            android:paddingTop="5dp"
-            android:paddingLeft="5dp"
-            android:textSize="16sp"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:textSize="20sp"
             android:id="@+id/location_tv"
             android:layout_toRightOf="@+id/location"
             android:layout_alignBottom="@+id/location"
             android:layout_alignTop="@+id/location" />
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:padding="5dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="10dp"
             android:id="@+id/time"
-            android:src="@drawable/ic_access_time_black_24dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true" />
+            android:src="@drawable/clock_material"
+            android:layout_below="@+id/location"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="6:00 PM"
             android:textColor="@color/md_grey_600"
-            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="8dp"
             android:paddingRight="10dp"
-            android:paddingLeft="5dp"
-            android:textSize="16sp"
+            android:paddingLeft="10dp"
+            android:textSize="20sp"
             android:id="@+id/time_tv"
             android:layout_alignTop="@+id/time"
             android:layout_toRightOf="@+id/time" />
@@ -100,11 +116,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Category"
-            android:textColor="@color/md_grey_600"
+            android:textColor="@color/md_grey_100"
             android:textSize="15sp"
-            android:padding="5dp"
+            android:padding="8dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/border"
+            android:background="@color/md_deep_purple_700"
             android:id="@+id/category_tv2"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/category_tv" />
@@ -113,10 +129,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Category"
-            android:textColor="@color/md_grey_600"
+            android:textColor="@color/md_grey_100"
             android:textSize="15sp"
-            android:padding="5dp"
-            android:background="@drawable/border"
+            android:padding="8dp"
+            android:background="@color/md_light_blue_700"
             android:id="@+id/category_tv"
             android:layout_marginLeft="10dp"
             android:layout_alignParentTop="true"
@@ -133,6 +149,16 @@
             android:layout_marginBottom="10dp"
             android:src="@drawable/ic_share_white"
             />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/reminder_button"
+            android.support.design:fabSize="mini"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_access_time_white_24dp"
+            android:layout_alignTop="@+id/share_button"
+            android:layout_toLeftOf="@+id/share_button" />
 
 
     </RelativeLayout>

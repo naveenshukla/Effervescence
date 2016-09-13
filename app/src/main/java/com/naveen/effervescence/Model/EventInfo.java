@@ -1,5 +1,7 @@
 package com.naveen.effervescence.Model;
 
+import com.naveen.effervescence.R;
+
 import java.util.ArrayList;
 
 /**
@@ -14,6 +16,7 @@ public class EventInfo {
     private String location;
     private ArrayList<String> rules;
     private ArrayList<EventOrganizerInfo> organizerInfos;
+    private boolean expanded = false;
     private int image_drawable;
 
     public EventInfo(String eventName, String eventDescription, String category,
@@ -60,5 +63,13 @@ public class EventInfo {
 
     public ArrayList<String> getRules() {
         return rules;
+    }
+
+    public boolean isExpanded() {
+        return expanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        this.expanded = expanded;
     }
 }

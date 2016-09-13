@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.naveen.effervescence.Fragments.FourFragment;
@@ -53,6 +54,9 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
         toggle.setDrawerIndicatorEnabled(false);
         drawer.setDrawerListener(toggle);
         toggle.setHomeAsUpIndicator(R.drawable.ic_sort_white_24dp);
+
+
+
         toggle.setToolbarNavigationClickListener(new View.OnClickListener(){
 
             @Override

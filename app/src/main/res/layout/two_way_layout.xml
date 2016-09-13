@@ -29,14 +29,14 @@
         android:id="@+id/event_category_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_widthPercent="100%"
         android:text="Sample"
-        android:gravity="center"
-        android:textColor="@color/md_red_500"
-        android:background="#f9f9f9"
+        android:padding="5dp"
+        android:textColor="@color/md_white_1000"
+        android:background="@color/md_blue_800"
         android:textSize="30sp"
         android:textAllCaps="true"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/vicvp"/>
+
 
 </android.support.percent.PercentRelativeLayout>
