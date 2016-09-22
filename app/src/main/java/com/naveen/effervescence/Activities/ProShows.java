@@ -66,7 +66,7 @@ public class ProShows extends AppCompatActivity implements NavigationView.OnNavi
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(ProShows.this, Tab3.class);
+                    Intent intent = new Intent(ProShows.this, DaysViewActivity.class);
                     startActivity(intent);
                 }
             }, 250);

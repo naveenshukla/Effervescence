@@ -18,20 +18,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.naveen.effervescence.Fragments.FourFragment;
 import com.naveen.effervescence.MyDBHandler;
-import com.naveen.effervescence.Fragments.OneFragment;
+import com.naveen.effervescence.Fragments.DayViewFragment;
 import com.naveen.effervescence.R;
-import com.naveen.effervescence.Fragments.ThreeFragment;
-import com.naveen.effervescence.Fragments.TwoFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
+public class DaysViewActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
     private PendingIntent pendingIntent;
     private TabLayout tabLayout;
 
@@ -54,8 +50,6 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
         toggle.setDrawerIndicatorEnabled(false);
         drawer.setDrawerListener(toggle);
         toggle.setHomeAsUpIndicator(R.drawable.ic_sort_white_24dp);
-
-
 
         toggle.setToolbarNavigationClickListener(new View.OnClickListener(){
 
@@ -83,10 +77,10 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new OneFragment(), "ONE");
-        adapter.addFragment(new TwoFragment(), "TWO");
-        adapter.addFragment(new ThreeFragment(), "THREE");
-        adapter.addFragment(new FourFragment(),"FOUR");
+        adapter.addFragment(DayViewFragment.newInstance(0,1), "Day 1");
+        adapter.addFragment(DayViewFragment.newInstance(1,2), "Day 2");
+        adapter.addFragment(DayViewFragment.newInstance(2,3), "Day 3");
+        adapter.addFragment(DayViewFragment.newInstance(3,4), "Day 4");
         viewPager.setAdapter(adapter);
     }
 
@@ -146,7 +140,7 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(Tab3.this, Categories.class);
+                    Intent intent = new Intent(DaysViewActivity.this, Categories.class);
                     startActivity(intent);
                 }
             }, 250);
@@ -159,7 +153,7 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(Tab3.this, ProShows.class);
+                    Intent intent = new Intent(DaysViewActivity.this, ProShows.class);
                     startActivity(intent);
                 }
             }, 250);
@@ -173,7 +167,7 @@ public class Tab3 extends AppCompatActivity  implements NavigationView.OnNavigat
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(Tab3.this, EventDetailActivity.class);
+                    Intent intent = new Intent(DaysViewActivity.this, EventDetailActivity.class);
                     startActivity(intent);
                 }
             }, 250);

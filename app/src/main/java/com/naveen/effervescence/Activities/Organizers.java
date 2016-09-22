@@ -81,7 +81,7 @@ public class Organizers extends AppCompatActivity implements NavigationView.OnNa
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(Organizers.this, Tab3.class);
+                    Intent intent = new Intent(Organizers.this, DaysViewActivity.class);
                     startActivity(intent);
                 }
             }, 250);

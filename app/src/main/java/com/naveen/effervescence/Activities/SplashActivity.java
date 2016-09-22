@@ -42,7 +42,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 rotate.cancel();
                 ripple.stopRipple();
-                final Intent mainIntent = new Intent(SplashActivity.this, Tab3.class);
+                final Intent mainIntent = new Intent(SplashActivity.this, DaysViewActivity.class);
                 SplashActivity.this.startActivity(mainIntent);
                 SplashActivity.this.finish();
             }

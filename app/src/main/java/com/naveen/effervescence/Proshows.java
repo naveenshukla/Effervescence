@@ -11,7 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.naveen.effervescence.Activities.Tab3;
+import com.naveen.effervescence.Activities.DaysViewActivity;
 
 public class Proshows extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -53,7 +53,7 @@ public class Proshows extends AppCompatActivity implements NavigationView.OnNavi
         if (id == R.id.category) {
 
         } else if (id == R.id.day) {
-            Intent intent = new Intent(Proshows.this, Tab3.class);
+            Intent intent = new Intent(Proshows.this, DaysViewActivity.class);
             startActivity(intent);
 
         }  else if (id == R.id.proshows) {

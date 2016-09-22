@@ -74,7 +74,7 @@ public class Categories extends AppCompatActivity implements NavigationView.OnNa
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(Categories.this, Tab3.class);
+                    Intent intent = new Intent(Categories.this, DaysViewActivity.class);
                     startActivity(intent);
                 }
             }, 250);

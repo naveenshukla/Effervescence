@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.Tab3">
+            android:name=".Activities.DaysViewActivity">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@layout/searcheable" />

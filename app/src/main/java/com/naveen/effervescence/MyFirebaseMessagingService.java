@@ -16,7 +16,7 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.naveen.effervescence.Activities.Tab3;
+import com.naveen.effervescence.Activities.DaysViewActivity;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -45,7 +45,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      */
     private void sendNotification(String messageBody) {
         Log.d("hello",messageBody);
-        Intent intent = new Intent(this, Tab3.class);
+        Intent intent = new Intent(this, DaysViewActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);

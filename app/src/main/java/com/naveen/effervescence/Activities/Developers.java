@@ -23,11 +23,9 @@ import android.widget.TextView;
 import com.naveen.effervescence.Model.Person;
 import com.naveen.effervescence.R;
 import com.naveen.effervescence.Utils.DevelopersList;
-import com.naveen.effervescence.Utils.OrganizersList;
 import com.yalantis.flipviewpager.adapter.BaseFlipAdapter;
 import com.yalantis.flipviewpager.utils.FlipSettings;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Developers extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -83,7 +81,7 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(Developers.this, Tab3.class);
+                    Intent intent = new Intent(Developers.this, DaysViewActivity.class);
                     startActivity(intent);
                 }
             }, 250);
