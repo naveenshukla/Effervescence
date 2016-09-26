@@ -31,8 +31,6 @@ public class Effervescence extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        Log.d("Hi","Bitches");
 /*
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -85,36 +83,5 @@ public class Effervescence extends Application {
         }, 0);
 
 
-
-        /*DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("eventtimes");
-
-
-        ValueEventListener timeChangeListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for(DataSnapshot timeSnapshot: dataSnapshot.getChildren()){
-                    EventTimeData eventTimeData = timeSnapshot.getValue(EventTimeData.class);
-
-                    SharedPreferences sharedPref = context.getSharedPreferences(
-                            getString(R.string.datetime_sharedpref_file), Context.MODE_PRIVATE);
-
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString(eventTimeData.getEventName(),eventTimeData.getTime());
-                    editor.commit();
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d("Firebase","Error: Error in Database");
-                Log.d("Error",databaseError.toString());
-            }
-        };
-
-        dbref.addListenerForSingleValueEvent(timeChangeListener);
-*/
     }
 }

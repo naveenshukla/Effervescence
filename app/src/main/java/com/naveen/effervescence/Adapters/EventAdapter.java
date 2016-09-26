@@ -5,10 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.provider.CalendarContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Transition;
 import android.transition.TransitionManager;
+import android.transition.TransitionValues;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +31,7 @@ import com.naveen.effervescence.MyDBHandler;
 import com.naveen.effervescence.R;
 import com.naveen.effervescence.RecyclerViewClickListener;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -37,18 +41,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     private List<EventInfo> eventsList;
     public Activity activity;
     public Context context;
-    static Animation animation1,animation2;
     static RecyclerViewClickListener itemListener;
     Integer index;
 
     RecyclerView recyclerView;
     private static final String TAG = "EventAdapter";
 
-    private String[] mDataSet;
-
-    /**
-     * Provide a reference to the type of views that you are using (custom ViewHolder)
-     */
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView day, title, time, place, category1, category2;
@@ -70,8 +68,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             title = (TextView) v.findViewById(R.id.event_title_tv);
             time = (TextView) v.findViewById(R.id.time_tv);
             place = (TextView) v.findViewById(R.id.location_tv);
-            category1 = (TextView) v.findViewById(R.id.category_tv);
-            category2 = (TextView) v.findViewById(R.id.category_tv2);
+            //category1 = (TextView) v.findViewById(R.id.category_tv);
+            //category2 = (TextView) v.findViewById(R.id.category_tv2);
             eventImage = (ImageView) v.findViewById(R.id.event_image);
             dropdown = (ImageView) v.findViewById(R.id.dropdown);
             expanded_layout = (RelativeLayout) v.findViewById(R.id.expanded_layout);
@@ -113,21 +111,32 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         final EventInfo events = eventsList.get(position);
         String day = events.getDateSharedPrefVariable();
         String time = events.getTimeSharedPrefVariable();
-        //String category1 = events.getCategory1();
         String category = events.getCategory();
-        String title = events.getEventName();
+        final String title = events.getEventName();
         String place = events.getLocation();
 
-        viewHolder.category2.setText(category);
+       // viewHolder.category2.setText(category);
         viewHolder.title.setText(title);
         viewHolder.time.setText(time);
         viewHolder.place.setText(place);
         viewHolder.eventImage.setImageResource(events.getImage_drawable());
 
-
-        Typeface face= Typeface.createFromAsset(activity.getAssets(), "fonts/waltograph42.otf");
-        viewHolder.title.setTypeface(face);
         final View imageView = viewHolder.eventImage;
+
+        viewHolder.reminder_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+				Calendar cal = Calendar.getInstance();
+				Intent intent = new Intent(Intent.ACTION_EDIT);
+				intent.setType("vnd.android.cursor.item/event");
+				intent.putExtra("beginTime", cal.getTimeInMillis());
+				intent.putExtra("allDay", false);
+				intent.putExtra("rrule", "FREQ=DAILY");
+				intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, cal.getTimeInMillis()+60*60*1000);
+				intent.putExtra(CalendarContract.Events.TITLE, title);
+				context.startActivity(intent);
+            }
+        });
 
         viewHolder.eventImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,6 +160,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         viewHolder.dropdown_ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("Cool","Stuff");
                 boolean a = eventsList.get(position).isExpanded();
                 eventsList.get(position).setExpanded(!a);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

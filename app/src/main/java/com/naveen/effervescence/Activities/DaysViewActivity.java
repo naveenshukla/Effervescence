@@ -1,6 +1,7 @@
 package com.naveen.effervescence.Activities;
 
 import android.app.PendingIntent;
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -8,13 +9,18 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SearchViewCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +33,8 @@ import com.naveen.effervescence.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
 public class DaysViewActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
     private PendingIntent pendingIntent;
     private TabLayout tabLayout;
@@ -38,11 +46,13 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FirebaseMessaging.getInstance().subscribeToTopic("news");
+        /*FirebaseMessaging.getInstance().subscribeToTopic("news");
         dbHandler = new MyDBHandler(this,null, null,1);
-
+*/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+		Log.d("Main Activity","Started");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -115,7 +125,11 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
 
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.actions, menu);
-        return super.onCreateOptionsMenu(menu);
+
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+		SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+		return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -167,7 +181,7 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(DaysViewActivity.this, EventDetailActivity.class);
+                    Intent intent = new Intent(DaysViewActivity.this, OrganizersActivity.class);
                     startActivity(intent);
                 }
             }, 250);
