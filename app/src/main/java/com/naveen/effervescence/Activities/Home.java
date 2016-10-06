@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -67,6 +68,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             public void onClick(View view) {
                 if(flagClicked == false){
+
                     //imageView.setImageResource(R.drawable.bw);
                     Animation fadeOut = AnimationUtils.loadAnimation(Home.this, R.anim.fade_out);
                     imageView.startAnimation(fadeOut);
@@ -135,6 +137,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         });
         fab.show();
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main , menu);
+        return true;
+    }
+
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
