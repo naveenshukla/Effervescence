@@ -2,6 +2,7 @@ package com.naveen.effervescence.Activities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -20,6 +21,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import com.naveen.effervescence.ProShowsFragments.ProShowsList;
 import com.naveen.effervescence.R;
@@ -68,7 +70,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             public void onClick(View view) {
                 if(flagClicked == false){
-
                     //imageView.setImageResource(R.drawable.bw);
                     Animation fadeOut = AnimationUtils.loadAnimation(Home.this, R.anim.fade_out);
                     imageView.startAnimation(fadeOut);
@@ -108,7 +109,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                     fab.setBackgroundColor(Color.BLUE);
                 }
                 else{
-                    imageView.setImageResource(R.drawable.alamode2);
+                    imageView.setImageResource(R.drawable.carnivalhome);
                     Animation fadeIn = AnimationUtils.loadAnimation(Home.this, R.anim.fade_in);
                     imageView.startAnimation(fadeIn);
 
@@ -144,10 +145,22 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         return true;
     }
 
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
 
         if (id == R.id.category) {
 
@@ -180,8 +193,31 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 }
             }, 250);
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
+        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.web:
+                Toast.makeText(this,"web", Toast.LENGTH_LONG ).show();
+                //your code here
+                return true;
+            case R.id.like:
+                Toast.makeText(this,"like", Toast.LENGTH_LONG ).show();
+                //your code here
+                return true;
+            case R.id.rate_us:
+                Toast.makeText(this,"rate", Toast.LENGTH_LONG ).show();
+                return true;
+            case R.id.credits:
+                Toast.makeText(this,"credits", Toast.LENGTH_LONG ).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -52,31 +52,5 @@ public class EventDetailActivity extends Activity {
         linearLayout.addView(v2);
         linearLayout.addView(v3);
 
-        LinearLayout rules = (LinearLayout) findViewById(R.id.add_rules_here);
-        rules.removeAllViews();
-        View rv1 = View.inflate(this,R.layout.rule_layout,null);
-        View rv2 = View.inflate(this,R.layout.rule_layout,null);
-        View rv3 = View.inflate(this,R.layout.rule_layout,null);
-        rules.addView(rv1);
-        rules.addView(rv2);
-        rules.addView(rv3);
-
-        final LinearLayout rulesc = rules;
-
-        LinearLayout rulesLL = (LinearLayout) findViewById(R.id.rules_ll);
-        rulesLL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(rulesc.getVisibility()== View.GONE){
-                    Log.d("Hi","GONE");
-                    rulesc.setVisibility(View.VISIBLE);
-                }
-                else {
-                    Log.d("Hi","visible");
-                    rulesc.setVisibility(View.GONE);
-                }
-            }
-        });
-
     }
 }
