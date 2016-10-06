@@ -1,6 +1,6 @@
 package com.naveen.effervescence.Utils;
 
-import com.naveen.effervescence.Events;
+import com.naveen.effervescence.Model.EventInfo;
 import com.naveen.effervescence.R;
 
 import java.util.ArrayList;
@@ -10,24 +10,52 @@ import java.util.ArrayList;
  */
 public class EventList {
 
+    public static ArrayList<String> rules = new ArrayList<>();
+    static {
+        rules.add("Sample Rules1");
+        rules.add("Sample Rules2");
+        rules.add("Sample Rules3");
+        rules.add("Sample Rules4");
+    }
     public static ArrayList<EventInfo> onlineEventList= new ArrayList<>();
     static {
         onlineEventList.add(new EventInfo("Perplexus",
                 "Online Treasure Hunt. Sample Description",
                 "Online",
-                R.mipmap.perplexus));
+                R.mipmap.perplexus,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules,
+                null
+                ));
         onlineEventList.add(new EventInfo("Stegolica",
                 "Online Crypto Hunt. Sample Description",
                 "Online",
-                R.mipmap.stegolica));
+                R.mipmap.stegolica,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules,
+                null));
         onlineEventList.add(new EventInfo("Stegolica",
                 "Online Crypto Hunt. Sample Description",
                 "Online",
-                R.mipmap.stegolica));
+                R.mipmap.stegolica,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules,
+                null));
         onlineEventList.add(new EventInfo("Perplexus",
                 "Online Treasure Hunt. Sample Description",
                 "Online",
-                R.mipmap.perplexus));
+                R.mipmap.perplexus,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules,
+                null));
 
     }
 
@@ -36,19 +64,38 @@ public class EventList {
         danceEventList.add(new EventInfo("Perplexus",
                 "Online Treasure Hunt. Sample Description",
                 "Online",
-                R.mipmap.dancecharades));
+                R.mipmap.dancecharades,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules,
+                null));
         danceEventList.add(new EventInfo("Stegolica",
                 "Online Crypto Hunt. Sample Description",
                 "Online",
-                R.mipmap.footloose));
+                R.mipmap.footloose,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules,
+                null));
         danceEventList.add(new EventInfo("Perplexus",
                 "Online Treasure Hunt. Sample Description",
                 "Online",
-                R.mipmap.dancecharades));
+                R.mipmap.dancecharades,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules,
+                null));
         danceEventList.add(new EventInfo("Stegolica",
                 "Online Crypto Hunt. Sample Description",
                 "Online",
-                R.mipmap.footloose));
+                R.mipmap.footloose,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules,null));
     }
 
     public static ArrayList<EventInfo> musicEventList= new ArrayList<>();
@@ -56,19 +103,35 @@ public class EventList {
         musicEventList.add(new EventInfo("Perplexus",
                 "Online Treasure Hunt. Sample Description",
                 "Online",
-                R.mipmap.antakshiri));
+                R.mipmap.antakshiri,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
         musicEventList.add(new EventInfo("Stegolica",
                 "Online Crypto Hunt. Sample Description",
                 "Online",
-                R.drawable.singer));
+                R.drawable.singer,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
         musicEventList.add(new EventInfo("Perplexus",
                 "Online Treasure Hunt. Sample Description",
                 "Online",
-                R.mipmap.antakshiri));
+                R.mipmap.antakshiri,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
         musicEventList.add(new EventInfo("Stegolica",
                 "Online Crypto Hunt. Sample Description",
                 "Online",
-                R.drawable.singer));
+                R.drawable.singer,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
     }
 
     public static ArrayList<EventInfo> dramaEventList= new ArrayList<>();
@@ -76,19 +139,35 @@ public class EventList {
         dramaEventList.add(new EventInfo("Perplexus",
                 "Online Treasure Hunt. Sample Description",
                 "Online",
-                R.mipmap.dumbcharades));
+                R.mipmap.dumbcharades,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
         dramaEventList.add(new EventInfo("Stegolica",
                 "Online Crypto Hunt. Sample Description",
                 "Online",
-                R.mipmap.bindaasbol));
+                R.mipmap.bindaasbol,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
         dramaEventList.add(new EventInfo("Perplexus",
                 "Online Treasure Hunt. Sample Description",
                 "Online",
-                R.mipmap.dumbcharades));
+                R.mipmap.dumbcharades,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
         dramaEventList.add(new EventInfo("Stegolica",
                 "Online Crypto Hunt. Sample Description",
                 "Online",
-                R.mipmap.bindaasbol));
+                R.mipmap.bindaasbol,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
     }
 
     public static ArrayList<EventInfo> fineartsEventList= new ArrayList<>();
@@ -96,19 +175,35 @@ public class EventList {
         fineartsEventList.add(new EventInfo("Perplexus",
                 "Online Treasure Hunt. Sample Description",
                 "Online",
-                R.drawable.effewheelfull));
+                R.drawable.effewheelfull,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
         fineartsEventList.add(new EventInfo("Stegolica",
                 "Online Crypto Hunt. Sample Description",
                 "Online",
-                R.mipmap.tasveer));
+                R.mipmap.tasveer,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
         fineartsEventList.add(new EventInfo("Perplexus",
                 "Online Treasure Hunt. Sample Description",
                 "Online",
-                R.mipmap.balloon));
+                R.mipmap.balloon,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
         fineartsEventList.add(new EventInfo("Stegolica",
                 "Online Crypto Hunt. Sample Description",
                 "Online",
-                R.drawable.singer));
+                R.drawable.singer,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
 
     }
 
@@ -117,19 +212,35 @@ public class EventList {
         photographyEventList.add(new EventInfo("Perplexus",
                 "Online Treasure Hunt. Sample Description",
                 "Online",
-                R.mipmap.tasveer));
+                R.mipmap.tasveer,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
         photographyEventList.add(new EventInfo("Stegolica",
                 "Online Crypto Hunt. Sample Description",
                 "Online",
-                R.mipmap.balloon));
+                R.mipmap.balloon,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
         photographyEventList.add(new EventInfo("Perplexus",
                 "Online Treasure Hunt. Sample Description",
                 "Online",
-                R.mipmap.basketball));
+                R.mipmap.basketball,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
         photographyEventList.add(new EventInfo("Stegolica",
                 "Online Crypto Hunt. Sample Description",
                 "Online",
-                R.mipmap.balloon));
+                R.mipmap.balloon,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
 
     }
 
@@ -138,11 +249,19 @@ public class EventList {
         literaryEventList.add(new EventInfo("Perplexus",
                 "Online Treasure Hunt. Sample Description",
                 "Online",
-                R.drawable.effewheelfull));
+                R.drawable.effewheelfull,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
         literaryEventList.add(new EventInfo("Stegolica",
                 "Online Crypto Hunt. Sample Description",
                 "Online",
-                R.drawable.singer));
+                R.drawable.singer,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
 
     }
 
@@ -152,19 +271,35 @@ public class EventList {
         informalEventList.add(new EventInfo("Anime Quiz",
                 "Sample Description. Sample Description",
                 "Quiz",
-                R.mipmap.bookcricket));
+                R.mipmap.bookcricket,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
         informalEventList.add(new EventInfo("Anime Quiz",
                 "Sample Description. Sample Description",
                 "Quiz",
-                R.mipmap.antakshiri));
+                R.mipmap.antakshiri,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
         informalEventList.add(new EventInfo("Anime Quiz",
                 "Sample Description. Sample Description",
                 "Quiz",
-                R.mipmap.bollywoodtambola));
+                R.mipmap.bollywoodtambola,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
         informalEventList.add(new EventInfo("Anime Quiz",
                 "Sample Description. Sample Description",
                 "Quiz",
-                R.mipmap.bquiz));
+                R.mipmap.bquiz,
+                "Perplexus_time",
+                "Perplexus_date",
+                "Online",
+                rules, null));
     }
 
 

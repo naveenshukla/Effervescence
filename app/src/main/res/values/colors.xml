@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ffcc0000</color>
-    <color name="colorPrimaryDark">#830404</color>
+    <color name="colorPrimary">#E53935</color>
+    <color name="colorPrimaryDark">#C62828</color>
     <color name="colorAccent">#ff000d</color>
     <color name="year">#999999</color>
     <color name="title">#ef5858</color>
     <color name="holoreddark">#ffcc0000</color>
     <color name="white">#ffffff</color>
+    <color name="transparent">#00000000</color>
 
     <color name="md_red_50">#FFEBEE</color>
     <color name="md_red_100">#FFCDD2</color>

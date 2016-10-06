@@ -7,7 +7,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.naveen.effervescence.Activities.Tab3;
+import com.naveen.effervescence.Activities.DaysViewActivity;
 
 /**
  * Created by Naveen on 21-06-2016.
@@ -32,7 +32,7 @@ public class NotificationService extends Service{
         super.onStart(intent, startId);
 
         mManager = (NotificationManager) this.getApplicationContext().getSystemService(this.getApplicationContext().NOTIFICATION_SERVICE);
-        Intent intent1 = new Intent(this.getApplicationContext(),Tab3.class);
+        Intent intent1 = new Intent(this.getApplicationContext(),DaysViewActivity.class);
 
         Notification notification = new Notification(R.drawable.ic_menu_camera,"This is a test message!", System.currentTimeMillis());
         intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP| Intent.FLAG_ACTIVITY_CLEAR_TOP);

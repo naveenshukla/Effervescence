@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.naveen.effervescence.Activities.SplashActivity;
-import com.naveen.effervescence.Activities.Tab3;
+import com.naveen.effervescence.Activities.DaysViewActivity;
 
 public class Splash_activity extends Activity {
     WebView mWebView;
@@ -44,7 +44,7 @@ public class Splash_activity extends Activity {
             @Override
             public void onClick(View v) {
                 gotoevents.setBackgroundResource(R.drawable.invert_rounded);
-                Intent intent = new Intent(Splash_activity.this,Tab3.class);
+                Intent intent = new Intent(Splash_activity.this,DaysViewActivity.class);
                 startActivity(intent);
             }
         });

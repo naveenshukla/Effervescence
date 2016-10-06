@@ -1,10 +1,13 @@
 package com.naveen.effervescence.Activities;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -23,16 +26,15 @@ import android.widget.TextView;
 import com.naveen.effervescence.Model.Person;
 import com.naveen.effervescence.R;
 import com.naveen.effervescence.Utils.DevelopersList;
-import com.naveen.effervescence.Utils.OrganizersList;
 import com.yalantis.flipviewpager.adapter.BaseFlipAdapter;
 import com.yalantis.flipviewpager.utils.FlipSettings;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Developers extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,11 +46,10 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout4);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         toggle.setDrawerIndicatorEnabled(false);
         drawer.setDrawerListener(toggle);
-        toggle.setHomeAsUpIndicator(R.drawable.ic_sort_white_24dp);
-        toggle.setToolbarNavigationClickListener(new View.OnClickListener(){
+        toggle.setToolbarNavigationClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -68,7 +69,7 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
 
         final ListView listView = (android.widget.ListView) findViewById(R.id.developers_listview);
         FlipSettings settings = new FlipSettings.Builder().defaultPage(1).build();
-        listView.setAdapter(new DeveloperListAdapter(this, DevelopersList.developers,settings));
+        listView.setAdapter(new DeveloperListAdapter(this, DevelopersList.developers, settings));
 
     }
 
@@ -83,12 +84,12 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(Developers.this, Tab3.class);
+                    Intent intent = new Intent(Developers.this, DaysViewActivity.class);
                     startActivity(intent);
                 }
             }, 250);
 
-        }  else if (id == R.id.proshows) {
+        } else if (id == R.id.proshows) {
 
             drawer.closeDrawer(GravityCompat.START);
             new Handler().postDelayed(new Runnable() {
@@ -103,7 +104,7 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
 
         } else if (id == R.id.sponsers) {
 
-        }else if (id == R.id.developers) {
+        } else if (id == R.id.developers) {
 
 
         }
@@ -118,6 +119,7 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
         public DeveloperListAdapter(Context context, List items, FlipSettings settings) {
             super(context, items, settings);
         }
+
 
         @Override
         public View getPage(int position, View convertView, ViewGroup parent, Object person1, Object person2) {
@@ -142,26 +144,21 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
                 holder = (PersonHolder) convertView.getTag();
             }
 
-            ArrayList<View> al = new ArrayList<>();
-            al.add(holder.facebookImageView);
-            al.add(holder.testButton);
-            convertView.addTouchables(al);
-
-            if(position == 1){
+            if (position == 1) {
                 holder.leftAvatar.setImageResource(((Person) person1).getAvatar());
-                if(person2!=null){
+                if (person2 != null) {
                     holder.rightAvatar.setImageResource(((Person) person2).getAvatar());
                 }
             }
 
-            if(position == 0){
-                fillHolder(holder,(Person) person1);
+            if (position == 0) {
+                fillHolder(convertView, holder, (Person) person1);
                 holder.infoPage.setTag(holder);
                 return holder.infoPage;
             }
 
-            if(position == 2){
-                fillHolder(holder,(Person) person2);
+            if (position == 2) {
+                fillHolder(convertView, holder, (Person) person2);
                 holder.infoPage.setTag(holder);
                 return holder.infoPage;
             }
@@ -174,8 +171,8 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
         }
     }
 
-    public void fillHolder(PersonHolder personHolder, final Person person){
-        if(person == null)
+    public void fillHolder(View convertView, PersonHolder personHolder, final Person person) {
+        if (person == null)
             return;
         personHolder.designationTextView.setText(person.getDesignation());
         personHolder.nameTextView.setText(person.getPersonName());
@@ -183,7 +180,7 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
         personHolder.facebookImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("FacebookImageView","imageViewPressed");
+                Log.d("FacebookImageView", "imageViewPressed");
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(person.getFacebookProfileLink()));
                 startActivity(intent);
@@ -201,20 +198,27 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:"+person.getPhoneNumber()));
+                intent.setData(Uri.parse("tel:" + person.getPhoneNumber()));
+                if (ActivityCompat.checkSelfPermission(Developers.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
                 startActivity(intent);
             }
         });
-        personHolder.testButton.setOnClickListener(new View.OnClickListener() {
+        convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Test Button Pressed","testButtonPressed");
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(person.getFacebookProfileLink()));
-                startActivity(intent);
+                switch(view.getId()){
+                    case R.id.testButton :
+                        Log.d("Test Button Pressed","testButtonPressed");
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(person.getFacebookProfileLink()));
+                        startActivity(intent);
+                        break;
+                    default: Log.d("Bhai","Kuchh na hua");
+                }
             }
         });
-
 
     }
 
