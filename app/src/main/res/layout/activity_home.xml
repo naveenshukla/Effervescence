@@ -12,12 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!--<FrameLayout-->
-        <!--android:id="@+id/container"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"></FrameLayout>-->
-
-
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -61,8 +55,6 @@
                 </ScrollView>
             </LinearLayout>
         </LinearLayout>
-
-
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"

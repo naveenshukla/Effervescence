@@ -5,9 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -15,7 +17,7 @@ import android.widget.LinearLayout;
 
 import com.naveen.effervescence.R;
 
-public class EventDetailActivity extends Activity {
+public class EventDetailActivity extends AppCompatActivity {
 
     @Override
 
@@ -29,6 +31,11 @@ public class EventDetailActivity extends Activity {
         //backdrop.setImageResource(R.mipmap.blinddate);
 
         Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(tb);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //getSupportActionBar().setHomeButtonEnabled(true);
+
         tb.setTitle(getIntent().getCharSequenceExtra("event_name"));
 
         Bitmap myBitmap = BitmapFactory.decodeResource(getResources(), titlebg);
@@ -52,5 +59,13 @@ public class EventDetailActivity extends Activity {
         linearLayout.addView(v2);
         linearLayout.addView(v3);
 
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
