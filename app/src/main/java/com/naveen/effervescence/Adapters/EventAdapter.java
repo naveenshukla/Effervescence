@@ -112,10 +112,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             //category1 = (TextView) v.findViewById(R.id.category_tv);
             //category2 = (TextView) v.findViewById(R.id.category_tv2);
             eventImage = (ImageView) v.findViewById(R.id.event_image);
-            dropdown = (ImageView) v.findViewById(R.id.dropdown);
-            expanded_layout = (RelativeLayout) v.findViewById(R.id.expanded_layout);
-            share_fab = (FloatingActionButton) v.findViewById(R.id.share_button);
-            reminder_fab = (FloatingActionButton) v.findViewById(R.id.reminder_button);
+            //dropdown = (ImageView) v.findViewById(R.id.dropdown);
+//            expanded_layout = (RelativeLayout) v.findViewById(R.id.expanded_layout);
+//            share_fab = (FloatingActionButton) v.findViewById(R.id.share_button);
+//            reminder_fab = (FloatingActionButton) v.findViewById(R.id.reminder_button);
             dropdown_ll = (LinearLayout) v.findViewById(R.id.dropdown_ll);
         }
 
@@ -167,20 +167,20 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
 
         final View imageView = viewHolder.eventImage;
 
-        viewHolder.reminder_fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-				Calendar cal = Calendar.getInstance();
-				Intent intent = new Intent(Intent.ACTION_EDIT);
-				intent.setType("vnd.android.cursor.item/event");
-				intent.putExtra("beginTime", cal.getTimeInMillis());
-				intent.putExtra("allDay", false);
-				intent.putExtra("rrule", "FREQ=DAILY");
-				intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, cal.getTimeInMillis()+60*60*1000);
-				intent.putExtra(CalendarContract.Events.TITLE, title);
-				context.startActivity(intent);
-            }
-        });
+//        viewHolder.reminder_fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//				Calendar cal = Calendar.getInstance();
+//				Intent intent = new Intent(Intent.ACTION_EDIT);
+//				intent.setType("vnd.android.cursor.item/event");
+//				intent.putExtra("beginTime", cal.getTimeInMillis());
+//				intent.putExtra("allDay", false);
+//				intent.putExtra("rrule", "FREQ=DAILY");
+//				intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, cal.getTimeInMillis()+60*60*1000);
+//				intent.putExtra(CalendarContract.Events.TITLE, title);
+//				context.startActivity(intent);
+//            }
+//        });
 
         viewHolder.eventImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,14 +210,14 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                 }
             }
         });
-        if(events.isExpanded()){
-            viewHolder.expanded_layout.setVisibility(View.VISIBLE);
-            viewHolder.dropdown.setImageResource(R.drawable.ic_expand_less_black_24dp);
-        }
-        else {
-            viewHolder.expanded_layout.setVisibility(View.GONE);
-            viewHolder.dropdown.setImageResource(R.drawable.ic_expand_more_black_24dp);
-        }
+//        if(events.isExpanded()){
+//            viewHolder.expanded_layout.setVisibility(View.VISIBLE);
+//            viewHolder.dropdown.setImageResource(R.drawable.ic_expand_less_black_24dp);
+//        }
+//        else {
+//            viewHolder.expanded_layout.setVisibility(View.GONE);
+//            viewHolder.dropdown.setImageResource(R.drawable.ic_expand_more_black_24dp);
+//        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
