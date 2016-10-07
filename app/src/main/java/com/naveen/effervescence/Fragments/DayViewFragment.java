@@ -9,15 +9,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.util.SortedList;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.naveen.effervescence.Adapters.EventAdapter;
 import com.naveen.effervescence.Events;
+import com.naveen.effervescence.Model.EventInfo;
 import com.naveen.effervescence.R;
 import com.naveen.effervescence.Receiver;
 import com.naveen.effervescence.RecyclerViewClickListener;
@@ -25,10 +31,11 @@ import com.naveen.effervescence.Utils.EventList;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.List;
 
 
-public class DayViewFragment extends Fragment implements RecyclerViewClickListener {
+public class DayViewFragment extends Fragment implements RecyclerViewClickListener{
 
     private PendingIntent pendingIntent;
 
@@ -51,6 +58,14 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
     protected RecyclerView.LayoutManager mLayoutManager;
 
 
+
+    private static final Comparator<EventInfo> ALPHABETICAL_COMPARATOR = new Comparator<EventInfo>() {
+        @Override
+        public int compare(EventInfo a, EventInfo b) {
+            return a.getEventName().compareTo(b.getEventName());
+        }
+    };
+
     public static DayViewFragment newInstance(int page, int day){
         Bundle args = new Bundle();
         args.putInt("ARG_PAGE", page);
@@ -65,6 +80,31 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
         super.onCreate(savedInstanceState);
         page = getArguments().getInt("ARG_PAGE");
         day = getArguments().getInt("ARG_DAY");
+        setHasOptionsMenu(true);
+    }
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem mSearchMenuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) mSearchMenuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                if(!query.isEmpty()){
+                    mAdapter.setTemp();
+                    mAdapter.setFilter(query);
+                }
+                else{
+                    mAdapter.setTemp();
+                    mAdapter.flushFilter();
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -86,16 +126,15 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
         setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
         switch (day) {
-            case 1: mAdapter = new EventAdapter(EventList.danceEventList, this, getActivity(), getContext());
+            case 1: mAdapter = new EventAdapter(EventList.danceEventList, this, getActivity(), getContext(), ALPHABETICAL_COMPARATOR);
                 break;
-            case 2: mAdapter = new EventAdapter(EventList.dramaEventList, this, getActivity(), getContext());
+            case 2: mAdapter = new EventAdapter(EventList.dramaEventList, this, getActivity(), getContext(), ALPHABETICAL_COMPARATOR);
                 break;
-            case 3: mAdapter = new EventAdapter(EventList.fineartsEventList,this, getActivity(), getContext());
+            case 3: mAdapter = new EventAdapter(EventList.fineartsEventList,this, getActivity(), getContext(), ALPHABETICAL_COMPARATOR);
                 break;
-            default: mAdapter = new EventAdapter(EventList.literaryEventList,this,getActivity(),getContext());
+            default: mAdapter = new EventAdapter(EventList.literaryEventList,this,getActivity(),getContext(),ALPHABETICAL_COMPARATOR);
         }
         mRecyclerView.setAdapter(mAdapter);
-
         return rootView;
     }
 

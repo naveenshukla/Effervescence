@@ -2,7 +2,9 @@ package com.naveen.effervescence.Activities;
 
 import android.app.PendingIntent;
 import android.app.SearchManager;
+import android.app.usage.UsageEvents;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -26,14 +28,21 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.naveen.effervescence.Adapters.EventAdapter;
+import com.naveen.effervescence.Model.EventInfo;
 import com.naveen.effervescence.MyDBHandler;
 import com.naveen.effervescence.Fragments.DayViewFragment;
 import com.naveen.effervescence.R;
+import com.naveen.effervescence.Utils.EventList;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
+import static com.naveen.effervescence.Activities.SplashActivity.wait;
+import static com.naveen.effervescence.R.id.textView;
 
 public class DaysViewActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
     private PendingIntent pendingIntent;
@@ -123,9 +132,9 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
         }
     }
 
+
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.actions, menu);
-
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
 		SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
@@ -157,12 +166,18 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
                     Intent intent = new Intent(DaysViewActivity.this, Categories.class);
                     startActivity(intent);
                 }
-            }, 250);
-
+            }, wait);
         } else if (id == R.id.day) {
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(DaysViewActivity.this, DaysViewActivity.class);
+                    startActivity(intent);
+                }
+            }, wait);
 
-        } else if (id == R.id.proshows) {
-
+        }  else if (id == R.id.proshows) {
             drawer.closeDrawer(GravityCompat.START);
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -170,13 +185,18 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
                     Intent intent = new Intent(DaysViewActivity.this, ProShows.class);
                     startActivity(intent);
                 }
-            }, 250);
-
-        } else if (id == R.id.bioscope) {
-
+            }, wait);
         } else if (id == R.id.sponsers) {
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.effe.org.in"));
+                    startActivity(browserIntent);
+                }
+            }, wait);
+        } else if (id == R.id.developers) {
 
-        }else if (id == R.id.developers) {
             drawer.closeDrawer(GravityCompat.START);
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -184,7 +204,7 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
                     Intent intent = new Intent(DaysViewActivity.this, OrganizersActivity.class);
                     startActivity(intent);
                 }
-            }, 250);
+            }, wait);
         }
 
         drawer.closeDrawer(GravityCompat.START);

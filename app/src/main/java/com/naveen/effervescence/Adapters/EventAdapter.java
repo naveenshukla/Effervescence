@@ -8,6 +8,7 @@ import android.os.Build;
 import android.provider.CalendarContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
 import android.transition.Transition;
 import android.transition.TransitionManager;
@@ -31,8 +32,14 @@ import com.naveen.effervescence.MyDBHandler;
 import com.naveen.effervescence.R;
 import com.naveen.effervescence.RecyclerViewClickListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Naveen on 23-06-2016.
@@ -44,8 +51,43 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     static RecyclerViewClickListener itemListener;
     Integer index;
 
+    public  List<EventInfo> visibleObjects = new ArrayList<>();
     RecyclerView recyclerView;
+    private final Comparator<EventInfo> mComparator;
     private static final String TAG = "EventAdapter";
+
+    public void setFilter(String filter) {
+        Log.d("hello", String.valueOf(eventsList.size()));
+        visibleObjects.addAll(eventsList);
+        Set<EventInfo> hs = new HashSet<>();
+        hs.addAll(visibleObjects);
+        visibleObjects.clear();
+        visibleObjects.addAll(hs);
+        Log.d("hello", String.valueOf(visibleObjects.size()));
+
+        eventsList.clear();
+        for(EventInfo item : visibleObjects){
+            if(item.getEventName().equals(filter)){
+                eventsList.add(item);
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+
+    public void flushFilter(){
+        Log.d("hello","flushfilter");
+        Log.d("hello", String.valueOf(visibleObjects.size()));
+        Set<EventInfo> hs = new HashSet<>();
+        hs.addAll(visibleObjects);
+        eventsList.clear();
+        eventsList.addAll(hs);
+        notifyDataSetChanged();
+    }
+
+    public void setTemp() {
+        visibleObjects.addAll(eventsList);
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -55,7 +97,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         public FloatingActionButton share_fab;
         public FloatingActionButton reminder_fab;
         public LinearLayout dropdown_ll;
-
         public ViewHolder(View v) {
             super(v);
             // Define click listener for the ViewHolder's View.
@@ -87,11 +128,14 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         recyclerView = pRecyclerView;
     }
 
-    public EventAdapter(List<EventInfo> eventsList, RecyclerViewClickListener itemListener, Activity activity, Context context) {
+    public EventAdapter(List<EventInfo> eventsList, RecyclerViewClickListener itemListener, Activity activity, Context context,  Comparator<EventInfo> comparator) {
+
         this.eventsList = eventsList;
         this.itemListener = itemListener;
         this.activity = activity;
         this.context = context;
+        mComparator = comparator;
+       // visibleObjects = this.eventsList;
     }
 
     // Create new views (invoked by the layout manager)
@@ -141,8 +185,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         viewHolder.eventImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 Intent intent = new Intent(context, EventDetailActivity.class);
                 intent.putExtra("event_name",events.getEventName());
                 intent.putExtra("event_image",events.getImage_drawable());
@@ -166,7 +208,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                     TransitionManager.beginDelayedTransition(recyclerView);
                 }
-                notifyDataSetChanged();
             }
         });
         if(events.isExpanded()){

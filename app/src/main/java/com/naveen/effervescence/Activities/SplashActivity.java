@@ -14,6 +14,7 @@ import com.rodolfonavalon.shaperipplelibrary.ShapeRipple;
 import com.rodolfonavalon.shaperipplelibrary.model.Circle;
 
 public class SplashActivity extends AppCompatActivity {
+    public static int wait =  100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -14,10 +14,6 @@
         </item>
         <item android:title="Special">
             <item
-                android:id="@+id/bioscope"
-                android:icon="@drawable/ic_theaters_black_18dp"
-                android:title="Bioscope" />
-            <item
                 android:id="@+id/proshows"
                 android:icon="@drawable/ic_stars_black_18dp"
                 android:title="ProShows" />
@@ -29,11 +25,11 @@
             <item
                 android:id="@+id/sponsers"
                 android:icon="@drawable/ic_attach_money_black_18dp"
-                android:title="Sponsers" />
+                android:title="Sponsors"/>
             <item
                 android:id="@+id/developers"
-                android:icon="@drawable/ic_developer_mode_black_18dp"
-                android:title="Developers" />
+                android:icon="@drawable/ic_group_black_24dp"
+                android:title="Organizers" />
         </menu>
     </item>
 

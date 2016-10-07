@@ -1,6 +1,7 @@
 package com.naveen.effervescence.Activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +16,8 @@ import android.view.View;
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
 import com.naveen.effervescence.Adapters.HorizontalPagerAdapter;
 import com.naveen.effervescence.R;
+
+import static com.naveen.effervescence.Activities.SplashActivity.wait;
 
 public class Categories extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -66,9 +69,14 @@ public class Categories extends AppCompatActivity implements NavigationView.OnNa
         int id = item.getItemId();
 
         if (id == R.id.category) {
-
             drawer.closeDrawer(GravityCompat.START);
-
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Categories.this, Categories.class);
+                    startActivity(intent);
+                }
+            }, wait);
         } else if (id == R.id.day) {
             drawer.closeDrawer(GravityCompat.START);
             new Handler().postDelayed(new Runnable() {
@@ -77,10 +85,9 @@ public class Categories extends AppCompatActivity implements NavigationView.OnNa
                     Intent intent = new Intent(Categories.this, DaysViewActivity.class);
                     startActivity(intent);
                 }
-            }, 250);
+            }, wait);
 
         }  else if (id == R.id.proshows) {
-
             drawer.closeDrawer(GravityCompat.START);
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -88,23 +95,26 @@ public class Categories extends AppCompatActivity implements NavigationView.OnNa
                     Intent intent = new Intent(Categories.this, ProShows.class);
                     startActivity(intent);
                 }
-            }, 250);
-
-        } else if (id == R.id.bioscope) {
-
+            }, wait);
         } else if (id == R.id.sponsers) {
-
-        }else if (id == R.id.developers) {
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.effe.org.in"));
+                    startActivity(browserIntent);
+                }
+            }, wait);
+        } else if (id == R.id.developers) {
 
             drawer.closeDrawer(GravityCompat.START);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(Categories.this, Developers.class);
+                    Intent intent = new Intent(Categories.this, OrganizersActivity.class);
                     startActivity(intent);
                 }
-            }, 250);
-
+            }, wait);
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

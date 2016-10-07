@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.naveen.effervescence.Model.Person;
 import com.naveen.effervescence.R;
@@ -78,7 +79,14 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
         int id = item.getItemId();
 
         if (id == R.id.category) {
-
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Developers.this, Categories.class);
+                    startActivity(intent);
+                }
+            }, 250);
         } else if (id == R.id.day) {
             drawer.closeDrawer(GravityCompat.START);
             new Handler().postDelayed(new Runnable() {
@@ -89,8 +97,7 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
                 }
             }, 250);
 
-        } else if (id == R.id.proshows) {
-
+        }  else if (id == R.id.proshows) {
             drawer.closeDrawer(GravityCompat.START);
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -99,14 +106,25 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
                     startActivity(intent);
                 }
             }, 250);
-
-        } else if (id == R.id.bioscope) {
-
         } else if (id == R.id.sponsers) {
-
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.effe.org.in"));
+                    startActivity(browserIntent);
+                }
+            }, 250);
         } else if (id == R.id.developers) {
 
-
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Developers.this, Developers.class);
+                    startActivity(intent);
+                }
+            }, 250);
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -180,7 +198,8 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
         personHolder.facebookImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("FacebookImageView", "imageViewPressed");
+                //Log.d("FacebookImageView", "imageViewPressed");
+                Toast.makeText(getApplicationContext(), "pressed this button", Toast.LENGTH_LONG);
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(person.getFacebookProfileLink()));
                 startActivity(intent);

@@ -1,5 +1,7 @@
 package com.naveen.effervescence.Model;
 
+import android.support.v7.widget.util.SortedListAdapterCallback;
+
 import com.naveen.effervescence.R;
 
 import java.util.ArrayList;
@@ -7,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by betterclever on 30/8/16.
  */
-public class EventInfo {
+public class EventInfo{
     private String eventName;
     private String eventDescription;
     private String category;

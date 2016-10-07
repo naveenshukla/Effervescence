@@ -1,6 +1,7 @@
 package com.naveen.effervescence.Activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +15,8 @@ import android.view.View;
 
 import com.naveen.effervescence.ProShowsFragments.ProShowsList;
 import com.naveen.effervescence.R;
+
+import static com.naveen.effervescence.Activities.SplashActivity.wait;
 
 public class ProShows extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -60,7 +63,14 @@ public class ProShows extends AppCompatActivity implements NavigationView.OnNavi
         int id = item.getItemId();
 
         if (id == R.id.category) {
-
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(ProShows.this, Categories.class);
+                    startActivity(intent);
+                }
+            }, wait);
         } else if (id == R.id.day) {
             drawer.closeDrawer(GravityCompat.START);
             new Handler().postDelayed(new Runnable() {
@@ -69,26 +79,36 @@ public class ProShows extends AppCompatActivity implements NavigationView.OnNavi
                     Intent intent = new Intent(ProShows.this, DaysViewActivity.class);
                     startActivity(intent);
                 }
-            }, 250);
+            }, wait);
 
         }  else if (id == R.id.proshows) {
-
-
-
-        } else if (id == R.id.bioscope) {
-
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(ProShows.this, ProShows.class);
+                    startActivity(intent);
+                }
+            }, wait);
         } else if (id == R.id.sponsers) {
-
-        }else if (id == R.id.developers) {
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.effe.org.in"));
+                    startActivity(browserIntent);
+                }
+            }, wait);
+        } else if (id == R.id.developers) {
 
             drawer.closeDrawer(GravityCompat.START);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(ProShows.this, Developers.class);
+                    Intent intent = new Intent(ProShows.this, OrganizersActivity.class);
                     startActivity(intent);
                 }
-            }, 250);
+            }, wait);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
