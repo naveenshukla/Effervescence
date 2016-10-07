@@ -1,10 +1,11 @@
 package com.naveen.effervescence.Activities;
 
-import android.app.Activity;
-import android.media.Image;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,12 +17,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.naveen.effervescence.Fragments.DayViewFragment;
 import com.naveen.effervescence.Model.Event;
 import com.naveen.effervescence.Model.Organizer;
 import com.naveen.effervescence.R;
 
-public class EventDetailActivity extends Activity {
+public class EventDetailActivity extends AppCompatActivity {
 
 	public TextView dateTV, timeTV, descriptionTV, locationTV;
 	public ImageView imageView;
@@ -30,7 +30,6 @@ public class EventDetailActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
-
 
 		Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
 		tb.setTitle(getIntent().getCharSequenceExtra("event_name"));
@@ -83,21 +82,13 @@ public class EventDetailActivity extends Activity {
 		};
 		ref.addValueEventListener(postListener);
 
-
-        /*Bitmap myBitmap = null;
-
-        if (myBitmap != null && !myBitmap.isRecycled()) {
-            Palette palette = Palette.from(myBitmap).generate();
-            int def = 0x000000;
-            int vibrant = palette.getMutedColor(def);
-            Log.d("vibrant", String.format("#%06X", 0xFFFFFF & vibrant));
-            Log.d("vibrant dark",String.format("#%06X", 0xFFFFFF & palette.getDarkVibrantColor(def)));
-            CollapsingToolbarLayout cp = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-            cp.setContentScrimColor(vibrant);
-            cp.setStatusBarScrimColor(palette.getDarkMutedColor(def));
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
         }
-*/
-
-
+        return super.onOptionsItemSelected(item);
     }
 }

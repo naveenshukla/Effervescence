@@ -1,6 +1,7 @@
 package com.naveen.effervescence.Activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -14,10 +15,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.naveen.effervescence.Adapters.OrganizersCardPagerAdapter;
 import com.naveen.effervescence.R;
 import com.naveen.effervescence.Utils.ShadowTransformer;
+
+import static com.naveen.effervescence.Activities.SplashActivity.wait;
 
 public class OrganizersActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -42,7 +46,7 @@ public class OrganizersActivity extends AppCompatActivity implements NavigationV
 
 		mCardAdapter = new OrganizersCardPagerAdapter(this);
 		mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
-
+		Toast.makeText(this, "organizers activity started",Toast.LENGTH_LONG);
 		mViewPager.setAdapter(mCardAdapter);
 		mViewPager.setPageTransformer(false, mCardShadowTransformer);
 		mViewPager.setOffscreenPageLimit(3);
@@ -88,8 +92,7 @@ public class OrganizersActivity extends AppCompatActivity implements NavigationV
 					Intent intent = new Intent(OrganizersActivity.this, Categories.class);
 					startActivity(intent);
 				}
-			}, 250);
-
+			}, wait);
 		} else if (id == R.id.day) {
 			drawer.closeDrawer(GravityCompat.START);
 			new Handler().postDelayed(new Runnable() {
@@ -98,10 +101,9 @@ public class OrganizersActivity extends AppCompatActivity implements NavigationV
 					Intent intent = new Intent(OrganizersActivity.this, DaysViewActivity.class);
 					startActivity(intent);
 				}
-			}, 250);
+			}, wait);
 
-		} else if (id == R.id.proshows) {
-
+		}  else if (id == R.id.proshows) {
 			drawer.closeDrawer(GravityCompat.START);
 			new Handler().postDelayed(new Runnable() {
 				@Override
@@ -109,13 +111,18 @@ public class OrganizersActivity extends AppCompatActivity implements NavigationV
 					Intent intent = new Intent(OrganizersActivity.this, ProShows.class);
 					startActivity(intent);
 				}
-			}, 250);
-
-		} else if (id == R.id.bioscope) {
-
+			}, wait);
 		} else if (id == R.id.sponsers) {
+			drawer.closeDrawer(GravityCompat.START);
+			new Handler().postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.effe.org.in"));
+					startActivity(browserIntent);
+				}
+			}, wait);
+		} else if (id == R.id.developers) {
 
-		}else if (id == R.id.developers) {
 			drawer.closeDrawer(GravityCompat.START);
 			new Handler().postDelayed(new Runnable() {
 				@Override
@@ -123,7 +130,7 @@ public class OrganizersActivity extends AppCompatActivity implements NavigationV
 					Intent intent = new Intent(OrganizersActivity.this, OrganizersActivity.class);
 					startActivity(intent);
 				}
-			}, 250);
+			}, wait);
 		}
 
 		drawer.closeDrawer(GravityCompat.START);

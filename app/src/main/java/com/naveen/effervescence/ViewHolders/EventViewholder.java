@@ -28,10 +28,9 @@ public class EventViewholder extends RecyclerView.ViewHolder {
 		time = (TextView) v.findViewById(R.id.time_tv);
 		place = (TextView) v.findViewById(R.id.location_tv);
 		category = (TextView) v.findViewById(R.id.category_tv);
-		eventImage = (ImageView) v.findViewById(R.id.event_image);
-		expanded_layout = (RelativeLayout) v.findViewById(R.id.expanded_layout);
+		eventImage = (ImageView) v.findViewById(R.id.event_image);/*
 		share_fab = (FloatingActionButton) v.findViewById(R.id.share_button);
 		reminder_fab = (FloatingActionButton) v.findViewById(R.id.reminder_button);
-		dropdown_ll = (LinearLayout) v.findViewById(R.id.dropdown_ll);
+		dropdown_ll = (LinearLayout) v.findViewById(R.id.dropdown_ll);*/
 	}
 }

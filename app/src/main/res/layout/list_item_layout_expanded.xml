@@ -52,6 +52,7 @@
         android:layout_height="wrap_content"
         app:layout_widthPercent="12%"
         app:layout_heightPercent="22%"
+        android:clickable="true"
         android:src="@drawable/facebook"
         android:layout_marginRight="30dp"
         android:id="@+id/facebookImage"

@@ -58,8 +58,6 @@ public class Proshows extends AppCompatActivity implements NavigationView.OnNavi
 
         }  else if (id == R.id.proshows) {
 
-        } else if (id == R.id.bioscope) {
-
         } else if (id == R.id.sponsers) {
 
         }else if (id == R.id.developers) {

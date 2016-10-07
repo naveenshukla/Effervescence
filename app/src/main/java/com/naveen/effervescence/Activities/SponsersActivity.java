@@ -113,9 +113,7 @@ public class SponsersActivity extends AppCompatActivity implements NavigationVie
 				}
 			}, 250);
 
-		} else if (id == R.id.bioscope) {
-
-		} else if (id == R.id.sponsers) {
+		}  else if (id == R.id.sponsers) {
 
 		} else if (id == R.id.developers) {
 

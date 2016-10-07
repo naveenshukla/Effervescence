@@ -3,6 +3,7 @@ package com.naveen.effervescence.Activities;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -25,6 +26,8 @@ import android.widget.Toast;
 
 import com.naveen.effervescence.ProShowsFragments.ProShowsList;
 import com.naveen.effervescence.R;
+
+import static com.naveen.effervescence.Activities.SplashActivity.wait;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     ImageView imageView;
@@ -147,12 +150,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+       finish();
     }
 
 
@@ -163,7 +161,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
 
         if (id == R.id.category) {
-
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Home.this, Categories.class);
+                    startActivity(intent);
+                }
+            }, wait);
         } else if (id == R.id.day) {
             drawer.closeDrawer(GravityCompat.START);
             new Handler().postDelayed(new Runnable() {
@@ -172,31 +177,44 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                     Intent intent = new Intent(Home.this, DaysViewActivity.class);
                     startActivity(intent);
                 }
-            }, 250);
+            }, wait);
 
         }  else if (id == R.id.proshows) {
-
-
-
-        } else if (id == R.id.bioscope) {
-
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Home.this, ProShows.class);
+                    startActivity(intent);
+                }
+            }, wait);
         } else if (id == R.id.sponsers) {
-
-        }else if (id == R.id.developers) {
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.effe.org.in"));
+                    startActivity(browserIntent);
+                }
+            }, wait);
+        } else if (id == R.id.developers) {
 
             drawer.closeDrawer(GravityCompat.START);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(Home.this, Developers.class);
+                    Intent intent = new Intent(Home.this, OrganizersActivity.class);
                     startActivity(intent);
                 }
-            }, 250);
+            }, wait);
         }
         //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
