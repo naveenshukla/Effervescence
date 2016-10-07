@@ -149,7 +149,7 @@
             android:paddingRight="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/category"
+            android:id="@+id/category_tv"
             android:layout_alignRight="@+id/share_button"
             />
 

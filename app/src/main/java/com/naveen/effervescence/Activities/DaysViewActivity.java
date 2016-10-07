@@ -25,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.naveen.effervescence.MyDBHandler;
 import com.naveen.effervescence.Fragments.DayViewFragment;
@@ -52,7 +53,7 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-		Log.d("Main Activity","Started");
+		FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

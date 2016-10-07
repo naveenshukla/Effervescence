@@ -10,8 +10,6 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
 import com.naveen.effervescence.R;
-import com.rodolfonavalon.shaperipplelibrary.ShapeRipple;
-import com.rodolfonavalon.shaperipplelibrary.model.Circle;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -31,11 +29,6 @@ public class SplashActivity extends AppCompatActivity {
         final ImageView splash = (ImageView) findViewById(R.id.effewheel);
         splash.startAnimation(rotate);
 
-        //final ShapeRipple ripple = (ShapeRipple) findViewById(R.id.ripple);
-        ///ripple.setRippleShape(new Circle());
-        //ripple.setRippleColor(getResources().getColor(R.color.md_deep_orange_600));
-        //ripple.setEnableRandomPosition(true);
-        //ripple.setEnableRandomColor(true);
 
         new Handler().postDelayed(new Runnable() {
             @Override

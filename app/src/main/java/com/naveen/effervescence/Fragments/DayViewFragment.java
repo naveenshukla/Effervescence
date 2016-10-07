@@ -7,7 +7,9 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,19 +18,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.naveen.effervescence.Activities.EventDetailActivity;
 import com.naveen.effervescence.Adapters.EventAdapter;
 import com.naveen.effervescence.Events;
+import com.naveen.effervescence.Model.Event;
 import com.naveen.effervescence.R;
 import com.naveen.effervescence.Receiver;
 import com.naveen.effervescence.RecyclerViewClickListener;
 import com.naveen.effervescence.Utils.EventList;
+import com.naveen.effervescence.ViewHolders.EventViewholder;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.microedition.khronos.opengles.GL;
 
-public class DayViewFragment extends Fragment implements RecyclerViewClickListener {
+
+public class DayViewFragment extends Fragment {
 
     private PendingIntent pendingIntent;
 
@@ -47,7 +58,7 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
     private List<Events> eventList = new ArrayList<>();
 
     protected RecyclerView mRecyclerView;
-    protected EventAdapter mAdapter;
+    protected FirebaseRecyclerAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
 
 
@@ -68,24 +79,73 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
+							 Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.recycler_view_fragment, container, false);
         rootView.setTag(TAG);
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        //mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
-
         mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
 
-        if (savedInstanceState != null) {
+        /*if (savedInstanceState != null) {
             mCurrentLayoutManagerType = (LayoutManagerType) savedInstanceState
                     .getSerializable(KEY_LAYOUT_MANAGER);
         }
-        setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
+        setRecyclerViewLayoutManager(mCurrentLayoutManagerType);*/
+		mRecyclerView.setLayoutManager(mLayoutManager);
 
-        switch (day) {
+		//FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        reference = reference.child("day1").child("EventList");
+        mAdapter = new FirebaseRecyclerAdapter<Event,EventViewholder>(Event.class,R.layout.event_dayview_card,EventViewholder.class, reference){
+
+            @Override
+            protected void populateViewHolder(final EventViewholder viewHolder, final Event model, final int position) {
+                viewHolder.title.setText(model.getEventName());
+                viewHolder.category.setText(model.getEventCategory());
+                //viewHolder.day.setText(model.getEventDate());
+                viewHolder.time.setText(model.getEventTime());
+                viewHolder.place.setText(model.getEventLocation());
+                Glide.with(DayViewFragment.this)
+                    .load(model.getEventImage())
+                    .centerCrop()
+                    .placeholder(R.drawable.bw)
+                    .crossFade()
+                    .into(viewHolder.eventImage);
+
+
+				viewHolder.eventImage.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+
+
+						Intent intent = new Intent(getContext(), EventDetailActivity.class);
+						intent.putExtra("event_name",model.getEventName());
+						intent.putExtra("event_image",model.getEventImage());
+						intent.putExtra("event_description",model.getEventDescription());
+						intent.putExtra("event_date",model.getEventDate());
+						intent.putExtra("event_time",model.getEventTime());
+						intent.putExtra("child_u","day1");
+						intent.putExtra("child_l",""+position);
+
+						if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+							ActivityOptionsCompat options = ActivityOptionsCompat.
+								makeSceneTransitionAnimation(getActivity(), (View) viewHolder.eventImage, "ima");
+							getActivity().startActivity(intent, options.toBundle());
+						}
+						else getActivity().startActivity(intent);
+
+					}
+				});
+			}
+
+        };
+
+        /*switch (day) {
             case 1: mAdapter = new EventAdapter(EventList.danceEventList, this, getActivity(), getContext());
                 break;
             case 2: mAdapter = new EventAdapter(EventList.dramaEventList, this, getActivity(), getContext());
@@ -93,7 +153,11 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
             case 3: mAdapter = new EventAdapter(EventList.fineartsEventList,this, getActivity(), getContext());
                 break;
             default: mAdapter = new EventAdapter(EventList.literaryEventList,this,getActivity(),getContext());
-        }
+        }*/
+
+
+
+
         mRecyclerView.setAdapter(mAdapter);
 
         return rootView;
@@ -124,30 +188,6 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
         AlarmManager alarmManager = (AlarmManager)getActivity().getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
         Toast.makeText(getActivity().getBaseContext(),"Reminder Has been set",Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void recyclerViewListClicked(View v, int position) {
-        /*String[] p = date[position].split("%");
-        int day = Integer.parseInt(p[0]);
-        int month = Integer.parseInt(p[1]);
-        int year = Integer.parseInt(p[2]);
-
-        int hourofday = Integer.parseInt(hour[position]);
-
-        int minofday = Integer.parseInt(minute[position]);
-        String ampmofday = ampm[position];
-        Calendar calendar = Calendar.getInstance();
-
-        calendar.set(Calendar.MONTH, month-1);
-        calendar.set(Calendar.YEAR, 2016);
-        calendar.set(Calendar.DAY_OF_MONTH, day);
-
-        calendar.set(Calendar.HOUR_OF_DAY, hourofday);
-        calendar.set(Calendar.MINUTE, minofday);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.AM_PM, ampmofday.equals("AM")?Calendar.AM:Calendar.PM);
-        startAlarm(calendar);*/
     }
 
 

@@ -100,7 +100,8 @@
                         android:layout_alignParentRight="true"
                         android:text="15th October, 2016"
                         android:textSize="20dp"
-                        android:layout_below="@id/time_textview"/>
+                        android:layout_below="@id/time_textview"
+                        android:id="@+id/date_textview"/>
 
                 </android.support.percent.PercentRelativeLayout>
 
@@ -132,7 +133,7 @@
                         android:text="Student Activity Center"
                         android:layout_alignParentRight="true"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                        android:id="@+id/time_textview2"
+                        android:id="@+id/location_textview"
                         />
 
 
@@ -163,7 +164,8 @@
                         android:layout_height="wrap_content"
                         android:paddingTop="5dp"
                         android:textSize="18sp"
-                        android:text="@string/sample_description" />
+                        android:text="@string/sample_description"
+                        android:id="@+id/description_textview"/>
 
                 </LinearLayout>
 
