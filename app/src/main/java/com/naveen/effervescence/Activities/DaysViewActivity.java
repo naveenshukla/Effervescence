@@ -27,22 +27,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.naveen.effervescence.Adapters.EventAdapter;
-import com.naveen.effervescence.Model.EventInfo;
+import com.google.firebase.database.FirebaseDatabase;
 import com.naveen.effervescence.MyDBHandler;
 import com.naveen.effervescence.Fragments.DayViewFragment;
 import com.naveen.effervescence.R;
-import com.naveen.effervescence.Utils.EventList;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
-
 import static com.naveen.effervescence.Activities.SplashActivity.wait;
-import static com.naveen.effervescence.R.id.textView;
 
 public class DaysViewActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
     private PendingIntent pendingIntent;
@@ -61,7 +54,7 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-		Log.d("Main Activity","Started");
+		FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

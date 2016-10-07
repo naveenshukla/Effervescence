@@ -45,6 +45,7 @@ public class Effervescence extends Application {
         }
 */
 
+/*
         final Context context = this;
 
         firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
@@ -81,6 +82,7 @@ public class Effervescence extends Application {
 
             }
         }, 0);
+*/
 
 
     }

@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "619343633106",
-    "firebase_url": "https://effervescence-e5342.firebaseio.com",
-    "project_id": "effervescence-e5342",
-    "storage_bucket": "effervescence-e5342.appspot.com"
+    "project_number": "98267239641",
+    "firebase_url": "https://effervescence-10e30.firebaseio.com",
+    "project_id": "effervescence-10e30",
+    "storage_bucket": "effervescence-10e30.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:619343633106:android:4481aae72a0fa3a6",
+        "mobilesdk_app_id": "1:98267239641:android:4481aae72a0fa3a6",
         "android_client_info": {
           "package_name": "com.naveen.effervescence"
         }
       },
       "oauth_client": [
         {
-          "client_id": "619343633106-ohjat105caplpgrsiiqgeikbjieqbicf.apps.googleusercontent.com",
+          "client_id": "98267239641-vj7rds8u0ftevvmqeg9rfu4p87bml58q.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA5vsZz6wWMaTmVKwchMImz9bFV0nHWVtA"
+          "current_key": "AIzaSyDBqnTLPzzLh9UC-24dseP6E9JWWzEdado"
         }
       ],
       "services": {

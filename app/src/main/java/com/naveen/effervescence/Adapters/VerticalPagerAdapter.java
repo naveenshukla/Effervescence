@@ -21,6 +21,8 @@ import java.util.ArrayList;
 /**
  * Created by betterclever on 30/8/16.
  */
+
+
 public class VerticalPagerAdapter extends PagerAdapter{
     @Override
     public int getCount() {

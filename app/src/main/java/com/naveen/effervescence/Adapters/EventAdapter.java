@@ -116,7 +116,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
 //            expanded_layout = (RelativeLayout) v.findViewById(R.id.expanded_layout);
 //            share_fab = (FloatingActionButton) v.findViewById(R.id.share_button);
 //            reminder_fab = (FloatingActionButton) v.findViewById(R.id.reminder_button);
-            dropdown_ll = (LinearLayout) v.findViewById(R.id.dropdown_ll);
+            //dropdown_ll = (LinearLayout) v.findViewById(R.id.dropdown_ll);
         }
 
     }
