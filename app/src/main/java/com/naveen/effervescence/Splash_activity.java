@@ -77,6 +77,4 @@ public class Splash_activity extends Activity {
             }
         },2000);
     }
-
-
 }

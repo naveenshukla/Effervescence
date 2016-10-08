@@ -1,6 +1,11 @@
 package com.naveen.effervescence.Utils;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 import com.naveen.effervescence.Model.EventInfo;
+import com.naveen.effervescence.MyDBHandler;
 import com.naveen.effervescence.R;
 
 import java.util.ArrayList;
@@ -301,6 +306,5 @@ public class EventList {
                 "Online",
                 rules, null));
     }
-
 
  }

@@ -6,40 +6,267 @@ import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import static com.facebook.internal.FacebookRequestErrorClassification.KEY_NAME;
 
 /**
  * Created by Naveen on 20-06-2016.
  */
 public class MyDBHandler extends SQLiteOpenHelper {
+    public String res = new String();
     private static final int DATABASE_VERSION=1;
     private static final String DATABASE_NAME="events.db";
     public static final String TABLE_EVENTS="events";
     public String query;
     /*Events table have following columns : title, place, category1, category2, day, date, ampm, hour, minute, _id*/
-    public static final String COLUMN_ID="_id";
     public static final String COLUMN_TITLE = "title";
-    public static final String COLUMN_PLACE ="place";
-    public static final String COLUMN_CATEGORY1 ="category1";
-    public static final String COLUMN_CATEGORY2 ="category2";
-    public static final String COLUMN_DAY ="day";
+    public static final String COLUMN_DESCRIPTION = "description";
+    public static final String COLUMN_CATEGORY ="category";
+    public static final String COLUMN_TIME = "time";
     public static final String COLUMN_DATE ="date";
-    public static final String COLUMN_AMPM ="ampm";
-    public static final String COLUMN_HOUR ="hour";
-    public static final String COLUMN_MINUTE ="minute";
-    public MyDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-       
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
-    
+    public static final String COLUMN_PLACE ="place";
+    public static final String COLUMN_ORGANIZERS = "organizers";
+    public static final String COLUMN_DRAWABLE = "drawable";
+    public static final String COLUMN_RULES = "rules";
+    public MyDBHandler(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        Log.d("hello", "created database");
     }
 
+    public void update(Context context, final int k){
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url ="https://effervescence-10e30.firebaseio.com/.json";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        res = response;
+                        try {
+                            JSONObject obj = new JSONObject(res);
+                            JSONObject day1 = obj.getJSONObject("day0");
+                            JSONArray eventarray = day1.getJSONArray("EventList");
+                            for(int i=0; i < eventarray.length(); i++){
 
+
+                                JSONObject event = eventarray.getJSONObject(i);
+                                String category = event.getString("eventCategory");
+                                String eventdate = event.getString("eventDate");
+                                String eventTitle = event.getString("eventName");
+                                String eventDescription = event.getString("eventDescription");
+                                String eventTime = event.getString("eventTime");
+                                String organizers = new String();
+                                String drawable = event.getString("eventImage");
+                                JSONArray eventOrg  = event.getJSONArray("eventOrganizers");
+                                //Log.d("hello", String.valueOf(eventOrg.length()));
+                                for(int j=0; j< eventOrg.length(); j++){
+                                    JSONObject org = eventOrg.getJSONObject(j);
+                                    organizers += org.getString("organizerName") + "$" +
+                                            org.getString("organizerPhone") + "$";
+                                    //Log.d("hello", organizers);
+                                }
+                                String eventPlace = event.getString("eventLocation");
+                                String eventRules;
+
+
+                                SQLiteDatabase db = getWritableDatabase();
+
+                                ContentValues values = new ContentValues();
+                                values.put(COLUMN_TITLE, eventTitle);
+                                values.put(COLUMN_DESCRIPTION, eventDescription);
+                                values.put(COLUMN_CATEGORY, category);
+                                values.put( COLUMN_TIME, eventTime);
+                                values.put( COLUMN_DATE, eventdate);
+                                values.put(COLUMN_PLACE, eventPlace);
+                                values.put(COLUMN_ORGANIZERS, organizers);
+                                values.put(COLUMN_RULES, "to be updated");
+                                values.put(COLUMN_DRAWABLE, drawable);
+                                if(k == 0)
+                                    db.insert(TABLE_EVENTS , null, values);
+                                else
+                                    db.update(TABLE_EVENTS, values,  COLUMN_TITLE + " = " + '"' + eventTitle +  '"' , null);
+                                db.close();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            JSONObject obj = new JSONObject(res);
+                            JSONObject day1 = obj.getJSONObject("day1");
+                            JSONArray eventarray = day1.getJSONArray("EventList");
+                            for(int i=0; i < eventarray.length(); i++){
+
+
+                                JSONObject event = eventarray.getJSONObject(i);
+                                String category = event.getString("eventCategory");
+                                String eventdate = event.getString("eventDate");
+                                String eventTitle = event.getString("eventName");
+                                String eventDescription = event.getString("eventDescription");
+                                String eventTime = event.getString("eventTime");
+                                String organizers = new String();
+                                String drawable = event.getString("eventImage");
+                                JSONArray eventOrg  = event.getJSONArray("eventOrganizers");
+                                //Log.d("hello", String.valueOf(eventOrg.length()));
+                                for(int j=0; j< eventOrg.length(); j++){
+                                    JSONObject org = eventOrg.getJSONObject(j);
+                                    organizers += org.getString("organizerName") + "$" +
+                                            org.getString("organizerPhone") + "$";
+                                    //Log.d("hello", organizers);
+                                }
+                                String eventPlace = event.getString("eventLocation");
+                                String eventRules;
+
+
+                                SQLiteDatabase db = getWritableDatabase();
+
+                                ContentValues values = new ContentValues();
+                                values.put(COLUMN_TITLE, eventTitle);
+                                values.put(COLUMN_DESCRIPTION, eventDescription);
+                                values.put(COLUMN_CATEGORY, category);
+                                values.put( COLUMN_TIME, eventTime);
+                                values.put( COLUMN_DATE, eventdate);
+                                values.put(COLUMN_PLACE, eventPlace);
+                                values.put(COLUMN_ORGANIZERS, organizers);
+                                values.put(COLUMN_RULES, "to be updated");
+                                values.put(COLUMN_DRAWABLE, drawable);
+                                if(k == 0)
+                                    db.insert(TABLE_EVENTS , null, values);
+                                else
+                                    db.update(TABLE_EVENTS, values,  COLUMN_TITLE + " = " + '"' + eventTitle +  '"' , null);
+                                db.close();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        try {
+                            JSONObject obj = new JSONObject(res);
+                            JSONObject day1 = obj.getJSONObject("day2");
+                            JSONArray eventarray = day1.getJSONArray("EventList");
+                            for(int i=0; i < eventarray.length(); i++){
+
+
+                                JSONObject event = eventarray.getJSONObject(i);
+                                String category = event.getString("eventCategory");
+                                String eventdate = event.getString("eventDate");
+                                String eventTitle = event.getString("eventName");
+                                String eventDescription = event.getString("eventDescription");
+                                String eventTime = event.getString("eventTime");
+                                String organizers = new String();
+                                String drawable = event.getString("eventImage");
+                                JSONArray eventOrg  = event.getJSONArray("eventOrganizers");
+                                //Log.d("hello", String.valueOf(eventOrg.length()));
+                                for(int j=0; j< eventOrg.length(); j++){
+                                    JSONObject org = eventOrg.getJSONObject(j);
+                                    organizers += org.getString("organizerName") + "$" +
+                                            org.getString("organizerPhone") + "$";
+                                    //Log.d("hello", organizers);
+                                }
+                                String eventPlace = event.getString("eventLocation");
+                                String eventRules;
+
+
+                                SQLiteDatabase db = getWritableDatabase();
+
+                                ContentValues values = new ContentValues();
+                                values.put(COLUMN_TITLE, eventTitle);
+                                values.put(COLUMN_DESCRIPTION, eventDescription);
+                                values.put(COLUMN_CATEGORY, category);
+                                values.put( COLUMN_TIME, eventTime);
+                                values.put( COLUMN_DATE, eventdate);
+                                values.put(COLUMN_PLACE, eventPlace);
+                                values.put(COLUMN_ORGANIZERS, organizers);
+                                values.put(COLUMN_RULES, "to be updated");
+                                values.put(COLUMN_DRAWABLE, drawable);
+                                if(k == 0)
+                                    db.insert(TABLE_EVENTS , null, values);
+                                else
+                                    db.update(TABLE_EVENTS, values,  COLUMN_TITLE + " = " + '"' + eventTitle +  '"' , null);
+                                db.close();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        try {
+                            JSONObject obj = new JSONObject(res);
+                            JSONObject day1 = obj.getJSONObject("day3");
+                            JSONArray eventarray = day1.getJSONArray("EventList");
+                            for(int i=0; i < eventarray.length(); i++){
+
+
+                                JSONObject event = eventarray.getJSONObject(i);
+                                String category = event.getString("eventCategory");
+                                String eventdate = event.getString("eventDate");
+                                String eventTitle = event.getString("eventName");
+                                String eventDescription = event.getString("eventDescription");
+                                String eventTime = event.getString("eventTime");
+                                String organizers = new String();
+                                String drawable = event.getString("eventImage");
+                                JSONArray eventOrg  = event.getJSONArray("eventOrganizers");
+                                //Log.d("hello", String.valueOf(eventOrg.length()));
+                                for(int j=0; j< eventOrg.length(); j++){
+                                    JSONObject org = eventOrg.getJSONObject(j);
+                                    organizers += org.getString("organizerName") + "$" +
+                                            org.getString("organizerPhone") + "$";
+                                    //Log.d("hello", organizers);
+                                }
+                                String eventPlace = event.getString("eventLocation");
+                                String eventRules;
+
+
+                                SQLiteDatabase db = getWritableDatabase();
+
+                                ContentValues values = new ContentValues();
+                                values.put(COLUMN_TITLE, eventTitle);
+                                values.put(COLUMN_DESCRIPTION, eventDescription);
+                                values.put(COLUMN_CATEGORY, category);
+                                values.put( COLUMN_TIME, eventTime);
+                                values.put( COLUMN_DATE, eventdate);
+                                values.put(COLUMN_PLACE, eventPlace);
+                                values.put(COLUMN_ORGANIZERS, organizers);
+                                values.put(COLUMN_RULES, "to be updated");
+                                values.put(COLUMN_DRAWABLE, drawable);
+                                if(k == 0)
+                                    db.insert(TABLE_EVENTS , null, values);
+                                else
+                                    db.update(TABLE_EVENTS, values,  COLUMN_TITLE + " = " + '"' + eventTitle +  '"' , null);
+                                db.close();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("hello", "bakchodi");
+            }
+        });
+// Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-         String query = "CREATE TABLE " +  TABLE_EVENTS + " ( " +  COLUMN_ID  + " INTEGER PRIMARY KEY, "
-         + COLUMN_TITLE + " TEXT, " + COLUMN_PLACE + " TEXT, " +  
-                COLUMN_CATEGORY1 + " TEXT, " + COLUMN_CATEGORY2 + " TEXT, " +  COLUMN_DAY  + "  TEXT,  " +  COLUMN_DATE   + " TEXT,  " +
-                COLUMN_AMPM   + " TEXT,  " + COLUMN_HOUR   + " INTEGER,  " +  COLUMN_MINUTE   + " INTEGER); "; 
+         String query = "CREATE TABLE " +  TABLE_EVENTS + " ( " + COLUMN_TITLE + " TEXT PRIMARY KEY, " +
+                COLUMN_CATEGORY + " TEXT, " + COLUMN_TIME + " TEXT, " +  COLUMN_DATE  + "  TEXT,  " +  COLUMN_PLACE   + " TEXT,  " +
+                COLUMN_RULES   + " TEXT,  " + COLUMN_DESCRIPTION   + " TEXT ,  " +  COLUMN_DRAWABLE   + " TEXT ,  " +  COLUMN_ORGANIZERS   + " TEXT); ";
 
         db.execSQL(query);
     }
@@ -49,337 +276,5 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
         db.execSQL("DROP TABLE IF EXISTS " +  TABLE_EVENTS);
         onCreate(db);
-    }
-
-    public void addEvents(Events events){
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_ID,events.get_id());
-        values.put(COLUMN_TITLE, events.getTitle());
-        values.put(COLUMN_PLACE, events.getPlace());
-        values.put(COLUMN_CATEGORY1, events.getCategory1());
-        values.put(COLUMN_CATEGORY2, events.getCategory2());
-        values.put(COLUMN_DAY, events.getDay());
-        values.put(COLUMN_DATE,events.getDate());
-        values.put(COLUMN_AMPM,events.getAmpm());
-        values.put(COLUMN_HOUR,events.getHour());
-        values.put(COLUMN_MINUTE,events.getMinute());
-        SQLiteDatabase db = getWritableDatabase();
-        db.insert(TABLE_EVENTS,null,values);
-        db.close();
-    }
-
-    String[] columntitle(int id){
-
-        String[] dbString= new String[100];
-        int count = 0;
-        SQLiteDatabase db= getWritableDatabase();
-        if(id==-1)
-            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
-        else
-            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE " + COLUMN_ID + " = " + id;
-
-        Cursor c =db.rawQuery(query,null);
-
-        c.moveToFirst();
-
-        while (!c.isAfterLast())
-
-        {
-
-            if(c.getString(c.getColumnIndex("title"))!=null)
-
-            {
-
-                dbString[count++] = c.getString(c.getColumnIndex("title"));
-
-            }
-
-            c.moveToNext();
-
-        }
-
-        db.close();
-
-        return dbString;
-    }
-    String[] columnplace(int id){
-
-        String[] dbString= new String[100];
-        int count = 0;
-        SQLiteDatabase db= getWritableDatabase();
-
-        if(id==-1)
-            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
-        else
-            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE " + COLUMN_ID + " = " + id;
-
-        Cursor c =db.rawQuery(query,null);
-
-        c.moveToFirst();
-
-        while (!c.isAfterLast())
-
-        {
-
-            if(c.getString(c.getColumnIndex("place"))!=null)
-
-            {
-
-                dbString[count++] = c.getString(c.getColumnIndex("place"));
-
-            }
-
-            c.moveToNext();
-
-        }
-
-        db.close();
-
-        return dbString;
-    }
-    String[] columncategory1(int id){
-
-        String[] dbString= new String[100];
-        int count = 0;
-        SQLiteDatabase db= getWritableDatabase();
-
-        if(id==-1)
-            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
-        else
-            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE " + COLUMN_ID + " = " + id;
-
-        Cursor c =db.rawQuery(query,null);
-
-        c.moveToFirst();
-
-        while (!c.isAfterLast())
-
-        {
-
-            if(c.getString(c.getColumnIndex("category1"))!=null)
-
-            {
-
-                dbString[count++] = c.getString(c.getColumnIndex("category1"));
-
-            }
-
-            c.moveToNext();
-
-        }
-
-        db.close();
-
-        return dbString;
-    }
-    String[] columncategory2(int id){
-
-        String[] dbString= new String[100];
-        int count = 0;
-        SQLiteDatabase db= getWritableDatabase();
-
-        if(id==-1)
-            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
-        else
-            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE " + COLUMN_ID + " = " + id;
-
-        Cursor c =db.rawQuery(query,null);
-
-        c.moveToFirst();
-
-        while (!c.isAfterLast())
-
-        {
-
-            if(c.getString(c.getColumnIndex("category2"))!=null)
-
-            {
-
-                dbString[count++] = c.getString(c.getColumnIndex("category2"));
-
-            }
-
-            c.moveToNext();
-
-        }
-
-        db.close();
-
-        return dbString;
-    }
-    String[] columnday(int id){
-
-        String[] dbString= new String[100];
-        int count = 0;
-        SQLiteDatabase db= getWritableDatabase();
-
-        if(id==-1)
-            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
-        else
-            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE " + COLUMN_ID + " = " + id;
-
-        Cursor c =db.rawQuery(query,null);
-
-        c.moveToFirst();
-
-        while (!c.isAfterLast())
-
-        {
-
-            if(c.getString(c.getColumnIndex("day"))!=null)
-
-            {
-
-                dbString[count++] = c.getString(c.getColumnIndex("day"));
-
-            }
-
-            c.moveToNext();
-
-        }
-
-        db.close();
-
-        return dbString;
-    }
-    String[] columndate(int id){
-
-        String[] dbString= new String[100];
-        int count = 0;
-        SQLiteDatabase db= getWritableDatabase();
-
-        if(id==-1)
-            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
-        else
-            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE " + COLUMN_ID + " = " + id;
-
-        Cursor c =db.rawQuery(query,null);
-
-        c.moveToFirst();
-
-        while (!c.isAfterLast())
-
-        {
-
-            if(c.getString(c.getColumnIndex("date"))!=null)
-
-            {
-
-                dbString[count++] = c.getString(c.getColumnIndex("date"));
-
-            }
-
-            c.moveToNext();
-
-        }
-
-        db.close();
-
-        return dbString;
-    }
-    String[] columnampm(int id){
-
-        String[] dbString= new String[100];
-        int count = 0;
-        SQLiteDatabase db= getWritableDatabase();
-
-        if(id==-1)
-            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
-        else
-            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE  " + COLUMN_ID + " = " + id;
-
-        Cursor c =db.rawQuery(query,null);
-
-        c.moveToFirst();
-
-        while (!c.isAfterLast())
-
-        {
-
-            if(c.getString(c.getColumnIndex("ampm"))!=null)
-
-            {
-
-                dbString[count++] = c.getString(c.getColumnIndex("ampm"));
-
-            }
-
-            c.moveToNext();
-
-        }
-
-        db.close();
-
-        return dbString;
-    }
-    String[] columnhour(int id){
-
-        String[] dbString= new String[100];
-        int count = 0;
-        SQLiteDatabase db= getWritableDatabase();
-
-        if(id==-1)
-            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
-        else
-            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE " + COLUMN_ID + " = " + id;
-
-        Cursor c =db.rawQuery(query,null);
-
-        c.moveToFirst();
-
-        while (!c.isAfterLast())
-
-        {
-
-            if(c.getString(c.getColumnIndex("hour"))!=null)
-
-            {
-
-                dbString[count++] = c.getString(c.getColumnIndex("hour"));
-
-            }
-
-            c.moveToNext();
-
-        }
-
-        db.close();
-
-        return dbString;
-    }
-    String[] columnminute(int id){
-
-        String[] dbString= new String[100];
-        int count = 0;
-        SQLiteDatabase db= getWritableDatabase();
-
-        if(id==-1)
-            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE 1";
-        else
-            query = "SELECT * FROM " + TABLE_EVENTS + " WHERE " + COLUMN_ID + " = " + id;
-
-        Cursor c =db.rawQuery(query,null);
-
-        c.moveToFirst();
-
-        while (!c.isAfterLast())
-
-        {
-
-            if(c.getString(c.getColumnIndex("minute"))!=null)
-
-            {
-
-                dbString[count++] = c.getString(c.getColumnIndex("minute"));
-
-            }
-
-            c.moveToNext();
-
-        }
-
-        db.close();
-
-        return dbString;
     }
 }

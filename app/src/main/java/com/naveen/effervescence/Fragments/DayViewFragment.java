@@ -7,6 +7,9 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.util.SortedList;
@@ -24,6 +27,7 @@ import android.widget.Toast;
 import com.naveen.effervescence.Adapters.EventAdapter;
 import com.naveen.effervescence.Events;
 import com.naveen.effervescence.Model.EventInfo;
+import com.naveen.effervescence.MyDBHandler;
 import com.naveen.effervescence.R;
 import com.naveen.effervescence.Receiver;
 import com.naveen.effervescence.RecyclerViewClickListener;
@@ -34,9 +38,18 @@ import java.util.Calendar;
 import java.util.Comparator;
 import java.util.List;
 
+import static android.R.attr.name;
+import static com.naveen.effervescence.Utils.EventList.rules;
+
 
 public class DayViewFragment extends Fragment implements RecyclerViewClickListener{
+    MyDBHandler db  = new MyDBHandler(getContext());
 
+    public ArrayList<EventInfo> allEventList = new ArrayList<>();
+    public ArrayList<EventInfo> day0EventList = new ArrayList<>();
+    public ArrayList<EventInfo> day1EventList = new ArrayList<>();
+    public ArrayList<EventInfo> day2EventList = new ArrayList<>();
+    public ArrayList<EventInfo> day3EventList = new ArrayList<>();
     private PendingIntent pendingIntent;
 
     private static final String TAG = "RecyclerViewFragment";
@@ -78,6 +91,7 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getData(getContext());
         page = getArguments().getInt("ARG_PAGE");
         day = getArguments().getInt("ARG_DAY");
         setHasOptionsMenu(true);
@@ -107,6 +121,8 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
         });
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -126,13 +142,13 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
         setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
         switch (day) {
-            case 1: mAdapter = new EventAdapter(EventList.danceEventList, this, getActivity(), getContext(), ALPHABETICAL_COMPARATOR);
+            case 1: mAdapter = new EventAdapter(day0EventList, this, getActivity(), getContext(), ALPHABETICAL_COMPARATOR);
                 break;
-            case 2: mAdapter = new EventAdapter(EventList.dramaEventList, this, getActivity(), getContext(), ALPHABETICAL_COMPARATOR);
+            case 2: mAdapter = new EventAdapter(day1EventList, this, getActivity(), getContext(), ALPHABETICAL_COMPARATOR);
                 break;
-            case 3: mAdapter = new EventAdapter(EventList.fineartsEventList,this, getActivity(), getContext(), ALPHABETICAL_COMPARATOR);
+            case 3: mAdapter = new EventAdapter(day2EventList,this, getActivity(), getContext(), ALPHABETICAL_COMPARATOR);
                 break;
-            default: mAdapter = new EventAdapter(EventList.literaryEventList,this,getActivity(),getContext(),ALPHABETICAL_COMPARATOR);
+            default: mAdapter = new EventAdapter(day3EventList ,this,getActivity(),getContext(),ALPHABETICAL_COMPARATOR);
         }
         mRecyclerView.setAdapter(mAdapter);
         return rootView;
@@ -189,6 +205,78 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
         startAlarm(calendar);*/
     }
 
+    public void getData(Context context) {
+        MyDBHandler myDBHandler = new MyDBHandler(context);
+        String Table_Name="events";
+
+        String selectQuery = "SELECT  * FROM " + Table_Name;
+        SQLiteDatabase db = myDBHandler.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        ArrayList<String> data = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+               allEventList.add(new EventInfo(cursor.getString(0), cursor.getString(6), cursor.getString(1),
+                       getDrawable(cursor.getString(7)) ,
+                       cursor.getString(2), cursor.getString(3),cursor.getString(4),rules , null));
+            } while (cursor.moveToNext());
+        }
+
+        selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  date = '14th October, 2016'";
+        //SQLiteDatabase db = myDBHandler.getReadableDatabase();
+        cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                day0EventList.add(new EventInfo(cursor.getString(0), cursor.getString(6), cursor.getString(1),
+                        getDrawable(cursor.getString(7)) ,
+                        cursor.getString(2), cursor.getString(3),cursor.getString(4),rules , null));
+            } while (cursor.moveToNext());
+        }
+
+        selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  date = '15th October, 2016'";
+        //SQLiteDatabase db = myDBHandler.getReadableDatabase();
+        cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                day1EventList.add(new EventInfo(cursor.getString(0), cursor.getString(6), cursor.getString(1),
+                        getDrawable(cursor.getString(7)) ,
+                        cursor.getString(2), cursor.getString(3),cursor.getString(4),rules , null));
+            } while (cursor.moveToNext());
+        }
+
+        selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  date = '16th October, 2016'";
+        //SQLiteDatabase db = myDBHandler.getReadableDatabase();
+        cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                day2EventList.add(new EventInfo(cursor.getString(0), cursor.getString(6), cursor.getString(1),
+                        getDrawable(cursor.getString(7)) ,
+                        cursor.getString(2), cursor.getString(3),cursor.getString(4),rules , null));
+            } while (cursor.moveToNext());
+        }
+
+        selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  date = '17th October, 2016'";
+        //SQLiteDatabase db = myDBHandler.getReadableDatabase();
+        cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                day3EventList.add(new EventInfo(cursor.getString(0), cursor.getString(6), cursor.getString(1),
+                        getDrawable(cursor.getString(7)) ,
+                        cursor.getString(2), cursor.getString(3),cursor.getString(4),rules , null));
+            } while (cursor.moveToNext());
+        }
 
 
+
+        db.close();
+    }
+
+    private int getDrawable(String string) {
+        Resources resources = getContext().getResources();
+        final int resourceId = resources.getIdentifier( string , "mipmap",
+                getContext().getPackageName());
+        if(resourceId!=0){
+            return resourceId;
+        }
+        return R.drawable.effe;
+    }
 }

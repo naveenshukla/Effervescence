@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.naveen.effervescence.Adapters.EventAdapter;
@@ -46,6 +47,7 @@ import static com.naveen.effervescence.R.id.textView;
 
 public class DaysViewActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
     private PendingIntent pendingIntent;
+    MyDBHandler db  = new MyDBHandler(this);
     private TabLayout tabLayout;
 
     private ViewPager viewPager;
@@ -55,9 +57,6 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*FirebaseMessaging.getInstance().subscribeToTopic("news");
-        dbHandler = new MyDBHandler(this,null, null,1);
-*/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -92,6 +91,19 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_refresh:
+                db.update(this ,1);
+                finish();
+                startActivity(getIntent());
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void setupViewPager(ViewPager viewPager) {
