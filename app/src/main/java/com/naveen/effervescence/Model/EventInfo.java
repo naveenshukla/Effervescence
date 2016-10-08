@@ -19,6 +19,11 @@ public class EventInfo{
     private ArrayList<String> rules;
     private ArrayList<EventOrganizerInfo> organizerInfos;
     private boolean expanded = false;
+
+    public ArrayList<EventOrganizerInfo> getOrganizerInfos() {
+        return organizerInfos;
+    }
+
     private int image_drawable;
 
     public EventInfo(String eventName, String eventDescription, String category,

@@ -8,7 +8,15 @@ public class EventOrganizerInfo {
     private String contact;
     private String email = "";
 
-    public EventOrganizerInfo(String name,String contact,String email){
+    public String getName() {
+        return name;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public EventOrganizerInfo(String name, String contact, String email){
         this.name = name;
         this.contact = contact;
         this.email = this.email + email;

@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.naveen.effervescence.Adapters.EventAdapter;
 import com.naveen.effervescence.Events;
 import com.naveen.effervescence.Model.EventInfo;
+import com.naveen.effervescence.Model.EventOrganizerInfo;
 import com.naveen.effervescence.MyDBHandler;
 import com.naveen.effervescence.R;
 import com.naveen.effervescence.Receiver;
@@ -44,6 +45,7 @@ import static com.naveen.effervescence.Utils.EventList.rules;
 
 public class DayViewFragment extends Fragment implements RecyclerViewClickListener{
     MyDBHandler db  = new MyDBHandler(getContext());
+
 
     public ArrayList<EventInfo> allEventList = new ArrayList<>();
     public ArrayList<EventInfo> day0EventList = new ArrayList<>();
@@ -217,7 +219,7 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
             do {
                allEventList.add(new EventInfo(cursor.getString(0), cursor.getString(6), cursor.getString(1),
                        getDrawable(cursor.getString(7)) ,
-                       cursor.getString(2), cursor.getString(3),cursor.getString(4),rules , null));
+                       cursor.getString(2), cursor.getString(3),cursor.getString(4),rules , getOrganizers(cursor.getString(8))));
             } while (cursor.moveToNext());
         }
 
@@ -268,6 +270,23 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
 
 
         db.close();
+    }
+
+    private ArrayList<EventOrganizerInfo> getOrganizers(String string) {
+        ArrayList<EventOrganizerInfo> organizers  = new ArrayList<>();
+        String[] s = string.split("\\$");
+        String name = new String();
+        String contact = new String();
+        for(int i=0; i<s.length; i++){
+            if(i%2==0){
+                name = s[i];
+            }else{
+                contact = s[i];
+                organizers.add(new EventOrganizerInfo(name, contact, null));
+            }
+
+        }
+        return  organizers;
     }
 
     private int getDrawable(String string) {

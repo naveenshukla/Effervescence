@@ -11,7 +11,8 @@
         android:layout_height="50dp"
         android:padding="10dp"
         android:src="@drawable/call_icon_material"
-        android:id="@+id/imageView"
+        android:id="@+id/callHim"
+        android:clickable="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true" />
 
@@ -23,13 +24,14 @@
         android:textSize="18sp"
         android:id="@+id/textView"
         android:textColor="@color/md_black_1000"
-        android:layout_alignTop="@+id/imageView"
+        android:layout_alignTop="@+id/callHim"
         android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15sp"
+        android:id="@+id/phonenumber"
         android:text="+91 1234567890"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true" />

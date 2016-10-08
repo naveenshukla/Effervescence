@@ -1,12 +1,16 @@
 package com.naveen.effervescence.ProShowsFragments;
 
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +20,7 @@ import com.cleveroad.splittransformation.SquareViewPagerIndicator;
 import com.cleveroad.splittransformation.TransformationAdapterWrapper;
 import com.hanks.htextview.HTextView;
 import com.hanks.htextview.animatetext.HText;
+import com.naveen.effervescence.Activities.EventDetailActivity;
 import com.naveen.effervescence.R;
 
 import java.util.ArrayList;
@@ -45,10 +50,41 @@ public class ProShowsList extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_pro_shows_list, container, false);
         viewPager = (ViewPager) view.findViewById(R.id.view_pager);
         indicator = (SquareViewPagerIndicator) view.findViewById(R.id.indicator);
         titleTextView = (HTextView) view.findViewById(R.id.event_title_textview);
+        titleTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent ;
+                int currI = viewPager.getCurrentItem();
+                switch (currI){
+                    case 0:
+                        Log.d("hello", String.valueOf(0));
+                        intent = new Intent( getContext(), EventDetailActivity.class);
+                        intent.putExtra("event_name", "The Local Train");
+                        break;
+                    case 1:
+                        Log.d("hello", String.valueOf(1));
+                        intent= new Intent( getContext(), EventDetailActivity.class);
+                        intent.putExtra("event_name", "The Local Train");
+                        break;
+                    case 2 :
+                        Log.d("hello", String.valueOf(2));
+                        intent = new Intent( getContext(), EventDetailActivity.class);
+                        intent.putExtra("event_name", "Footloose");
+                        break;
+                    default:
+                        Log.d("hello", String.valueOf(3));
+                        intent = new Intent( getContext(), EventDetailActivity.class);
+                        intent.putExtra("event_name","The Local Train");
+                }
+                Log.d("hello", String.valueOf(currI));
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -78,7 +114,6 @@ public class ProShowsList extends Fragment {
                     case 3: titleTextView.animateText("Celebrity Night"); break;
                 }
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
 
@@ -87,6 +122,7 @@ public class ProShowsList extends Fragment {
         viewPager.setPageTransformer(false, wrapper);
         indicator.initializeWith(viewPager);
     }
+
 
     @Override
     public void onDestroyView() {
@@ -102,7 +138,6 @@ public class ProShowsList extends Fragment {
 
 
     private static class SimplePagerAdapter extends FragmentStatePagerAdapter {
-
         private  ArrayList<FragmentData> listq = new ArrayList<>();
         private final int[] drawables = new int[]{
                 R.drawable.edm,
@@ -128,6 +163,4 @@ public class ProShowsList extends Fragment {
             return drawables.length;
         }
     }
-
-
 }

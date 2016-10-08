@@ -151,7 +151,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         Log.d(TAG, "Element " + position + " set.");
-
         final EventInfo events = eventsList.get(position);
         String day = events.getDateSharedPrefVariable();
         String time = events.getTimeSharedPrefVariable();
@@ -187,8 +186,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             public void onClick(View view) {
                 Intent intent = new Intent(context, EventDetailActivity.class);
                 intent.putExtra("event_name",events.getEventName());
-                intent.putExtra("event_image",events.getImage_drawable());
-                intent.putExtra("event_description",events.getEventDescription());
 
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     ActivityOptionsCompat options = ActivityOptionsCompat.
