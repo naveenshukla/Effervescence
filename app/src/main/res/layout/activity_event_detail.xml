@@ -58,6 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         app:layout_anchor="@id/appbar"
+        android:id="@+id/fab"
         app:layout_anchorGravity="bottom|right|end"
         android:src="@drawable/ic_access_time_white_24dp"
         android:layout_margin="@dimen/fab_margin"
@@ -77,7 +78,10 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
 
                 <android.support.percent.PercentRelativeLayout
                     style="@style/Widget.CardContent"
@@ -86,30 +90,36 @@
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="40dp"
                         app:layout_widthPercent="20%"
                         android:layout_alignParentLeft="true"
-                        android:src="@drawable/calendar"/>
+                        android:src="@drawable/calendar"
+                        android:id="@+id/imageView2"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layout_widthPercent="50%"
                         android:text="6:00 AM"
-                        android:textSize="12dp"
-                        android:layout_alignParentRight="true"
+                        android:textSize="20dp"
                         android:id="@+id/time_textview"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@+id/imageView2"
+                        android:layout_toEndOf="@+id/imageView2"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginStart="28dp"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_widthPercent="50%"
+                        app:layout_widthPercent="80%"
                         android:id="@+id/date_textView"
-                        android:layout_alignParentRight="true"
                         android:text="15th October, 2016"
                         android:textSize="15dp"
-                        android:layout_below="@id/time_textview"/>
+                        android:layout_below="@+id/time_textview"
+                        android:layout_alignLeft="@+id/time_textview"
+                        android:layout_alignStart="@+id/time_textview"/>
 
                 </android.support.percent.PercentRelativeLayout>
 
@@ -118,7 +128,12 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="@dimen/card_margin">
 
                 <android.support.percent.PercentRelativeLayout
                     style="@style/Widget.CardContent"
@@ -127,21 +142,25 @@
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="40dp"
                         app:layout_widthPercent="20%"
                         android:layout_alignParentLeft="true"
-                        android:src="@drawable/location_material_icon"/>
+                        android:src="@drawable/location_material_icon"
+                        android:id="@+id/imageView"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_widthPercent="60%"
+                        app:layout_widthPercent="80%"
                         android:text="Student Activity Center"
-                        android:layout_alignParentRight="true"
-                        android:textSize="12dp"
+                        android:textSize="20dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                         android:id="@+id/location_textview"
-                        />
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/imageView"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp"/>
 
 
                 </android.support.percent.PercentRelativeLayout>

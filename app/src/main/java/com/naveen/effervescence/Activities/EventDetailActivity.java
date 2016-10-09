@@ -14,6 +14,7 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
@@ -32,7 +33,12 @@ import com.naveen.effervescence.Model.EventOrganizerInfo;
 import com.naveen.effervescence.MyDBHandler;
 import com.naveen.effervescence.R;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import static com.naveen.effervescence.Utils.EventList.rules;
 import static java.security.AccessController.getContext;
@@ -50,20 +56,44 @@ public class EventDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
 
+
         ImageView backdrop = (ImageView) findViewById(R.id.backdrop);
-        int titlebg = getIntent().getIntExtra("event_image", R.mipmap.blinddate);
         String title = getIntent().getStringExtra("event_name");
         getData(this, title);
         Log.d("hello", title);
-        titlebg = detaillist.get(0).getImage_drawable();
-        backdrop.setImageResource(titlebg);
-        //backdrop.setImageResource(R.mipmap.blinddate);
+
+        FloatingActionButton fab =  (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+
+                DateFormat format = new SimpleDateFormat("MMMMM dd,yyyy");
+
+                Date dateq = new Date();
+                try {
+                    dateq =  format.parse(detaillist.get(0).getDateSharedPrefVariable());
+					Log.d("cool",dateq.toString());
+
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                Intent intent = new Intent(Intent.ACTION_EDIT);
+                intent.setType("vnd.android.cursor.item/event");
+                intent.putExtra("beginTime", dateq.getTime());
+                intent.putExtra("allDay", false);
+                intent.putExtra("rrule", "FREQ=DAILY");
+                intent.putExtra("title", detaillist.get(0).getEventName());
+                startActivity(intent);
+            }
+        });
 
         Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        //getSupportActionBar().setHomeButtonEnabled(true);
 
         tb.setTitle(getIntent().getCharSequenceExtra(title));
         time = (TextView) findViewById(R.id.time_textview);
@@ -78,6 +108,9 @@ public class EventDetailActivity extends AppCompatActivity {
         location.setText(detaillist.get(0).getLocation());
         detail.setText(detaillist.get(0).getEventDescription());
 
+
+        int titlebg = detaillist.get(0).getImage_drawable();
+        backdrop.setImageResource(titlebg);
         Bitmap myBitmap = BitmapFactory.decodeResource(getResources(), titlebg);
         if (myBitmap != null && !myBitmap.isRecycled()) {
             Palette palette = Palette.from(myBitmap).generate();
