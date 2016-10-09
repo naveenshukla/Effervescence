@@ -44,7 +44,7 @@ public class OrganizersActivity extends AppCompatActivity implements NavigationV
 
 		mViewPager = (ViewPager) findViewById(R.id.viewPager);
 
-		mCardAdapter = new OrganizersCardPagerAdapter(this);
+		mCardAdapter = new OrganizersCardPagerAdapter(this,1);
 		mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
 		Toast.makeText(this, "organizers activity started",Toast.LENGTH_LONG);
 		mViewPager.setAdapter(mCardAdapter);
@@ -128,6 +128,17 @@ public class OrganizersActivity extends AppCompatActivity implements NavigationV
 				@Override
 				public void run() {
 					Intent intent = new Intent(OrganizersActivity.this, OrganizersActivity.class);
+					startActivity(intent);
+				}
+			}, wait);
+		}
+		else if (id == R.id.organizers) {
+
+			drawer.closeDrawer(GravityCompat.START);
+			new Handler().postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					Intent intent = new Intent(OrganizersActivity.this, Developers.class);
 					startActivity(intent);
 				}
 			}, wait);

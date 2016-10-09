@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.naveen.effervescence.ProShowsFragments.ProShowsList;
 import com.naveen.effervescence.R;
 
@@ -41,6 +43,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         imageView = (ImageView)findViewById(R.id.maineffe);
         setSupportActionBar(toolbar);
+
+
+        FirebaseMessaging.getInstance().subscribeToTopic("news");
+        // [END subscribe_topics]
+
+        // Log and toast
+        String msg = getString(R.string.msg_subscribed);
+        Log.d("hello", msg);
+        //Toast.makeText(Home.this, msg, Toast.LENGTH_SHORT).show();
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -203,6 +214,17 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 @Override
                 public void run() {
                     Intent intent = new Intent(Home.this, OrganizersActivity.class);
+                    startActivity(intent);
+                }
+            }, wait);
+        }
+        else if (id == R.id.organizers) {
+
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Home.this, Developers.class);
                     startActivity(intent);
                 }
             }, wait);

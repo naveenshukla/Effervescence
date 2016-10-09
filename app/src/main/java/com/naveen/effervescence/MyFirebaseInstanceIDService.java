@@ -9,9 +9,15 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
 
+import android.util.Log;
+
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.FirebaseInstanceIdService;
+
+
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
-    private static final String TAG = "MyFirebaseIIDService";
+    private static final String TAG = "hello";
 
     /**
      * Called if InstanceID token is updated. This may occur if the security of
@@ -21,11 +27,13 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     // [START refresh_token]
     @Override
     public void onTokenRefresh() {
-        Log.d("hello","onTokenRefresh");
+        // Get updated InstanceID token.
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-        Log.d("hello", "Refreshed token: " + refreshedToken);
+        Log.d(TAG, "Refreshed token: " + refreshedToken);
 
-        // TODO: Implement this method to send any registration to your app's servers.
+        // If you want to send messages to this application instance or
+        // manage this apps subscriptions on the server side, send the
+        // Instance ID token to your app server.
         sendRegistrationToServer(refreshedToken);
     }
     // [END refresh_token]
@@ -39,6 +47,6 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
      * @param token The new token.
      */
     private void sendRegistrationToServer(String token) {
-        // Add custom implementation, as needed.
+        // TODO: Implement this method to send token to your app server.
     }
 }

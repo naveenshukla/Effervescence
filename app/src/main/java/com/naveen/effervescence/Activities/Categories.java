@@ -116,6 +116,17 @@ public class Categories extends AppCompatActivity implements NavigationView.OnNa
                 }
             }, wait);
         }
+        else if (id == R.id.organizers) {
+
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Categories.this, Developers.class);
+                    startActivity(intent);
+                }
+            }, wait);
+        }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

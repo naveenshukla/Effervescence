@@ -30,6 +30,10 @@
                 android:id="@+id/developers"
                 android:icon="@drawable/ic_group_black_24dp"
                 android:title="Organizers" />
+            <item
+                android:id="@+id/organizers"
+                android:icon="@drawable/ic_group_black_24dp"
+                android:title="Credits" />
         </menu>
     </item>
 

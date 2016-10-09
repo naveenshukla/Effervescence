@@ -110,6 +110,17 @@ public class ProShows extends AppCompatActivity implements NavigationView.OnNavi
                 }
             }, wait);
         }
+        else if (id == R.id.organizers) {
+
+            drawer.closeDrawer(GravityCompat.START);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(ProShows.this, Developers.class);
+                    startActivity(intent);
+                }
+            }, wait);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
         drawer.closeDrawer(GravityCompat.START);

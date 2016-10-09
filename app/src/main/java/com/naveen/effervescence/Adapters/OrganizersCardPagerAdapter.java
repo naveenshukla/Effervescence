@@ -13,12 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.naveen.effervescence.Activities.Developers;
 import com.naveen.effervescence.Model.Person;
 import com.naveen.effervescence.R;
+import com.naveen.effervescence.Utils.DevelopersList;
 import com.naveen.effervescence.Utils.OrganizersList;
 
 import java.util.ArrayList;
@@ -35,10 +35,22 @@ public class OrganizersCardPagerAdapter extends PagerAdapter implements CardAdap
 	private float mBaseElevation;
 	private Context activityContext;
 
-	public OrganizersCardPagerAdapter(Context context) {
-		activityContext =context;
-		for (int i = 0; i < personList.size(); i++) {
-			mViews.add(null);
+	public OrganizersCardPagerAdapter(Context context, int k) {
+
+
+		if(k==0){
+			personList = DevelopersList.developers;
+			activityContext =context;
+			for (int i = 0; i < personList.size(); i++) {
+				mViews.add(null);
+			}
+		}
+		else{
+			personList = OrganizersList.organizers;
+			activityContext =context;
+			for (int i = 0; i < personList.size(); i++) {
+				mViews.add(null);
+			}
 		}
 	}
 
@@ -88,7 +100,7 @@ public class OrganizersCardPagerAdapter extends PagerAdapter implements CardAdap
 			@Override
 			public void onClick(View view) {
 				Intent intent = new Intent(Intent.ACTION_CALL);
-				intent.setData(Uri.parse("tel:" + person.getPhoneNumber()));
+				intent.setData(Uri.parse("tel:"  + "+91" + person.getPhoneNumber()));
 				if (ActivityCompat.checkSelfPermission(activityContext, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
 					return;
 				}

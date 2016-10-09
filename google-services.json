@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "254693520389",
+    "firebase_url": "https://effe2-c98d5.firebaseio.com",
+    "project_id": "effe2-c98d5",
+    "storage_bucket": "effe2-c98d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254693520389:android:eaa7052ef66a16aa",
+        "android_client_info": {
+          "package_name": "com.naveen.effervescence.Activities"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254693520389-r4ev4l3d9hb6n8u92vvqjua27a0r4rt7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.naveen.effervescence.Activities",
+            "certificate_hash": "706DBF995B4A1ACD494F1DA06AD5013954E0E9F9"
+          }
+        },
+        {
+          "client_id": "254693520389-blpj5urthhqsmvntpme96rl2gkf6ps4b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVdkeHS56_MjL7Qh0R_Pb8isrF6aDm4f4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254693520389-blpj5urthhqsmvntpme96rl2gkf6ps4b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
