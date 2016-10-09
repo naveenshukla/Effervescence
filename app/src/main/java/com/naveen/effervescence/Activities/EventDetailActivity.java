@@ -68,11 +68,11 @@ public class EventDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Calendar cal = Calendar.getInstance();
 
-                DateFormat format = new SimpleDateFormat("MMMMM dd,yyyy");
+                DateFormat format = new SimpleDateFormat("MMMMM dd,yyyy HH:mm");
 
                 Date dateq = new Date();
                 try {
-                    dateq =  format.parse(detaillist.get(0).getDateSharedPrefVariable());
+                    dateq =  format.parse(detaillist.get(0).getDateSharedPrefVariable() + " " + detaillist.get(0).getTimeSharedPrefVariable() );
 					Log.d("cool",dateq.toString());
 
 
@@ -83,8 +83,6 @@ public class EventDetailActivity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_EDIT);
                 intent.setType("vnd.android.cursor.item/event");
                 intent.putExtra("beginTime", dateq.getTime());
-                intent.putExtra("allDay", false);
-                intent.putExtra("rrule", "FREQ=DAILY");
                 intent.putExtra("title", detaillist.get(0).getEventName());
                 startActivity(intent);
             }
