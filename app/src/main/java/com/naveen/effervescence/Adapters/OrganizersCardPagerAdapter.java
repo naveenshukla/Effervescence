@@ -1,6 +1,7 @@
 package com.naveen.effervescence.Adapters;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.naveen.effervescence.Activities.Developers;
+import com.naveen.effervescence.Activities.EventDetailActivity;
 import com.naveen.effervescence.Model.Person;
 import com.naveen.effervescence.R;
 import com.naveen.effervescence.Utils.DevelopersList;
@@ -99,9 +101,12 @@ public class OrganizersCardPagerAdapter extends PagerAdapter implements CardAdap
 		button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
+				int STATUS = 23;
 				Intent intent = new Intent(Intent.ACTION_CALL);
 				intent.setData(Uri.parse("tel:"  + "+91" + person.getPhoneNumber()));
 				if (ActivityCompat.checkSelfPermission(activityContext, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+					ActivityCompat.requestPermissions((Activity) activityContext,
+						new String[]{Manifest.permission.CALL_PHONE},STATUS);
 					return;
 				}
 				activityContext.startActivity(intent);
