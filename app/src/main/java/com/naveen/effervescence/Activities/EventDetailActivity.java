@@ -74,7 +74,7 @@ public class EventDetailActivity extends AppCompatActivity {
 
         tb.setTitle(detaillist.get(0).getEventName());
         time.setText(detaillist.get(0).getTimeSharedPrefVariable());
-        date.setText(detaillist.get(0).getDateSharedPrefVariable().substring(0,8));
+        date.setText(detaillist.get(0).getDateSharedPrefVariable().substring(0,10));
         location.setText(detaillist.get(0).getLocation());
         detail.setText(detaillist.get(0).getEventDescription());
 
