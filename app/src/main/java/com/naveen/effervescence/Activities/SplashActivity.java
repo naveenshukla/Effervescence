@@ -1,6 +1,9 @@
 package com.naveen.effervescence.Activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,9 +35,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         MyDBHandler db  = new MyDBHandler(this);
-        db.update(this,0);
-
-// Request a string response from the provided URL.
+        db.update(this,0, isNetworkAvailable());
 
         final RotateAnimation rotate = new RotateAnimation(0, 360,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
@@ -42,22 +43,13 @@ public class SplashActivity extends AppCompatActivity {
         rotate.setInterpolator(new LinearInterpolator());
         rotate.setDuration(4000);
         rotate.setRepeatCount(Animation.INFINITE);
-
-        // Start animating the image
         final ImageView splash = (ImageView) findViewById(R.id.effewheel);
         splash.startAnimation(rotate);
-
-        //final ShapeRipple ripple = (ShapeRipple) findViewById(R.id.ripple);
-        ///ripple.setRippleShape(new Circle());
-        //ripple.setRippleColor(getResources().getColor(R.color.md_deep_orange_600));
-        //ripple.setEnableRandomPosition(true);
-        //ripple.setEnableRandomColor(true);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 rotate.cancel();
-                //ripple.stopRipple();
                 final Intent mainIntent = new Intent(SplashActivity.this, Home.class);
                 SplashActivity.this.startActivity(mainIntent);
                 SplashActivity.this.finish();
@@ -66,5 +58,12 @@ public class SplashActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

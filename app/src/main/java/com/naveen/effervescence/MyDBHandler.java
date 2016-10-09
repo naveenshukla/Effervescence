@@ -6,7 +6,10 @@ import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -45,7 +48,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         Log.d("hello", "created database");
     }
 
-    public void update(Context context, final int k){
+    public void update(Context context, final int k, boolean network){
+
+        if(k==1 && !network){
+            Toast.makeText(context, "Make sure you are connected to internet", Toast.LENGTH_SHORT).show();
+        }
         RequestQueue queue = Volley.newRequestQueue(context);
         String url ="https://effervescence-10e30.firebaseio.com/.json";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -261,6 +268,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
 // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
+
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {

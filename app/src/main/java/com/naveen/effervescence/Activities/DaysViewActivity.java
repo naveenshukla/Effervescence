@@ -1,9 +1,13 @@
 package com.naveen.effervescence.Activities;
 
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.app.usage.UsageEvents;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -39,6 +43,8 @@ import com.naveen.effervescence.Utils.EventList;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
@@ -52,6 +58,7 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
 
     private ViewPager viewPager;
     MyDBHandler dbHandler;
+    ProgressDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,9 +104,22 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                db.update(this ,1);
-                finish();
-                startActivity(getIntent());
+                if(!isNetworkAvailable()){
+                    Toast.makeText(this, "Make sure you are connected to Internet", Toast.LENGTH_LONG).show();
+                    return true;
+                }
+                Toast.makeText(this,"Refreshing", Toast.LENGTH_LONG).show();
+                db.update(this ,1, isNetworkAvailable());
+                Timer t = new Timer();
+                t.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        finish();
+                        startActivity(getIntent());
+                        // If you want to call Activity then call from here for 5 seconds it automatically call and your image disappear....
+                    }
+                }, 5000);
+                Toast.makeText(this,"Refreshed", Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -230,5 +250,11 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

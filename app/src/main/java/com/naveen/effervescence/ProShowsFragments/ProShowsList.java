@@ -69,12 +69,12 @@ public class ProShowsList extends Fragment {
                     case 1:
                         Log.d("hello", String.valueOf(1));
                         intent= new Intent( getContext(), EventDetailActivity.class);
-                        intent.putExtra("event_name", "The Local Train");
+                        intent.putExtra("event_name", "Coke Studio - Benny Dayal");
                         break;
                     case 2 :
                         Log.d("hello", String.valueOf(2));
                         intent = new Intent( getContext(), EventDetailActivity.class);
-                        intent.putExtra("event_name", "Footloose");
+                        intent.putExtra("event_name", "Bollywood Night");
                         break;
                     default:
                         Log.d("hello", String.valueOf(3));
@@ -92,7 +92,7 @@ public class ProShowsList extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         SimplePagerAdapter adapter = new SimplePagerAdapter(getChildFragmentManager());
-        titleTextView.animateText("EDM Night");
+        titleTextView.animateText("The Local Train");
         TransformationAdapterWrapper wrapper = TransformationAdapterWrapper
                 .wrap(getContext(), adapter)
                 .rows(8)
@@ -108,10 +108,10 @@ public class ProShowsList extends Fragment {
             @Override
             public void onPageSelected(int position) {
                 switch (position){
-                    case 0: titleTextView.animateText("EDM Night"); break;
-                    case 1: titleTextView.animateText("Ala Mode"); break;
-                    case 2: titleTextView.animateText("Incendiary"); break;
-                    case 3: titleTextView.animateText("Celebrity Night"); break;
+                    case 0: titleTextView.animateText("The Local Train"); break;
+                    case 1: titleTextView.animateText("Coke Studio - Benny Dayal"); break;
+                    case 2: titleTextView.animateText("Bollywood Night"); break;
+                    case 3: titleTextView.animateText("The Local Train"); break;
                 }
             }
             @Override
@@ -147,10 +147,10 @@ public class ProShowsList extends Fragment {
         };
         public SimplePagerAdapter(FragmentManager fm) {
             super(fm);
-            listq.add(new FragmentData("EDM Night",R.drawable.edm));
-            listq.add(new FragmentData("Ala Mode",R.drawable.alamode2));
-            listq.add(new FragmentData("Incendiary",R.drawable.alamode2));
-            listq.add(new FragmentData("Celebrity Night",R.drawable.edm));
+            listq.add(new FragmentData("The Local Train",R.drawable.edm));
+            listq.add(new FragmentData("Coke Studio - Benny Dayal",R.drawable.alamode2));
+            listq.add(new FragmentData("Bollywood Night",R.drawable.alamode2));
+            listq.add(new FragmentData("The Local Train",R.drawable.edm));
         }
 
         @Override

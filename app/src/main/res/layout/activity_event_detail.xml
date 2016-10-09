@@ -23,7 +23,6 @@
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp">
-
             <ImageView
                 android:id="@+id/backdrop"
                 android:layout_width="match_parent"
@@ -73,80 +72,167 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingTop="24dp">
-
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:layout_margin="16dp">
 
-                <android.support.percent.PercentRelativeLayout
-                    style="@style/Widget.CardContent"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        app:layout_widthPercent="20%"
-                        android:layout_alignParentLeft="true"
-                        android:src="@drawable/calendar"/>
-
-                    <TextView
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:orientation="horizontal">
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_widthPercent="50%"
-                        android:text="6:00 AM"
-                        android:textSize="12dp"
-                        android:layout_alignParentRight="true"
-                        android:id="@+id/time_textview"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5">
+                            <android.support.percent.PercentRelativeLayout
+                                style="@style/Widget.CardContent"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                app:layout_widthPercent="20%"
+                                android:layout_alignParentLeft="true"
+                                android:src="@drawable/calendar"/>
+                                <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layout_widthPercent="70%"
+                                android:text="6:00 AM"
+                                android:textSize="12dp"
+                                android:layout_alignParentRight="true"
+                                android:id="@+id/time_textview"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
-                    <TextView
+                                <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layout_widthPercent="70%"
+                                android:id="@+id/date_textView"
+                                android:layout_alignParentRight="true"
+                                android:text="15th Oct"
+                                android:textSize="10dp"
+                                android:layout_below="@id/time_textview"/>
+                            </android.support.percent.PercentRelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_widthPercent="50%"
-                        android:id="@+id/date_textView"
-                        android:layout_alignParentRight="true"
-                        android:text="15th October, 2016"
-                        android:textSize="15dp"
-                        android:layout_below="@id/time_textview"/>
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5">
+                            <android.support.percent.PercentRelativeLayout
+                                style="@style/Widget.CardContent"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                app:layout_widthPercent="20%"
+                                android:layout_alignParentLeft="true"
+                                android:src="@drawable/location_material_icon"/>
 
-                </android.support.percent.PercentRelativeLayout>
+                                <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layout_widthPercent="70%"
+                                android:textAlignment="center"
+                                android:gravity="center"
+                                android:text="Student Activity Center"
+                                android:layout_alignParentRight="true"
+                                android:textSize="12dp"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                                android:id="@+id/location_textview"
+                                />
+                            </android.support.percent.PercentRelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--<android.support.percent.PercentRelativeLayout-->
+                    <!--style="@style/Widget.CardContent"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
+
+                    <!--<ImageView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="30dp"-->
+                        <!--app:layout_widthPercent="20%"-->
+                        <!--android:layout_alignParentLeft="true"-->
+                        <!--android:src="@drawable/calendar"/>-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--app:layout_widthPercent="50%"-->
+                        <!--android:text="6:00 AM"-->
+                        <!--android:textSize="12dp"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:id="@+id/time_textview"-->
+                        <!--android:textAppearance="@style/TextAppearance.AppCompat.Headline" />-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--app:layout_widthPercent="50%"-->
+                        <!--android:id="@+id/date_textView"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:text="15th October, 2016"-->
+                        <!--android:textSize="15dp"-->
+                        <!--android:layout_below="@id/time_textview"/>-->
+                    <!--<ImageView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="30dp"-->
+                        <!--app:layout_widthPercent="20%"-->
+                        <!--android:layout_alignParentLeft="true"-->
+                        <!--android:src="@drawable/location_material_icon"/>-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--app:layout_widthPercent="60%"-->
+                        <!--android:text="Student Activity Center"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:textSize="12dp"-->
+                        <!--android:textAppearance="@style/TextAppearance.AppCompat.Headline"-->
+                        <!--android:id="@+id/location_textview"-->
+                        <!--/>-->
+
+                <!--</android.support.percent.PercentRelativeLayout>-->
 
             </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_margin="5dp">-->
 
-                <android.support.percent.PercentRelativeLayout
-                    style="@style/Widget.CardContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <!--<android.support.percent.PercentRelativeLayout-->
+                    <!--style="@style/Widget.CardContent"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent">-->
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        app:layout_widthPercent="20%"
-                        android:layout_alignParentLeft="true"
-                        android:src="@drawable/location_material_icon"/>
+                    <!--<ImageView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="30dp"-->
+                        <!--app:layout_widthPercent="20%"-->
+                        <!--android:layout_alignParentLeft="true"-->
+                        <!--android:src="@drawable/location_material_icon"/>-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_widthPercent="60%"
-                        android:text="Student Activity Center"
-                        android:layout_alignParentRight="true"
-                        android:textSize="12dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                        android:id="@+id/location_textview"
-                        />
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--app:layout_widthPercent="60%"-->
+                        <!--android:text="Student Activity Center"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:textSize="12dp"-->
+                        <!--android:textAppearance="@style/TextAppearance.AppCompat.Headline"-->
+                        <!--android:id="@+id/location_textview"-->
+                        <!--/>-->
 
 
-                </android.support.percent.PercentRelativeLayout>
+                <!--</android.support.percent.PercentRelativeLayout>-->
 
-            </android.support.v7.widget.CardView>
+            <!--</android.support.v7.widget.CardView>-->
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
