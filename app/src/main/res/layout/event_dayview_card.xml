@@ -79,16 +79,16 @@
             android:layout_marginTop="11dp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="80dp"
             android:text="Sample Event"
             android:padding="10dp"
             android:layout_margin="10dp"
             android:textSize="20sp"
-            android:gravity=""
+            android:gravity="center"
             android:textColor="@color/md_red_50"
             android:id="@+id/event_title_tv"
-            android:background="@drawable/round_textview"
+            android:background="@drawable/paintbg"
             android:layout_above="@+id/dropdown_ll"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"/>
