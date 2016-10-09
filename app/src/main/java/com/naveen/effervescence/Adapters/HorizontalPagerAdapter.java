@@ -638,7 +638,7 @@ public class HorizontalPagerAdapter extends PagerAdapter{
 
     private int getDrawable(String string) {
         Resources resources = mContext.getResources();
-        final int resourceId = resources.getIdentifier( string  , "mipmap",
+        final int resourceId = resources.getIdentifier( string + "2" , "mipmap",
                 mContext.getPackageName());
         if(resourceId!=0){
             return resourceId;

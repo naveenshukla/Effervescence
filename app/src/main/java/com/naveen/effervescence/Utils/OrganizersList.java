@@ -28,7 +28,7 @@ public class OrganizersList {
 
 
         organizers.add(new Person(R.drawable.deora,"Abhishek Deora","Web Operations","Geekhaven","7570020165","http://fb.com/betterclever","http://github.com/betterclever",R.color.md_deep_purple_900));
-        organizers.add(new Person(R.drawable.soni,"Yogesh Gupta","Web Operations","Geekhaven","9404173123","http://fb.com/betterclever","http://github.com/betterclever",R.color.md_blue_grey_900));
+        organizers.add(new Person(R.drawable.yogesh,"Yogesh Gupta","Web Operations","Geekhaven","9404173123","http://fb.com/betterclever","http://github.com/betterclever",R.color.md_blue_grey_900));
 
 
         organizers.add(new Person(R.drawable.naveen,"Naveen Shukla","App Operations","Geekhaven","7376415693","http://fb.com/betterclever","http://github.com/betterclever",R.color.md_deep_purple_900));
