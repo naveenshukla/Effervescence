@@ -223,7 +223,7 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
             } while (cursor.moveToNext());
         }
 
-        selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  date = 'October 14, 2016'";
+        selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  date = 'October 14, 2016' order by 'time'";
         //SQLiteDatabase db = myDBHandler.getReadableDatabase();
         cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
@@ -234,7 +234,7 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
             } while (cursor.moveToNext());
         }
 
-        selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  date = 'October 15, 2016'";
+        selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  date = 'October 15, 2016' order by 'Time'";
         //SQLiteDatabase db = myDBHandler.getReadableDatabase();
         cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
@@ -245,7 +245,7 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
             } while (cursor.moveToNext());
         }
 
-        selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  date = 'October 16, 2016'";
+        selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  date = 'October 16, 2016'  order by 'time'";
         //SQLiteDatabase db = myDBHandler.getReadableDatabase();
         cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
@@ -256,7 +256,7 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
             } while (cursor.moveToNext());
         }
 
-        selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  date = 'October 17, 2016'";
+        selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  date = 'October 17, 2016'  order by 'time'";
         //SQLiteDatabase db = myDBHandler.getReadableDatabase();
         cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {

@@ -112,13 +112,12 @@ public class EventDetailActivity extends AppCompatActivity {
         Bitmap myBitmap = BitmapFactory.decodeResource(getResources(), titlebg);
         if (myBitmap != null && !myBitmap.isRecycled()) {
             Palette palette = Palette.from(myBitmap).generate();
-            int def = 0x000000;
+
+			int def = 0x0000FF;
             int vibrant = palette.getMutedColor(def);
-            Log.d("vibrant", String.format("#%06X", 0xFFFFFF & vibrant));
-            Log.d("vibrant dark", String.format("#%06X", 0xFFFFFF & palette.getDarkVibrantColor(def)));
             CollapsingToolbarLayout cp = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
             cp.setContentScrimColor(vibrant);
-            cp.setStatusBarScrimColor(palette.getDarkMutedColor(def));
+            cp.setStatusBarScrimColor(vibrant);
         }
 
 
@@ -134,21 +133,18 @@ public class EventDetailActivity extends AppCompatActivity {
             TextView name = (TextView) v.findViewById(R.id.textView);
             name.setText(orgs.get(i).getName());
             ImageView callHim = (ImageView) v.findViewById(R.id.callHim);
-            callHim.setOnClickListener(new View.OnClickListener() {
+            v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(Intent.ACTION_CALL);
 
+					int STATUS = 23;
+					Log.d("Hi","View Pressed");
+                    Intent intent = new Intent(Intent.ACTION_CALL);
                     intent.setData(Uri.parse("tel:" + "+91" + (String)phone.getText()));
                     if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                        // TODO: Consider calling
-                        //    ActivityCompat#requestPermissions
-                        // here to request the missing permissions, and then overriding
-                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                        //                                          int[] grantResults)
-                        // to handle the case where the user grants the permission. See the documentation
-                        // for ActivityCompat#requestPermissions for more details.
-                        return;
+						ActivityCompat.requestPermissions(EventDetailActivity.this,
+							new String[]{Manifest.permission.CALL_PHONE},STATUS);
+						return;
                     }
                     startActivity(intent);
                     Log.d("hello", (String) phone.getText());

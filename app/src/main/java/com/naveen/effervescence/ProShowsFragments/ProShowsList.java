@@ -69,17 +69,17 @@ public class ProShowsList extends Fragment {
                     case 1:
                         Log.d("hello", String.valueOf(1));
                         intent= new Intent( getContext(), EventDetailActivity.class);
-                        intent.putExtra("event_name", "Coke Studio - Benny Dayal");
+                        intent.putExtra("event_name", "Ala' Mode");
                         break;
                     case 2 :
                         Log.d("hello", String.valueOf(2));
                         intent = new Intent( getContext(), EventDetailActivity.class);
-                        intent.putExtra("event_name", "Bollywood Night");
+                        intent.putExtra("event_name", "Coke Studio - Benny Dayal");
                         break;
                     default:
                         Log.d("hello", String.valueOf(3));
                         intent = new Intent( getContext(), EventDetailActivity.class);
-                        intent.putExtra("event_name","The Local Train");
+                        intent.putExtra("event_name","Bollywood Night");
                 }
                 Log.d("hello", String.valueOf(currI));
                 startActivity(intent);
