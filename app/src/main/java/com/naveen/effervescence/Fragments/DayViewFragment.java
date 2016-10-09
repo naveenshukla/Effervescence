@@ -256,7 +256,7 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
             } while (cursor.moveToNext());
         }
 
-        selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  date = '17th October, 2016'";
+        selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  date = 'October 17, 2016'";
         //SQLiteDatabase db = myDBHandler.getReadableDatabase();
         cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
