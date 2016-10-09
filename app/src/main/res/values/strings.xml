@@ -40,6 +40,17 @@
     <string name="datetime_sharedpref_file">datetimepref</string>
     <string name="sample_rules">This is a sample rule. This is a sample rule</string>
     <string name="title_activity_home">Home</string>
-    <string name="aboutus">Carnivals are a haven for blitz, glamour, fashion and style.         You\\\'ve got to have them all if you want to rock the ramp and prove your haute couture quotient in À La Mode.         Come with every bit of pizzazz you possess! Impress the crowd and the judges,         and become the style icon of Effervescence 2016!     Carnivals are a haven for blitz, glamour, fashion and style.         You\\\'ve got to have them all if you want to rock the ramp and prove your haute couture quotient in À La Mode.         Come with every bit of pizzazz you possess! Impress the crowd and the judges,         and become the style icon of Effervescence 2016!</string>
+    <string name="aboutus">Effervescence is a platform of youthful energy showcasing intellectuals, creativity
+    and a cultural treat. The cultural and managerial spirits mingle to bring forth the fizz, frolic and festivity of this extravaganza.
+    Effervescence is cultural extravaganza spanning 3 days of high octane action. The three days of campus events which comprise of
+        informal and other events in the morning and to hold the night fever we have a full platter of dance, dramatics music and
+        literary competitions. The concluding night of the Effervescence is always the most anticipated and illustrious event
+        which has seen bands like Bombay Vikings, Euphoria Silk Route and Strings (to name a few) performing live.
+        This Effervescence is going to take the
+        definition of fun to a whole new dimension! So, don\'t wait anymore. Join us this October in celebrating the occasion of
+        absolute fun and entertainment. Management events, workshops informals, dance , drama, music , rock night celebrity night , etc.
+    Pick up anything you are interested in!. there\'s something for everyone. So, block your calendars from 14th to 17th october
+        and be a part of
+    Effervescence. </string>
     <string name="msg_subscribed">subscribed to msg</string>
 </resources>
