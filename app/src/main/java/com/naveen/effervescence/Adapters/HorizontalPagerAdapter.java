@@ -39,8 +39,8 @@ public class HorizontalPagerAdapter extends PagerAdapter{
     private ArrayList<EventInfo> finearts = new ArrayList<>();
     private final ArrayList[] EVENTS_BY_CATEGORIES = new ArrayList[]{
             online,
-            dance,
             drama,
+            dance,
             literary,
             informal,
             photography,
