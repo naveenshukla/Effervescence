@@ -40,7 +40,7 @@ public class Developers extends AppCompatActivity implements NavigationView.OnNa
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle("Organizers");
+        setTitle("Credits");
 
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
 

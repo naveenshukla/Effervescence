@@ -6,6 +6,7 @@ import android.app.SearchManager;
 import android.app.usage.UsageEvents;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -50,6 +51,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 import static com.naveen.effervescence.Activities.SplashActivity.wait;
 import static com.naveen.effervescence.R.id.textView;
+import static com.naveen.effervescence.R.id.viewPager;
 
 public class DaysViewActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
     private PendingIntent pendingIntent;
@@ -57,6 +59,7 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
     private TabLayout tabLayout;
 
     private ViewPager viewPager;
+    SharedPreferences.Editor editor;
     MyDBHandler dbHandler;
     ProgressDialog dialog;
     @Override
@@ -109,6 +112,10 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
                     return true;
                 }
 
+                editor = getSharedPreferences("Current", MODE_PRIVATE).edit();
+                editor.putInt("curr", viewPager.getCurrentItem());
+                editor.commit();
+
                 final ProgressDialog progress = new ProgressDialog(this);
                 progress.setMessage("Refreshing Data");
                 progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -135,10 +142,18 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(DayViewFragment.newInstance(0,1), "Day 1");
-        adapter.addFragment(DayViewFragment.newInstance(1,2), "Day 2");
-        adapter.addFragment(DayViewFragment.newInstance(2,3), "Day 3");
-        adapter.addFragment(DayViewFragment.newInstance(3,4), "Day 4");
+        adapter.addFragment(DayViewFragment.newInstance(0,1), "Day 0");
+        adapter.addFragment(DayViewFragment.newInstance(1,2), "Day 1");
+        adapter.addFragment(DayViewFragment.newInstance(2,3), "Day 2");
+        adapter.addFragment(DayViewFragment.newInstance(3,4), "Day 3");
+
+        SharedPreferences prefs = getSharedPreferences("Current", MODE_PRIVATE);
+        int restoredText = prefs.getInt("curr", -1);
+        if (restoredText != -1) {
+            int curr = prefs.getInt("curr", -1);//"No name defined" is the default value.
+            viewPager.setCurrentItem(curr);
+        }else
+            viewPager.setCurrentItem(0);
         viewPager.setAdapter(adapter);
     }
 
