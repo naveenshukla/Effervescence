@@ -27,13 +27,14 @@
 
     <TextView
         android:id="@+id/event_category_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
         android:text="Sample"
-        android:padding="5dp"
+        android:gravity="center"
+        android:padding="12dp"
         android:textColor="@color/md_white_1000"
-        android:background="@color/md_blue_800"
-        android:textSize="30sp"
+        android:background="@drawable/paintbg"
+        android:textSize="22sp"
         android:textAllCaps="true"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/vicvp"/>

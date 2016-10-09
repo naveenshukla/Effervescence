@@ -108,18 +108,25 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
                     Toast.makeText(this, "Make sure you are connected to Internet", Toast.LENGTH_LONG).show();
                     return true;
                 }
-                Toast.makeText(this,"Refreshing", Toast.LENGTH_LONG).show();
+
+                final ProgressDialog progress = new ProgressDialog(this);
+                progress.setMessage("Refreshing Data");
+                progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                progress.setIndeterminate(true);
+                progress.show();
+
                 db.update(this ,1, isNetworkAvailable());
+
                 Timer t = new Timer();
                 t.schedule(new TimerTask() {
                     @Override
                     public void run() {
                         finish();
                         startActivity(getIntent());
+                        progress.dismiss();
                         // If you want to call Activity then call from here for 5 seconds it automatically call and your image disappear....
                     }
                 }, 5000);
-                Toast.makeText(this,"Refreshed", Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
