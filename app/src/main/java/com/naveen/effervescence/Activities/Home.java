@@ -1,5 +1,6 @@
 package com.naveen.effervescence.Activities;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -242,21 +243,32 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         switch (item.getItemId())
         {
             case R.id.web:
-                Toast.makeText(this,"web", Toast.LENGTH_LONG ).show();
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.effe.org.in"));
+                startActivity(browserIntent);
                 //your code here
                 return true;
             case R.id.like:
-                Toast.makeText(this,"like", Toast.LENGTH_LONG ).show();
-                //your code here
+                Intent facebookintent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/effervescence.iiita/?fref=ts"));
+                startActivity(facebookintent);
                 return true;
             case R.id.rate_us:
-                Toast.makeText(this,"rate", Toast.LENGTH_LONG ).show();
+                launchMarket();
                 return true;
             case R.id.credits:
-                Toast.makeText(this,"credits", Toast.LENGTH_LONG ).show();
-                return true;
+                Intent developersintent = new Intent(Home.this, Developers.class);
+                startActivity(developersintent);
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void launchMarket() {
+        Uri uri = Uri.parse("market://details?id=" + getPackageName());
+        Intent myAppLinkToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        try {
+            startActivity(myAppLinkToMarket);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, " unable to find market app", Toast.LENGTH_LONG).show();
         }
     }
 }

@@ -69,17 +69,17 @@ public class ProShowsList extends Fragment {
                     case 1:
                         Log.d("hello", String.valueOf(1));
                         intent= new Intent( getContext(), EventDetailActivity.class);
-                        intent.putExtra("event_name", "Ala' Mode");
+                        intent.putExtra("event_name", "Coke Studio - Benny Dayal");
                         break;
                     case 2 :
                         Log.d("hello", String.valueOf(2));
                         intent = new Intent( getContext(), EventDetailActivity.class);
-                        intent.putExtra("event_name", "Coke Studio - Benny Dayal");
+                        intent.putExtra("event_name", "Bollywood Night");
                         break;
                     default:
                         Log.d("hello", String.valueOf(3));
                         intent = new Intent( getContext(), EventDetailActivity.class);
-                        intent.putExtra("event_name","Bollywood Night");
+                        intent.putExtra("event_name","The Local Train");
                 }
                 Log.d("hello", String.valueOf(currI));
                 startActivity(intent);
@@ -147,10 +147,10 @@ public class ProShowsList extends Fragment {
         };
         public SimplePagerAdapter(FragmentManager fm) {
             super(fm);
-            listq.add(new FragmentData("The Local Train",R.drawable.edm));
-            listq.add(new FragmentData("Coke Studio - Benny Dayal",R.drawable.alamode2));
-            listq.add(new FragmentData("Bollywood Night",R.drawable.alamode2));
-            listq.add(new FragmentData("The Local Train",R.drawable.edm));
+            listq.add(new FragmentData("The Local Train",R.drawable.thelocaltrain));
+            listq.add(new FragmentData("Coke Studio - Benny Dayal",R.drawable.bennydayal));
+            listq.add(new FragmentData("Bollywood Night",R.drawable.dj_night));
+            listq.add(new FragmentData("The Local Train",R.drawable.thelocaltrain));
         }
 
         @Override

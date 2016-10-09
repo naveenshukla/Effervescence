@@ -33,7 +33,6 @@
         android:gravity="center"
         android:padding="12dp"
         android:textColor="@color/md_white_1000"
-        android:background="@drawable/paintbg"
         android:textSize="22sp"
         android:textAllCaps="true"
         android:layout_centerHorizontal="true"

@@ -67,7 +67,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
 
         eventsList.clear();
         for(EventInfo item : visibleObjects){
-            if(item.getEventName().equals(filter)){
+            if(item.getEventName().toLowerCase().contains(filter.toLowerCase())){
                 eventsList.add(item);
             }
         }
