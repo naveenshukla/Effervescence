@@ -26,6 +26,8 @@ import com.naveen.effervescence.Utils.OrganizersList;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.naveen.effervescence.Adapters.EventAdapter.decodeSampledBitmapFromResource;
+
 /**
  * Created by Pranjal Paliwal on 9/27/2016.
  */
@@ -95,7 +97,8 @@ public class OrganizersCardPagerAdapter extends PagerAdapter implements CardAdap
 
 		nameTV.setText(personList.get(position).getPersonName());
 		roleTV.setText(personList.get(position).getDesignation());
-		profileIV.setImageResource(personList.get(position).getAvatar());
+		profileIV.setImageBitmap(
+				decodeSampledBitmapFromResource(activityContext.getResources(),personList.get(position).getAvatar() , 200, 200));
 
 		final Person person = personList.get(position);
 		button.setOnClickListener(new View.OnClickListener() {

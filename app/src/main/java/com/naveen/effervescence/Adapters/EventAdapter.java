@@ -166,8 +166,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         viewHolder.time.setText(time);
         viewHolder.place.setText(place);
         viewHolder.eventImage.setImageBitmap(
-                decodeSampledBitmapFromResource(context.getResources(), events.getImage_drawable() , 100, 100));
-        viewHolder.eventImage.setImageResource(events.getImage_drawable());
+                decodeSampledBitmapFromResource(context.getResources(), events.getImage_drawable() , 250, 150));
+        //viewHolder.eventImage.setImageResource(events.getImage_drawable());
 
         final View imageView = viewHolder.eventImage;
 
