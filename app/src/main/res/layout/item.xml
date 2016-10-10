@@ -35,14 +35,11 @@
                 android:padding="10dp"
                 android:background="@drawable/round_textview"
                 android:textColor="@color/md_white_1000"
-                android:layout_marginBottom="100dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
                 android:textStyle="bold"
                 android:textAllCaps="true"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
 
         </RelativeLayout>
 
