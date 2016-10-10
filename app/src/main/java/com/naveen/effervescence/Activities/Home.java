@@ -10,7 +10,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
@@ -20,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,9 +31,13 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.melnykov.fab.FloatingActionButton;
 import com.naveen.effervescence.MyDBHandler;
 import com.naveen.effervescence.ProShowsFragments.ProShowsList;
 import com.naveen.effervescence.R;
+import com.tiancaicc.springfloatingactionmenu.MenuItemView;
+import com.tiancaicc.springfloatingactionmenu.OnMenuActionListener;
+import com.tiancaicc.springfloatingactionmenu.SpringFloatingActionMenu;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -41,12 +45,13 @@ import java.util.TimerTask;
 import static com.naveen.effervescence.Activities.SplashActivity.wait;
 import static com.naveen.effervescence.R.id.viewPager;
 
-public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     ImageView imageView;
     DrawerLayout drawer;
     MyDBHandler db  = new MyDBHandler(this);
     public boolean flagClicked = false;
     LinearLayout s;
+    FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +88,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 }
             }
         });
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        /*
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);*/
 
         toggle.syncState();
         toggle.setHomeAsUpIndicator(R.drawable.ic_sort_white_24dp);
@@ -91,6 +98,46 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         navigationView.setNavigationItemSelectedListener(this);
         s = (LinearLayout) findViewById(R.id.aboutus);
         s.setVisibility(View.GONE);
+
+
+        fab = new FloatingActionButton(this);
+        fab.setType(FloatingActionButton.TYPE_NORMAL);
+        fab.setImageResource(R.drawable.ic_list_white_24dp);
+        fab.setColorPressedResId(R.color.colorPrimary);
+        fab.setColorNormalResId(R.color.md_deep_orange_500);
+        fab.setColorRippleResId(R.color.md_amber_200);
+        fab.setShadow(true);
+
+        new SpringFloatingActionMenu.Builder(this)
+                .fab(fab)
+                //add menu item via addMenuItem(bgColor,icon,label,label color,onClickListener)
+                .addMenuItem(R.color.md_yellow_800, R.drawable.ic_categories, "Categories", R.color.md_white_1000,this)
+                .addMenuItem(R.color.md_brown_400, R.drawable.ic_day_white_24dp, "Days", R.color.md_white_1000,this)
+                .addMenuItem(R.color.md_deep_orange_500, R.drawable.ic_person_white_24dp, "Organizers", R.color.md_white_1000,this)
+                .addMenuItem(R.color.md_blue_500, R.drawable.ic_about_us_24dp, "About Us", R.color.md_white_1000,this)
+                .addMenuItem(R.color.md_purple_600, R.drawable.ic_proshows_24dp, "ProShows", R.color.md_white_1000,this)
+                .addMenuItem(R.color.md_green_600, R.drawable.ic_person_white_24dp, "Developers", R.color.md_white_1000,this)
+                //you can choose menu layout animation
+                .animationType(SpringFloatingActionMenu.ANIMATION_TYPE_TUMBLR)
+                //setup reveal color while the menu opening
+                .revealColor(R.color.colorPrimary)
+                .gravity(Gravity.RIGHT | Gravity.BOTTOM)
+                .onMenuActionListner(new OnMenuActionListener() {
+                    @Override
+                    public void onMenuOpen() {
+                        fab.setImageResource(R.drawable.ic_close_24dp);
+                    }
+
+                    @Override
+                    public void onMenuClose() {
+                        fab.setImageResource(R.drawable.ic_list_white_24dp);
+                    }
+                })
+                .build();
+
+
+        /*
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -156,12 +203,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                     fab.setBackgroundColor(Color.RED);
                 }
 
-
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 //        .setAction("Action", null).show();
             }
         });
         fab.show();
+        */
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -312,6 +359,103 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             startActivity(myAppLinkToMarket);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(this, " unable to find market app", Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+    @Override
+    public void onClick(View view) {
+
+        MenuItemView menuItemView = (MenuItemView) view;
+
+        String txt = (String) menuItemView.getLabelTextView().getText();
+
+
+        if(txt.equals("Categories")){
+            Intent intent = new Intent(Home.this, Categories.class);
+            startActivity(intent);
+        }
+        else if(txt.equals("Days")){
+            Intent intent = new Intent(Home.this, DaysViewActivity.class);
+            startActivity(intent);
+        }
+        else if(txt.equals("Developers")){
+            Intent developersintent = new Intent(Home.this, Developers.class);
+            startActivity(developersintent);
+        }
+        else if(txt.equals("Info")){
+
+        }
+        else if(txt.equals("Organizers")){
+            Intent intent = new Intent(Home.this, OrganizersActivity.class);
+            startActivity(intent);
+        }
+        else if(txt.equals("ProShows")){
+            Intent intent = new Intent(Home.this, ProShows.class);
+            startActivity(intent);
+        }
+        else {
+            if(flagClicked == false){
+                //imageView.setImageResource(R.drawable.bw);
+                Animation fadeOut = AnimationUtils.loadAnimation(Home.this, R.anim.fade_out);
+                imageView.startAnimation(fadeOut);
+
+                fadeOut.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                    }
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        //Animation fadeOut = AnimationUtils.loadAnimation(Home.this, R.anim.fade_out);
+                        //imageView.startAnimation(fadeOut);
+                    }
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                    }
+                });
+                imageView.setImageResource(R.drawable.bw);
+                Animation fadeIn = AnimationUtils.loadAnimation(Home.this, R.anim.fade_in);
+                imageView.startAnimation(fadeIn);
+
+                fadeIn.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                    }
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        //Animation fadeOut = AnimationUtils.loadAnimation(Home.this, R.anim.fade_out);
+                        //imageView.startAnimation(fadeOut);
+                    }
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                    }
+                });
+                s.setVisibility(View.VISIBLE);
+                flagClicked = true;
+                fab.performClick();
+            }
+            else{
+                imageView.setImageResource(R.drawable.carnivalhome);
+                Animation fadeIn = AnimationUtils.loadAnimation(Home.this, R.anim.fade_in);
+                imageView.startAnimation(fadeIn);
+
+                fadeIn.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                    }
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        //Animation fadeOut = AnimationUtils.loadAnimation(Home.this, R.anim.fade_out);
+                        //imageView.startAnimation(fadeOut);
+                    }
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                    }
+                });
+                s.setVisibility(View.GONE);
+                flagClicked = false;
+                fab.performClick();
+            }
         }
     }
 }
