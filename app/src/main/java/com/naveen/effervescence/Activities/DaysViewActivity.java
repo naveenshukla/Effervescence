@@ -58,6 +58,7 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
     MyDBHandler db  = new MyDBHandler(this);
     private TabLayout tabLayout;
 
+
     private ViewPager viewPager;
     SharedPreferences.Editor editor;
     MyDBHandler dbHandler;
@@ -69,6 +70,7 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
 		Log.d("Main Activity","Started");
 
@@ -149,12 +151,12 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
 
         SharedPreferences prefs = getSharedPreferences("Current", MODE_PRIVATE);
         int restoredText = prefs.getInt("curr", -1);
+        viewPager.setAdapter(adapter);
         if (restoredText != -1) {
             int curr = prefs.getInt("curr", -1);//"No name defined" is the default value.
             viewPager.setCurrentItem(curr);
         }else
             viewPager.setCurrentItem(0);
-        viewPager.setAdapter(adapter);
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -269,6 +271,33 @@ public class DaysViewActivity extends AppCompatActivity  implements NavigationVi
                     startActivity(intent);
                 }
             }, wait);
+        }
+        else if(id == R.id.refreshdata){
+            if(!isNetworkAvailable()){
+                Toast.makeText(this, "Make sure you are connected to Internet", Toast.LENGTH_LONG).show();
+                return true;
+            }
+
+            final ProgressDialog progress = new ProgressDialog(this);
+            progress.setMessage("Refreshing Data");
+            progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progress.setIndeterminate(true);
+            progress.show();
+
+            db.update(this ,1, isNetworkAvailable());
+
+            Timer t = new Timer();
+            t.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    finish();
+                    startActivity(getIntent());
+                    progress.dismiss();
+                    // If you want to call Activity then call from here for 5 seconds it automatically call and your image disappear....
+                }
+            }, 5000);
+            return true;
+
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

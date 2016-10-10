@@ -29,7 +29,7 @@
         android:id="@+id/event_category_textview"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:text="Sample"
+        android:text="Music"
         android:gravity="center"
         android:padding="12dp"
         android:textColor="@color/md_white_1000"

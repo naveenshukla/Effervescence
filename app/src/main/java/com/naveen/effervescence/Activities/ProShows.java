@@ -1,6 +1,10 @@
 package com.naveen.effervescence.Activities;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -12,14 +16,20 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.naveen.effervescence.MyDBHandler;
 import com.naveen.effervescence.ProShowsFragments.ProShowsList;
 import com.naveen.effervescence.R;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static com.naveen.effervescence.Activities.SplashActivity.wait;
 
 public class ProShows extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    MyDBHandler db  = new MyDBHandler(this);
     DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,9 +131,42 @@ public class ProShows extends AppCompatActivity implements NavigationView.OnNavi
                 }
             }, wait);
         }
+        else if(id == R.id.refreshdata){
+            if(!isNetworkAvailable()){
+                Toast.makeText(this, "Make sure you are connected to Internet", Toast.LENGTH_LONG).show();
+                return true;
+            }
 
+            final ProgressDialog progress = new ProgressDialog(this);
+            progress.setMessage("Refreshing Data");
+            progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progress.setIndeterminate(true);
+            progress.show();
+
+            db.update(this ,1, isNetworkAvailable());
+
+            Timer t = new Timer();
+            t.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    finish();
+                    startActivity(getIntent());
+                    progress.dismiss();
+                    // If you want to call Activity then call from here for 5 seconds it automatically call and your image disappear....
+                }
+            }, 5000);
+            return true;
+
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
 }

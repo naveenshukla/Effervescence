@@ -18,6 +18,13 @@
                 android:icon="@drawable/ic_stars_black_18dp"
                 android:title="ProShows" />
         </item>
+
+        <item android:title="Refresh">
+            <item
+                android:id="@+id/refreshdata"
+                android:icon="@drawable/ic_refresh_black_24dp"
+                android:title="Refresh Data" />
+        </item>
     </group>
 
     <item android:title="About">

@@ -1,6 +1,10 @@
 package com.naveen.effervescence.Activities;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -18,8 +22,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.naveen.effervescence.Adapters.OrganizersCardPagerAdapter;
+import com.naveen.effervescence.MyDBHandler;
 import com.naveen.effervescence.R;
 import com.naveen.effervescence.Utils.ShadowTransformer;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static com.naveen.effervescence.Activities.SplashActivity.wait;
 
@@ -27,6 +35,7 @@ public class OrganizersActivity extends AppCompatActivity implements NavigationV
 
 	private ViewPager mViewPager;
 
+	MyDBHandler db  = new MyDBHandler(this);
 	private OrganizersCardPagerAdapter mCardAdapter;
 	private ShadowTransformer mCardShadowTransformer;
 	private DrawerLayout drawer;
@@ -143,8 +152,42 @@ public class OrganizersActivity extends AppCompatActivity implements NavigationV
 				}
 			}, wait);
 		}
+		else if(id == R.id.refreshdata){
+			if(!isNetworkAvailable()){
+				Toast.makeText(this, "Make sure you are connected to Internet", Toast.LENGTH_LONG).show();
+				return true;
+			}
+
+			final ProgressDialog progress = new ProgressDialog(this);
+			progress.setMessage("Refreshing Data");
+			progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			progress.setIndeterminate(true);
+			progress.show();
+
+			db.update(this ,1, isNetworkAvailable());
+
+			Timer t = new Timer();
+			t.schedule(new TimerTask() {
+				@Override
+				public void run() {
+					finish();
+					startActivity(getIntent());
+					progress.dismiss();
+					// If you want to call Activity then call from here for 5 seconds it automatically call and your image disappear....
+				}
+			}, 5000);
+			return true;
+
+		}
 
 		drawer.closeDrawer(GravityCompat.START);
 		return true;
 	}
+	private boolean isNetworkAvailable() {
+		ConnectivityManager connectivityManager
+				= (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+	}
+
 }

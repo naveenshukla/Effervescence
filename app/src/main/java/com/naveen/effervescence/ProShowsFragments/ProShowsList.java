@@ -79,7 +79,7 @@ public class ProShowsList extends Fragment {
                     default:
                         Log.d("hello", String.valueOf(3));
                         intent = new Intent( getContext(), EventDetailActivity.class);
-                        intent.putExtra("event_name","The Local Train");
+                        intent.putExtra("event_name","Limor Ballas Live");
                 }
                 Log.d("hello", String.valueOf(currI));
                 startActivity(intent);
@@ -111,7 +111,7 @@ public class ProShowsList extends Fragment {
                     case 0: titleTextView.animateText("The Local Train"); break;
                     case 1: titleTextView.animateText("Coke Studio - Benny Dayal"); break;
                     case 2: titleTextView.animateText("Bollywood Night"); break;
-                    case 3: titleTextView.animateText("The Local Train"); break;
+                    case 3: titleTextView.animateText("Limor Ballas Live"); break;
                 }
             }
             @Override
@@ -150,7 +150,7 @@ public class ProShowsList extends Fragment {
             listq.add(new FragmentData("The Local Train",R.drawable.thelocaltrain));
             listq.add(new FragmentData("Coke Studio - Benny Dayal",R.drawable.bennydayal));
             listq.add(new FragmentData("Bollywood Night",R.drawable.dj_night));
-            listq.add(new FragmentData("The Local Train",R.drawable.thelocaltrain));
+            listq.add(new FragmentData("Limor Ballas Live",R.drawable.israili));
         }
 
         @Override

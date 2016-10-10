@@ -34,7 +34,6 @@ public class HorizontalPagerAdapter extends PagerAdapter{
     private ArrayList<EventInfo> drama = new ArrayList<>();
     private ArrayList<EventInfo> literary = new ArrayList<>();
     private ArrayList<EventInfo> informal = new ArrayList<>();
-    private ArrayList<EventInfo> photography = new ArrayList<>();
     private ArrayList<EventInfo> music = new ArrayList<>();
     private ArrayList<EventInfo> finearts = new ArrayList<>();
     private final ArrayList[] EVENTS_BY_CATEGORIES = new ArrayList[]{
@@ -43,7 +42,6 @@ public class HorizontalPagerAdapter extends PagerAdapter{
             dance,
             literary,
             informal,
-            photography,
             music,
             finearts
     };
@@ -70,14 +68,13 @@ public class HorizontalPagerAdapter extends PagerAdapter{
         );
         TextView textView = (TextView) view.findViewById(R.id.event_category_textview);
         switch (position){
-            case 0: textView.setText("Online"); break;
+            case 0: textView.setText("Gaming"); break;
             case 1: textView.setText("Drama"); break;
             case 2: textView.setText("Dance"); break;
             case 3: textView.setText("Literary"); break;
             case 4: textView.setText("Informal"); break;
-            case 5: textView.setText("Photography"); break;
-            case 6: textView.setText("Music"); break;
-            case 7: textView.setText("Fine Arts");
+            case 5: textView.setText("Music"); break;
+            case 6: textView.setText("Fine Arts");
         }
         container.addView(view);
         return view;
@@ -101,7 +98,7 @@ public class HorizontalPagerAdapter extends PagerAdapter{
         SQLiteDatabase db = myDBHandler.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  category = 'online'";
+        selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  category = 'gaming'";
         //SQLiteDatabase db = myDBHandler.getReadableDatabase();
         cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
@@ -111,42 +108,6 @@ public class HorizontalPagerAdapter extends PagerAdapter{
                         cursor.getString(2), cursor.getString(3),cursor.getString(4),rules , null));
             } while (cursor.moveToNext());
         }
-
-        if(online.isEmpty()){
-            online.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            online.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            online.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            online.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-        }
-
         selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  category = 'dance'";
         //SQLiteDatabase db = myDBHandler.getReadableDatabase();
         cursor = db.rawQuery(selectQuery, null);
@@ -156,41 +117,6 @@ public class HorizontalPagerAdapter extends PagerAdapter{
                         getDrawable(cursor.getString(7)) ,
                         cursor.getString(2), cursor.getString(3),cursor.getString(4),rules , null));
             } while (cursor.moveToNext());
-        }
-
-        if(dance.isEmpty()){
-            dance.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            dance.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            dance.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            dance.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
         }
 
         selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  category = 'drama'";
@@ -205,41 +131,6 @@ public class HorizontalPagerAdapter extends PagerAdapter{
         }
 
 
-        if(drama.isEmpty()){
-            drama.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            drama.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            drama.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            drama.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-        }
-
         selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  category = 'literary'";
         //SQLiteDatabase db = myDBHandler.getReadableDatabase();
         cursor = db.rawQuery(selectQuery, null);
@@ -251,40 +142,6 @@ public class HorizontalPagerAdapter extends PagerAdapter{
             } while (cursor.moveToNext());
         }
 
-        if(literary.isEmpty()){
-            literary.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            literary.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            literary.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            literary.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-        }
 
         selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  category = 'informal'";
         //SQLiteDatabase db = myDBHandler.getReadableDatabase();
@@ -298,88 +155,6 @@ public class HorizontalPagerAdapter extends PagerAdapter{
         }
 
 
-        if(informal.isEmpty()){
-            informal.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            informal.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            informal.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            informal.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-        }
-
-
-        selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  category = 'photography'";
-        //SQLiteDatabase db = myDBHandler.getReadableDatabase();
-        cursor = db.rawQuery(selectQuery, null);
-        if (cursor.moveToFirst()) {
-            do {
-                photography.add(new EventInfo(cursor.getString(0), cursor.getString(6), cursor.getString(1),
-                        getDrawable(cursor.getString(7)) ,
-                        cursor.getString(2), cursor.getString(3),cursor.getString(4),rules , null));
-            } while (cursor.moveToNext());
-        }
-
-
-        if(photography.isEmpty()){
-            photography.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            photography.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            photography.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            photography.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-        }
 
         selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  category = 'music'";
         //SQLiteDatabase db = myDBHandler.getReadableDatabase();
@@ -390,41 +165,6 @@ public class HorizontalPagerAdapter extends PagerAdapter{
                         getDrawable(cursor.getString(7)) ,
                         cursor.getString(2), cursor.getString(3),cursor.getString(4),rules , null));
             } while (cursor.moveToNext());
-        }
-
-        if(music.isEmpty()){
-            music.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            music.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            music.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            music.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
         }
 
         selectQuery = "SELECT  * FROM " + Table_Name + " WHERE  category = 'finearts'";
@@ -439,200 +179,6 @@ public class HorizontalPagerAdapter extends PagerAdapter{
         }
 
 
-        if(finearts.isEmpty()){
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-            finearts.add(new EventInfo("Perplexus",
-                    "Online Treasure Hunt. Sample Description",
-                    "Online",
-                    R.mipmap.antakshiri,
-                    "Perplexus_time",
-                    "Perplexus_date",
-                    "Online",
-                    rules, null));
-        }
         db.close();
     }
 

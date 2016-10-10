@@ -76,13 +76,13 @@
         <activity
             android:name=".Activities.EventDetailActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activities.OrganizersActivity"></activity>
+        <activity android:name=".Activities.OrganizersActivity" />
         <activity
             android:name=".Activities.Home"
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activities.Developers"></activity>
+        <activity android:name=".Activities.Developers" />
     </application>
 
 </manifest>
