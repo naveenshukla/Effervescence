@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.naveen.effervescence.Activities.EventDetailActivity;
 import com.naveen.effervescence.R;
@@ -46,7 +47,9 @@ public class VerticalPagerAdapter extends PagerAdapter{
     public Object instantiateItem(final ViewGroup container, final int position) {
         final View view = mLayoutInflater.inflate(R.layout.item, container, false);
         final ImageView eventImageView = (ImageView) view.findViewById(R.id.eventImageInCategory);
+        final TextView tv =  (TextView) view.findViewById(R.id.eventNameTV);
         eventImageView.setImageResource(events.get(position).getImage_drawable());
+        tv.setText(events.get(position).getEventName());
         eventImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

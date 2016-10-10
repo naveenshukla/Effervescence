@@ -13,14 +13,38 @@
         app:cardCornerRadius="5dp"
         app:cardElevation="20dp">
 
-        <ImageView
-            android:id="@+id/eventImageInCategory"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:transitionName="ima"
-            android:adjustViewBounds="true"
-            android:layout_gravity="center"/>
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/eventImageInCategory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:transitionName="ima"
+                android:adjustViewBounds="true"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/eventNameTV"
+                android:text="cool cool cool"
+                android:gravity="center"
+                android:padding="10dp"
+                android:background="@drawable/round_textview"
+                android:textColor="@color/md_white_1000"
+                android:layout_marginBottom="100dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 

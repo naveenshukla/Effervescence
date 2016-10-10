@@ -9,6 +9,8 @@
     <color name="white">#ffffff</color>
     <color name="transparent">#00000000</color>
 
+    <color name="transparent2">#9f000000</color>
+
     <color name="md_red_50">#FFEBEE</color>
     <color name="md_red_100">#FFCDD2</color>
     <color name="md_red_200">#EF9A9A</color>
