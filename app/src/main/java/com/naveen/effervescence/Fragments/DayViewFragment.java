@@ -143,6 +143,7 @@ public class DayViewFragment extends Fragment implements RecyclerViewClickListen
         }
         setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
+
         switch (day) {
             case 1: mAdapter = new EventAdapter(day0EventList, this, getActivity(), getContext(), ALPHABETICAL_COMPARATOR);
                 break;

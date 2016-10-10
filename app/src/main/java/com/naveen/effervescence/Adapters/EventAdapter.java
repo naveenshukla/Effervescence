@@ -3,6 +3,9 @@ package com.naveen.effervescence.Adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.provider.CalendarContract;
@@ -162,6 +165,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         viewHolder.title.setText(title);
         viewHolder.time.setText(time);
         viewHolder.place.setText(place);
+        viewHolder.eventImage.setImageBitmap(
+                decodeSampledBitmapFromResource(context.getResources(), events.getImage_drawable() , 100, 100));
         viewHolder.eventImage.setImageResource(events.getImage_drawable());
 
         final View imageView = viewHolder.eventImage;
@@ -215,6 +220,47 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
 //            viewHolder.expanded_layout.setVisibility(View.GONE);
 //            viewHolder.dropdown.setImageResource(R.drawable.ic_expand_more_black_24dp);
 //        }
+    }
+    
+    
+    
+    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
+                                                         int reqWidth, int reqHeight) {
+
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(res, resId, options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeResource(res, resId, options);
+    }
+
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) >= reqHeight
+                    && (halfWidth / inSampleSize) >= reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
     }
 
     // Return the size of your dataset (invoked by the layout manager)
