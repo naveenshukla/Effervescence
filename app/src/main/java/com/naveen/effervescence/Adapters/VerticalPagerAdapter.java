@@ -19,6 +19,8 @@ import com.naveen.effervescence.Model.EventInfo;
 
 import java.util.ArrayList;
 
+import static com.naveen.effervescence.Adapters.EventAdapter.decodeSampledBitmapFromResource;
+
 /**
  * Created by betterclever on 30/8/16.
  */
@@ -48,7 +50,8 @@ public class VerticalPagerAdapter extends PagerAdapter{
         final View view = mLayoutInflater.inflate(R.layout.item, container, false);
         final ImageView eventImageView = (ImageView) view.findViewById(R.id.eventImageInCategory);
         final TextView tv =  (TextView) view.findViewById(R.id.eventNameTV);
-        eventImageView.setImageResource(events.get(position).getImage_drawable());
+        eventImageView.setImageBitmap(
+                decodeSampledBitmapFromResource(mContext.getResources(), events.get(position).getImage_drawable() , 100, 100));
         tv.setText(events.get(position).getEventName());
         eventImageView.setOnClickListener(new View.OnClickListener() {
             @Override
