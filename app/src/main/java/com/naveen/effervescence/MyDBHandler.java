@@ -99,10 +99,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
                                 values.put(COLUMN_ORGANIZERS, organizers);
                                 values.put(COLUMN_RULES, "to be updated");
                                 values.put(COLUMN_DRAWABLE, drawable);
-                                if(k == 0)
-                                    db.insert(TABLE_EVENTS , null, values);
-                                else
-                                    db.update(TABLE_EVENTS, values,  COLUMN_TITLE + " = " + '"' + eventTitle +  '"' , null);
+                                db.insert(TABLE_EVENTS , null, values);
+                                db.update(TABLE_EVENTS, values,  COLUMN_TITLE + " = " + '"' + eventTitle +  '"' , null);
                                 db.close();
                             }
 
@@ -148,10 +146,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
                                 values.put(COLUMN_ORGANIZERS, organizers);
                                 values.put(COLUMN_RULES, "to be updated");
                                 values.put(COLUMN_DRAWABLE, drawable);
-                                if(k == 0)
-                                    db.insert(TABLE_EVENTS , null, values);
-                                else
-                                    db.update(TABLE_EVENTS, values,  COLUMN_TITLE + " = " + '"' + eventTitle +  '"' , null);
+                                db.insert(TABLE_EVENTS , null, values);
+                                db.update(TABLE_EVENTS, values,  COLUMN_TITLE + " = " + '"' + eventTitle +  '"' , null);
                                 db.close();
                             }
 
@@ -198,10 +194,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
                                 values.put(COLUMN_ORGANIZERS, organizers);
                                 values.put(COLUMN_RULES, "to be updated");
                                 values.put(COLUMN_DRAWABLE, drawable);
-                                if(k == 0)
-                                    db.insert(TABLE_EVENTS , null, values);
-                                else
-                                    db.update(TABLE_EVENTS, values,  COLUMN_TITLE + " = " + '"' + eventTitle +  '"' , null);
+                                db.insert(TABLE_EVENTS , null, values);
+                                db.update(TABLE_EVENTS, values,  COLUMN_TITLE + " = " + '"' + eventTitle +  '"' , null);
                                 db.close();
                             }
 
@@ -248,10 +242,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
                                 values.put(COLUMN_ORGANIZERS, organizers);
                                 values.put(COLUMN_RULES, "to be updated");
                                 values.put(COLUMN_DRAWABLE, drawable);
-                                if(k == 0)
-                                    db.insert(TABLE_EVENTS , null, values);
-                                else
-                                    db.update(TABLE_EVENTS, values,  COLUMN_TITLE + " = " + '"' + eventTitle +  '"' , null);
+                                db.insert(TABLE_EVENTS , null, values);
+                                db.update(TABLE_EVENTS, values,  COLUMN_TITLE + " = " + '"' + eventTitle +  '"' , null);
                                 db.close();
                             }
 
