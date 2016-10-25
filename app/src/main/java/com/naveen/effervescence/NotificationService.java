@@ -17,13 +17,13 @@ public class NotificationService extends Service{
 
     public IBinder onBind(Intent arg0)
     {
-        // TODO Auto-generated method stub
+
         return null;
     }
 
     public void onCreate()
     {
-        // TODO Auto-generated method stub
+     
         super.onCreate();
     }
 
@@ -71,7 +71,7 @@ public class NotificationService extends Service{
 
     public void onDestroy()
     {
-        // TODO Auto-generated method stub
+   
         super.onDestroy();
     }
 }
