@@ -31,59 +31,6 @@ public class Effervescence extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-/*
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if (!prefs.getBoolean("firstTime", false)) {
-            // <---- run your one time code here
-            //databaseSetup();
-
-            // mark first time has runned.
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean("firstTime", true);
-            editor.commit();
-        }
-*/
-
-/*
-        final Context context = this;
-
-        firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
-        final SharedPreferences sharedPref = context.getSharedPreferences(
-                getString(R.string.datetime_sharedpref_file), Context.MODE_PRIVATE);
-        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setDeveloperModeEnabled(BuildConfig.DEBUG)
-                .build();
-        firebaseRemoteConfig.setConfigSettings(configSettings);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // Run mFirebaseRemoteConfig.fetch(timeout) here, and it works
-                firebaseRemoteConfig.fetch(20).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()) {
-
-                            firebaseRemoteConfig.activateFetched();
-                            SharedPreferences.Editor editor = sharedPref.edit();
-                            editor.putString("animequiz_time", firebaseRemoteConfig.getString("animequiz_time"));
-                            editor.putString("animequiz_date", firebaseRemoteConfig.getString("animequiz_date"));
-                            Log.d("cool", "dude");
-                            Log.d("animequiz_date", firebaseRemoteConfig.getString("animequiz_date"));
-                            Log.d("animequiz_time", firebaseRemoteConfig.getString("animequiz_time"));
-                            editor.commit();
-                        }
-                        else {
-                            Log.d("remoteConfig","Failed");
-                        }
-                    }
-                });
-
-            }
-        }, 0);
-
-*/
 
     }
 }
