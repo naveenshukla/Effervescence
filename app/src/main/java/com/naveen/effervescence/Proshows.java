@@ -47,21 +47,24 @@ public class Proshows extends AppCompatActivity implements NavigationView.OnNavi
 
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item) 
+    {
         int id = item.getItemId();
 
         if (id == R.id.category) {
-
+            Intent intent = new Intent(Proshows.this, Categories.class);
+            startActivity(intent);
         } else if (id == R.id.day) {
             Intent intent = new Intent(Proshows.this, DaysViewActivity.class);
             startActivity(intent);
 
-        }  else if (id == R.id.proshows) {
-
         } else if (id == R.id.sponsers) {
+            Intent intent = new Intent(Proshows.this,  SponsersActivity.class);
+            startActivity(intent);
 
-        }else if (id == R.id.developers) {
-
+        }else if(id == R.id.developers) {
+            Intent intent = new Intent(Proshows.this,  Developers.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
