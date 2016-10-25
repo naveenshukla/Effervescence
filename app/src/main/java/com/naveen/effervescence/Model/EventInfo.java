@@ -49,7 +49,7 @@ public class EventInfo{
     public String getEventDescription() {
         return eventDescription;
     }
-    //returns categoryofevents
+    //returns category of events
     public String getCategory() {
         return category;
     }
